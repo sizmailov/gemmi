@@ -1,0 +1,1083 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Reciprocal space &mdash; Gemmi 0.3.7 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Gemmi program" href="utils.html" />
+    <link rel="prev" title="Grids and maps" href="grid.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Gemmi
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.7
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cif.html">CIF Parser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="symmetry.html">Symmetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mol.html">Molecular models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analysis.html">Structure analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grid.html">Grids and maps</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Reciprocal space</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#mtz-format">MTZ format</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#reading">Reading</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modifying">Modifying</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing">Writing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#sf-mmcif">SF mmCIF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hkl-cif">hkl CIF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-on-3d-grid">Data on 3D grid</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#grid-size">Grid size</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#array-layout">Array layout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#fft">FFT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scattering-factors">Scattering factors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#atomic-form-factor">Atomic form factor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#anomalous-scattering">Anomalous scattering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bulk-solvent-correction">Bulk solvent correction</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Gemmi program</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://project-gemmi.github.io/gemmi/api/python">Python API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Gemmi</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Reciprocal space</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/hkl.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="reciprocal-space">
+<h1>Reciprocal space<a class="headerlink" href="#reciprocal-space" title="Permalink to this headline">¶</a></h1>
+<p>This section is primarily for people working with crystallographic data.</p>
+<p>Gemmi supports three reflection file formats:</p>
+<ul class="simple">
+<li><p>MTZ files – the most popular format in macromolecular crystallography,</p></li>
+<li><p>structure factor mmCIF files – used for data archiving
+in the Protein Data Bank,</p></li>
+<li><p>and small molecule structure factor CIF files (usually with extension hkl).</p></li>
+</ul>
+<p>Reflection files store Miller indices (<em>hkl</em>) with various associated
+numbers. Initially, the numbers represent observations derived from
+diffraction images (reflection intensities and error estimates).
+Then other quantities derived from these are added,
+as well as quantities derived from a macromolecular model
+that is built to explain the experimental data.</p>
+<p>Even electron density maps, which are used in the real space, are nowadays
+stored mostly as map coefficients in reflection files.
+Molecular viewers can Fourier-transform them on the fly and show
+in the real space. Therefore, switching between the real and reciprocal space
+is also included in Gemmi, as well as calculation of structure factors
+from the model.</p>
+<div class="section" id="mtz-format">
+<h2>MTZ format<a class="headerlink" href="#mtz-format" title="Permalink to this headline">¶</a></h2>
+<p>MTZ format has textual headers and a binary data table, where all numbers
+are stored in a 32-bit floating point format.
+The headers, as well as data, are stored in class <code class="docutils literal notranslate"><span class="pre">Mtz</span></code>.
+The columns of data are grouped hierarchically (Project -&gt; Crystal -&gt; Dataset
+-&gt; Column), but normally the column name is all that is needed,
+and the hierarchy can be ignored. In Gemmi, the hierarchy is flattened:
+we have a list of columns and a list of datasets.
+Each columns is associated with one dataset, and each dataset has properties
+<code class="docutils literal notranslate"><span class="pre">dataset_name</span></code>, <code class="docutils literal notranslate"><span class="pre">project_name</span></code> and <code class="docutils literal notranslate"><span class="pre">crystal_name</span></code>,
+which is enough to reconstruct the tree-like hierarchy if needed.</p>
+<div class="section" id="reading">
+<h3>Reading<a class="headerlink" href="#reading" title="Permalink to this headline">¶</a></h3>
+<p>In C++, the MTZ file can be read using either stand-alone functions:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Mtz</span> <span class="n">read_mtz_file</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">path</span><span class="p">)</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Input</span><span class="o">&gt;</span> <span class="n">Mtz</span> <span class="n">read_mtz</span><span class="p">(</span><span class="n">Input</span><span class="o">&amp;&amp;</span> <span class="n">input</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">with_data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>or member functions of the Mtz class, when more control over the reading
+process is needed.</p>
+<p>In Python, we have a single function for reading MTZ files:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">gemmi</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span> <span class="o">=</span> <span class="n">gemmi</span><span class="o">.</span><span class="n">read_mtz_file</span><span class="p">(</span><span class="s1">&#39;../tests/5e5z.mtz&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The Mtz class has a number of properties read from the MTZ header
+(they are the same in C++ and Python):</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">cell</span>        <span class="c1"># from MTZ record CELL</span>
+<span class="go">&lt;gemmi.UnitCell(9.643, 9.609, 19.029, 90, 101.224, 90)&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">spacegroup</span>  <span class="c1"># from SYMINF</span>
+<span class="go">&lt;gemmi.SpaceGroup(&quot;P 1 21 1&quot;)&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">title</span>       <span class="c1"># from TITLE</span>
+<span class="go">&#39;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">history</span>     <span class="c1"># from history lines</span>
+<span class="go">[&#39;From cif2mtz 17/ 5/2019 12:15:14&#39;]</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># The properties below are also read from the MTZ file,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># although they could be recalculated from the data.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">nreflections</span>   <span class="c1"># from MTZ record NCOL</span>
+<span class="go">441</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">min_1_d2</span>       <span class="c1"># from RESO</span>
+<span class="go">0.0028703967109323008</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">max_1_d2</span>       <span class="c1"># from RESO</span>
+<span class="go">0.36117017269134527</span>
+</pre></div>
+</div>
+<p>The resolution can also be checked using functions:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">resolution_low</span><span class="p">()</span>   <span class="c1"># sqrt(1 / min_1_d2)</span>
+<span class="go">18.665044863474492</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">resolution_high</span><span class="p">()</span>  <span class="c1"># sqrt(1 / max_1_d2)</span>
+<span class="go">1.6639645192598425</span>
+</pre></div>
+</div>
+<p>Importantly, Mtz class has a list of datasets and a list of columns.
+Datasets are stored in the variable <code class="docutils literal notranslate"><span class="pre">datasets</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Mtz</span><span class="o">::</span><span class="n">Dataset</span><span class="o">&gt;</span> <span class="n">Mtz</span><span class="o">::</span><span class="n">datasets</span>
+</pre></div>
+</div>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">datasets</span>
+<span class="go">MtzDatasets[&lt;gemmi.Mtz.Dataset 0 HKL_base/HKL_base/HKL_base&gt;, &lt;gemmi.Mtz.Dataset 1 5e5z/5e5z/1&gt;]</span>
+</pre></div>
+</div>
+<p>In the MTZ file, each dataset is identified internally by an integer
+“dataset ID”. To get dataset with the specified ID use function:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Dataset</span><span class="o">&amp;</span> <span class="n">Mtz</span><span class="o">::</span><span class="n">dataset</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">dataset</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">&lt;gemmi.Mtz.Dataset 0 HKL_base/HKL_base/HKL_base&gt;</span>
+</pre></div>
+</div>
+<p>Dataset has a few properties that can be accessed directly:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">Dataset</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">number</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">project_name</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">crystal_name</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">dataset_name</span><span class="p">;</span>
+  <span class="n">UnitCell</span> <span class="n">cell</span><span class="p">;</span>
+  <span class="kt">double</span> <span class="n">wavelength</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Python bindings provide the same properties:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">dataset</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">project_name</span>
+<span class="go">&#39;HKL_base&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">dataset</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">crystal_name</span>
+<span class="go">&#39;HKL_base&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">dataset</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">dataset_name</span>
+<span class="go">&#39;HKL_base&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">dataset</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">cell</span>
+<span class="go">&lt;gemmi.UnitCell(9.643, 9.609, 19.029, 90, 101.224, 90)&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">dataset</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">wavelength</span>
+<span class="go">0.0</span>
+</pre></div>
+</div>
+<p>Columns are stored in variable <code class="docutils literal notranslate"><span class="pre">columns</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Mtz</span><span class="o">::</span><span class="n">Column</span><span class="o">&gt;</span> <span class="n">Mtz</span><span class="o">::</span><span class="n">columns</span>
+</pre></div>
+</div>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">&lt;gemmi.Mtz.Column H type H&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">mtz</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="go">8</span>
+</pre></div>
+</div>
+<p>To get the first column with the specified label use functions:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">column_with_label</span><span class="p">(</span><span class="s1">&#39;FREE&#39;</span><span class="p">)</span>
+<span class="go">&lt;gemmi.Mtz.Column FREE type I&gt;</span>
+</pre></div>
+</div>
+<p>If the column names are not unique, you may specify the dataset:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">column_with_label</span><span class="p">(</span><span class="s1">&#39;FREE&#39;</span><span class="p">,</span> <span class="n">mtz</span><span class="o">.</span><span class="n">dataset</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># None</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">column_with_label</span><span class="p">(</span><span class="s1">&#39;FREE&#39;</span><span class="p">,</span> <span class="n">mtz</span><span class="o">.</span><span class="n">dataset</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="go">&lt;gemmi.Mtz.Column FREE type I&gt;</span>
+</pre></div>
+</div>
+<p>To get all columns of the specified type use:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">columns_with_type</span><span class="p">(</span><span class="s1">&#39;Q&#39;</span><span class="p">)</span>
+<span class="go">MtzColumnRefs[&lt;gemmi.Mtz.Column SIGFP type Q&gt;, &lt;gemmi.Mtz.Column SIGI type Q&gt;]</span>
+</pre></div>
+</div>
+<p>Column has properties read from MTZ headers COLUMN and COLSRC:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">Column</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">dataset_id</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="n">type</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">label</span><span class="p">;</span>
+  <span class="kt">float</span> <span class="n">min_value</span> <span class="o">=</span> <span class="n">NAN</span><span class="p">;</span>
+  <span class="kt">float</span> <span class="n">max_value</span> <span class="o">=</span> <span class="n">NAN</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">source</span><span class="p">;</span>  <span class="c1">// from COLSRC</span>
+  <span class="c1">// (and functions and variables that help in accessing data)</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Python bindings provide the same properties:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">intensity</span> <span class="o">=</span> <span class="n">mtz</span><span class="o">.</span><span class="n">column_with_label</span><span class="p">(</span><span class="s1">&#39;I&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">intensity</span><span class="o">.</span><span class="n">dataset_id</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">intensity</span><span class="o">.</span><span class="n">type</span>
+<span class="go">&#39;J&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">intensity</span><span class="o">.</span><span class="n">label</span>
+<span class="go">&#39;I&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">intensity</span><span class="o">.</span><span class="n">min_value</span><span class="p">,</span> <span class="n">intensity</span><span class="o">.</span><span class="n">max_value</span>
+<span class="go">(-0.30090001225471497, 216.60499572753906)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">intensity</span><span class="o">.</span><span class="n">source</span>
+<span class="go">&#39;CREATED_17/05/2019_12:15:14&#39;</span>
+</pre></div>
+</div>
+<p>C++ function <code class="docutils literal notranslate"><span class="pre">Mtz::Column::size()</span></code> is wrapped in Python as <code class="docutils literal notranslate"><span class="pre">__len__</span></code>:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">intensity</span><span class="p">)</span>
+<span class="go">441</span>
+</pre></div>
+</div>
+<p>In both C++ and Python <code class="docutils literal notranslate"><span class="pre">Column</span></code> supports the iteration protocol:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">intensity</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">]</span>
+<span class="go">[124.25700378417969, 100.08699798583984, 216.60499572753906]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">numpy</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">intensity</span><span class="p">)</span>
+<span class="go">11.505858</span>
+</pre></div>
+</div>
+<p>In Python we also have a read-only <code class="docutils literal notranslate"><span class="pre">array</span></code> property that provides
+a view of the data compatible with NumPy. It does not copy the data,
+so the data is not contiguous (because it’s stored row-wise in MTZ):</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">intensity</span><span class="o">.</span><span class="n">array</span><span class="o">.</span><span class="n">strides</span>
+<span class="go">(32,)</span>
+</pre></div>
+</div>
+<p>Here is an example that uses the array property
+to make a plot similar to <a class="reference external" href="http://www.auspex.de/">AUSPEX</a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
+<span class="kn">import</span> <span class="nn">gemmi</span>
+
+<span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+    <span class="n">mtz</span> <span class="o">=</span> <span class="n">gemmi</span><span class="o">.</span><span class="n">read_mtz_file</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">intensity</span> <span class="o">=</span> <span class="n">mtz</span><span class="o">.</span><span class="n">column_with_label</span><span class="p">(</span><span class="s1">&#39;I&#39;</span><span class="p">)</span>
+    <span class="n">sigma</span> <span class="o">=</span> <span class="n">mtz</span><span class="o">.</span><span class="n">column_with_label</span><span class="p">(</span><span class="s1">&#39;SIGI&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">intensity</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">sigma</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s2">&quot;Columns I and SIGI not in the file: &quot;</span> <span class="o">+</span> <span class="n">path</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">mtz</span><span class="o">.</span><span class="n">make_1_d2_array</span><span class="p">()</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">intensity</span><span class="o">.</span><span class="n">array</span> <span class="o">/</span> <span class="n">sigma</span><span class="o">.</span><span class="n">array</span>
+    <span class="n">pyplot</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+    <span class="n">pyplot</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">gridsize</span><span class="o">=</span><span class="mi">180</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gnuplot2&#39;</span><span class="p">)</span>
+    <span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>To test this program we run it on data from 5DEI and we get result
+similar to <a class="reference external" href="http://www.auspex.de/pathol/#3">#3</a>:</p>
+<a class="reference internal image-reference" href="_images/5dei-Ioversigma.png"><img alt="_images/5dei-Ioversigma.png" class="align-center" src="_images/5dei-Ioversigma.png" style="width: 448.0px; height: 421.0px;" /></a>
+<p>Another way to access all the MTZ data in Python is through the
+<a class="reference external" href="https://docs.python.org/3/c-api/buffer.html">buffer protocol</a>:
+For example, to view the data as 2D NumPy array (C-style contiguous)
+without copying do:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">all_data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">mtz</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>It helps to have labels on the columns. A good data structure for this
+is Pandas DataFrame:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">all_data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">mtz</span><span class="o">.</span><span class="n">column_labels</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># now we can handle columns using their labels:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">I_over_sigma</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;I&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;SIGI&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The data in numpy array is float32. To cast Miller indices in the DataFrame
+to integer type:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">astype</span><span class="p">({</span><span class="n">name</span><span class="p">:</span> <span class="s1">&#39;int32&#39;</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;K&#39;</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">]})</span>
+</pre></div>
+</div>
+<p>You may also have a look at a different project (not associated with Gemmi)
+for working with reflection data in Python:
+<a class="reference external" href="https://hekstra-lab.github.io/reciprocalspaceship/">ReciprocalSpaceship</a>.</p>
+</div>
+<div class="section" id="modifying">
+<h3>Modifying<a class="headerlink" href="#modifying" title="Permalink to this headline">¶</a></h3>
+<p>To change the data in Mtz object we can use function set_data().
+In Python, we pass to this function a 2D NumPy array of floating point numbers.</p>
+<p>In the previous section, we got such an array (<code class="docutils literal notranslate"><span class="pre">all_data</span></code>)
+with the original data.
+Now, as an example, let us remove reflections with the resolution
+above 2Å (i.e. <em>d</em> &lt; 2Å) and copy the result back into <code class="docutils literal notranslate"><span class="pre">mtz</span></code>.
+To show that it really has an effect we print the appropriate
+<a class="reference internal" href="#grid-size"><span class="std std-ref">grid size</span></a> before and after:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">get_size_for_hkl</span><span class="p">()</span>
+<span class="go">[12, 12, 24]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">all_data</span><span class="p">[</span><span class="n">mtz</span><span class="o">.</span><span class="n">make_d_array</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="mf">2.0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">get_size_for_hkl</span><span class="p">()</span>
+<span class="go">[10, 10, 20]</span>
+</pre></div>
+</div>
+<p>The metadata in an <code class="docutils literal notranslate"><span class="pre">Mtz</span></code> object can also be modified.
+To illustrate it, we will create a complete <code class="docutils literal notranslate"><span class="pre">Mtz</span></code> object from scratch.
+The code below is in Python, but all the functions and properties have
+equivalents with the same names in C++.</p>
+<p>We start from creating an object and setting its space group and unit cell:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span> <span class="o">=</span> <span class="n">gemmi</span><span class="o">.</span><span class="n">Mtz</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">spacegroup</span> <span class="o">=</span> <span class="n">gemmi</span><span class="o">.</span><span class="n">find_spacegroup_by_name</span><span class="p">(</span><span class="s1">&#39;P 21 21 2&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mf">77.7</span><span class="p">,</span> <span class="mf">149.5</span><span class="p">,</span> <span class="mf">62.4</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now we need to add datasets and columns.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">add_dataset</span><span class="p">(</span><span class="s1">&#39;HKL_base&#39;</span><span class="p">)</span>
+<span class="go">&lt;gemmi.Mtz.Dataset 0 HKL_base/HKL_base/HKL_base&gt;</span>
+</pre></div>
+</div>
+<p>The name passed to <code class="docutils literal notranslate"><span class="pre">add_dataset()</span></code> is used to set <code class="docutils literal notranslate"><span class="pre">dataset_name</span></code>,
+<code class="docutils literal notranslate"><span class="pre">crystal_name</span></code> and <code class="docutils literal notranslate"><span class="pre">project_name</span></code>. These three names are often
+kept the same, but if needed, they can be changed afterwards.</p>
+<p>The MTZ format stores general, per file cell dimensions (keyword CELL),
+as well per dataset ones (keyword DCELL).
+Function <code class="docutils literal notranslate"><span class="pre">add_dataset</span></code> initializes the latter from the former.
+This also can be changed afterwards.</p>
+<p>The first three columns must always be Miller indices:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;K&#39;</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">]:</span> <span class="n">mtz</span><span class="o">.</span><span class="n">add_column</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">)</span>
+<span class="go">&lt;gemmi.Mtz.Column H type H&gt;</span>
+<span class="go">&lt;gemmi.Mtz.Column K type H&gt;</span>
+<span class="go">&lt;gemmi.Mtz.Column L type H&gt;</span>
+</pre></div>
+</div>
+<p>Let’s add two more columns in a separate dataset:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">add_dataset</span><span class="p">(</span><span class="s1">&#39;synthetic&#39;</span><span class="p">)</span>
+<span class="go">&lt;gemmi.Mtz.Dataset 1 synthetic/synthetic/synthetic&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">add_column</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">)</span>
+<span class="go">&lt;gemmi.Mtz.Column F type F&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">add_column</span><span class="p">(</span><span class="s1">&#39;SIGF&#39;</span><span class="p">,</span> <span class="s1">&#39;Q&#39;</span><span class="p">)</span>
+<span class="go">&lt;gemmi.Mtz.Column SIGF type Q&gt;</span>
+</pre></div>
+</div>
+<p>By default, the new column is assigned to the last dataset
+and is placed at the end of the column list.
+But we can choose any dataset and position:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">add_column</span><span class="p">(</span><span class="s1">&#39;FREE&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="n">dataset_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">&lt;gemmi.Mtz.Column FREE type I&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">column_labels</span><span class="p">()</span>
+<span class="go">[&#39;H&#39;, &#39;K&#39;, &#39;L&#39;, &#39;FREE&#39;, &#39;F&#39;, &#39;SIGF&#39;]</span>
+</pre></div>
+</div>
+<p>Now it is time to add data.
+We will use the <code class="docutils literal notranslate"><span class="pre">set_data()</span></code> function that takes 2D NumPy array
+of floating point numbers (even indices are converted to floats,
+but they need to be converted at some point anyway – the MTZ format
+stores all numbers as 32-bit floats).</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">453.9</span><span class="p">,</span> <span class="mf">19.12</span><span class="p">],</span>
+<span class="gp">... </span>                    <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">102.0</span><span class="p">,</span> <span class="mf">27.31</span><span class="p">]],</span> <span class="n">numpy</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span>
+<span class="go">&lt;gemmi.Mtz with 6 columns, 2 reflections&gt;</span>
+</pre></div>
+</div>
+<p>In C++ the <code class="docutils literal notranslate"><span class="pre">set_data</span></code> function takes a pointer to row-wise ordered data
+and its size (columns x rows):</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">Mtz</span><span class="o">::</span><span class="n">set_data</span><span class="p">(</span><span class="k">const</span> <span class="kt">float</span><span class="o">*</span> <span class="n">new_data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To update properties <code class="docutils literal notranslate"><span class="pre">min_1_d2</span></code> and <code class="docutils literal notranslate"><span class="pre">max_1_d2</span></code> call <code class="docutils literal notranslate"><span class="pre">update_reso()</span></code>:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">update_reso</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">min_1_d2</span><span class="p">,</span> <span class="n">mtz</span><span class="o">.</span><span class="n">max_1_d2</span>
+<span class="go">(0.02664818727144997, 0.03101414716625602)</span>
+</pre></div>
+</div>
+<p>You do not need to call <code class="docutils literal notranslate"><span class="pre">update_reso()</span></code> before writing an MTZ file –
+the values for the RESO record are re-calculated automatically when the file
+is written.</p>
+</div>
+<div class="section" id="writing">
+<h3>Writing<a class="headerlink" href="#writing" title="Permalink to this headline">¶</a></h3>
+<p>In C++, the MTZ file can be written to a file using one of the functions:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">Mtz</span><span class="o">::</span><span class="n">write_to_stream</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">FILE</span><span class="o">*</span> <span class="n">stream</span><span class="p">)</span> <span class="k">const</span>
+<span class="kt">void</span> <span class="n">Mtz</span><span class="o">::</span><span class="n">write_to_file</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">path</span><span class="p">)</span> <span class="k">const</span>
+</pre></div>
+</div>
+<p>and in Python using:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mtz</span><span class="o">.</span><span class="n">write_to_file</span><span class="p">(</span><span class="s1">&#39;output.mtz&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="sf-mmcif">
+<h2>SF mmCIF<a class="headerlink" href="#sf-mmcif" title="Permalink to this headline">¶</a></h2>
+<p>The mmCIF format is also used to store reflection data from crystallographic
+experiments. Reflections and coordinates are normally stored in separate
+mmCIF files. The files with reflections are called structure factor mmCIF
+or shortly SF mmCIF. Such file for the 1ABC PDB entry
+is usually named either <code class="docutils literal notranslate"><span class="pre">1ABC-sf.cif</span></code> (if downloaded through RCSB website)
+or <code class="docutils literal notranslate"><span class="pre">r1abcsf.ent</span></code> (if downloaded through PDBe website or through FTP).</p>
+<p>SF mmCIF files usually contain one block, but may have
+multiple blocks, for example merged and unmerged data in separate blocks.
+Merged and unmerged data is expected in mmCIF categories <code class="docutils literal notranslate"><span class="pre">_refln</span></code>
+and <code class="docutils literal notranslate"><span class="pre">_diffrn_refln</span></code>, respectively.
+Usually, also the unit cell, space group, and sometimes the radiation
+wavelength is recorded.</p>
+<p>The support for SF mmCIF files in Gemmi is built on top of the generic
+support for the CIF format.
+We have class <code class="docutils literal notranslate"><span class="pre">ReflnBlock</span></code> that wraps <code class="docutils literal notranslate"><span class="pre">cif::Block</span></code>
+and a function <code class="docutils literal notranslate"><span class="pre">as_refln_blocks</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// in C++ it can be called:</span>
+<span class="c1">// auto rblocks = gemmi::as_refln_blocks(gemmi::read_cif_gz(path).blocks);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">ReflnBlock</span><span class="o">&gt;</span> <span class="n">as_refln_blocks</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cif</span><span class="o">::</span><span class="n">Block</span><span class="o">&gt;&amp;&amp;</span> <span class="n">blocks</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In Python this function takes <code class="docutils literal notranslate"><span class="pre">cif.Document</span></code> as an argument:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span> <span class="o">=</span> <span class="n">gemmi</span><span class="o">.</span><span class="n">cif</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;../tests/r5wkdsf.ent&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span>
+<span class="go">&lt;gemmi.cif.Document with 1 blocks (r5wkdsf)&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rblocks</span> <span class="o">=</span> <span class="n">gemmi</span><span class="o">.</span><span class="n">as_refln_blocks</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Blocks are moved from the Document to the new list:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span>
+<span class="go">&lt;gemmi.cif.Document with 0 blocks ()&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rblocks</span>
+<span class="go">ReflnBlocks[&lt;gemmi.ReflnBlock r5wkdsf with 17 x 406 loop&gt;]</span>
+</pre></div>
+</div>
+<p>When ReflnBlock is created some of the mmCIF tags are interpreted
+to initialize the following properties:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rblock</span> <span class="o">=</span> <span class="n">rblocks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rblock</span><span class="o">.</span><span class="n">entry_id</span>
+<span class="go">&#39;5wkd&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rblock</span><span class="o">.</span><span class="n">cell</span>
+<span class="go">&lt;gemmi.UnitCell(50.347, 4.777, 14.746, 90, 101.733, 90)&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rblock</span><span class="o">.</span><span class="n">spacegroup</span>
+<span class="go">&lt;gemmi.SpaceGroup(&quot;C 1 2 1&quot;)&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rblock</span><span class="o">.</span><span class="n">wavelength</span>
+<span class="go">0.9791</span>
+</pre></div>
+</div>
+<p>To check if block has either merged or unmerged data, in C++ use function
+<code class="docutils literal notranslate"><span class="pre">ok()</span></code>, and in Python:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">bool</span><span class="p">(</span><span class="n">rblock</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>Normally, one block has only one type of data, merged and unmerged.
+Which one is used can be checked with the function:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rblock</span><span class="o">.</span><span class="n">is_unmerged</span><span class="p">()</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>But it is syntactically correct to have both types of data in two tables
+in one block. In such case you can switch which table is used:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rblock</span><span class="o">.</span><span class="n">use_unmerged</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rblock</span><span class="o">.</span><span class="n">use_unmerged</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, ReflnBlock has functions for working with the data table:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">ReflnBlock</span><span class="o">::</span><span class="n">column_labels</span><span class="p">()</span> <span class="k">const</span>
+
+<span class="kt">size_t</span> <span class="n">ReflnBlock</span><span class="o">::</span><span class="n">get_column_index</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">tag</span><span class="p">)</span> <span class="k">const</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">ReflnBlock</span><span class="o">::</span><span class="n">make_vector</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">tag</span><span class="p">,</span> <span class="n">T</span> <span class="n">null</span><span class="p">)</span> <span class="k">const</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="mi">3</span><span class="o">&gt;&gt;</span> <span class="n">ReflnBlock</span><span class="o">::</span><span class="n">make_index_vector</span><span class="p">()</span> <span class="k">const</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">ReflnBlock</span><span class="o">::</span><span class="n">make_1_d2_vector</span><span class="p">()</span> <span class="k">const</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">ReflnBlock</span><span class="o">::</span><span class="n">make_d_vector</span><span class="p">()</span> <span class="k">const</span>
+</pre></div>
+</div>
+<p>We will describe these functions while going through its Python equivalents.
+<code class="docutils literal notranslate"><span class="pre">column_labels()</span></code> returns list of tags associated with the columns,
+excluding the category part. Unlike in the MTZ format, here the tags
+must be unique.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rblock</span><span class="o">.</span><span class="n">column_labels</span><span class="p">()</span>
+<span class="go">[&#39;crystal_id&#39;, &#39;wavelength_id&#39;, &#39;scale_group_code&#39;, &#39;index_h&#39;, &#39;index_k&#39;, &#39;index_l&#39;, &#39;status&#39;, &#39;pdbx_r_free_flag&#39;, &#39;F_meas_au&#39;, &#39;F_meas_sigma_au&#39;, &#39;F_calc_au&#39;, &#39;phase_calc&#39;, &#39;pdbx_FWT&#39;, &#39;pdbx_PHWT&#39;, &#39;pdbx_DELFWT&#39;, &#39;pdbx_DELPHWT&#39;, &#39;fom&#39;]</span>
+</pre></div>
+</div>
+<p>All the data is stored as strings. We can get integer or real values from
+the selected column in an array. In Python – in NumPy array:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rblock</span><span class="o">.</span><span class="n">make_int_array</span><span class="p">(</span><span class="s1">&#39;index_h&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1000</span><span class="p">)</span>  <span class="c1"># 2nd arg - value for nulls</span>
+<span class="go">array([-26, -26, -26, ...,  25,  26,  26], dtype=int32)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rblock</span><span class="o">.</span><span class="n">make_float_array</span><span class="p">(</span><span class="s1">&#39;F_meas_au&#39;</span><span class="p">)</span>  <span class="c1"># by default, null values -&gt; NAN</span>
+<span class="go">array([12.66, 13.82, 24.11, ...,   nan,  9.02,   nan])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rblock</span><span class="o">.</span><span class="n">make_float_array</span><span class="p">(</span><span class="s1">&#39;F_meas_au&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>  <span class="c1"># use 0.0 for nulls</span>
+<span class="go">array([12.66, 13.82, 24.11, ...,  0.  ,  9.02,  0.  ])</span>
+</pre></div>
+</div>
+<p>We also have convenience functions that returns arrays of 1/<em>d</em><sup>2</sup>
+or just <em>d</em> values:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rblock</span><span class="o">.</span><span class="n">make_1_d2_array</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="go">array([0.2681, 0.2677, 0.2768, ..., 0.301 , 0.2782, 0.2978])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rblock</span><span class="o">.</span><span class="n">make_d_array</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">array([1.931, 1.933, 1.901, ..., 1.823, 1.896, 1.832])</span>
+</pre></div>
+</div>
+<p><strong>Example 1</strong></p>
+<a class="reference internal image-reference" href="_images/5dei-Ioversigma.png"><img alt="_images/5dei-Ioversigma.png" class="align-right" src="_images/5dei-Ioversigma.png" style="width: 67.2px; height: 63.15px;" /></a>
+<p>The script below renders the same colorful <em>I</em>/<em>σ</em> image as in the previous
+section, but it can take as an argument a file downloaded directly from
+the wwPDB (for example,
+<code class="docutils literal notranslate"><span class="pre">$PDB_DIR/structures/divided/structure_factors/de/r5deisf.ent.gz</span></code>).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
+<span class="kn">import</span> <span class="nn">gemmi</span>
+
+<span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">gemmi</span><span class="o">.</span><span class="n">cif</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">rblock</span> <span class="o">=</span> <span class="n">gemmi</span><span class="o">.</span><span class="n">as_refln_blocks</span><span class="p">(</span><span class="n">doc</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">intensity</span> <span class="o">=</span> <span class="n">rblock</span><span class="o">.</span><span class="n">make_float_array</span><span class="p">(</span><span class="s1">&#39;intensity_meas&#39;</span><span class="p">)</span>
+    <span class="n">sigma</span> <span class="o">=</span> <span class="n">rblock</span><span class="o">.</span><span class="n">make_float_array</span><span class="p">(</span><span class="s1">&#39;intensity_sigma&#39;</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">rblock</span><span class="o">.</span><span class="n">make_1_d2_array</span><span class="p">()</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">intensity</span> <span class="o">/</span> <span class="n">sigma</span>
+    <span class="n">pyplot</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+    <span class="n">pyplot</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">gridsize</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gnuplot2&#39;</span><span class="p">)</span>
+    <span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Example 2</strong></p>
+<p>In this example we compare columns from two files using Python pandas.</p>
+<p>Here we use the 5WKD entry, which has only 367 measured reflections,
+but the same script works fine even for 1000x more reflections.
+You’d only need to tweak the plots to make them more readable.</p>
+<p>We use two data files (SF-mmCIF MTZ) downloaded from the RCSB website.
+First, we make pandas DataFrames from both files, and then we merge them
+into a single DataFrame:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gemmi</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">pandas</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
+
+<span class="n">MTZ_PATH</span> <span class="o">=</span> <span class="s1">&#39;tests/5wkd_phases.mtz.gz&#39;</span>
+<span class="n">SFCIF_PATH</span> <span class="o">=</span> <span class="s1">&#39;tests/r5wkdsf.ent&#39;</span>
+
+<span class="c1"># make DataFrame from MTZ file</span>
+<span class="n">mtz</span> <span class="o">=</span> <span class="n">gemmi</span><span class="o">.</span><span class="n">read_mtz_file</span><span class="p">(</span><span class="n">MTZ_PATH</span><span class="p">)</span>
+<span class="n">mtz_data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">mtz</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">mtz_df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">mtz_data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">mtz</span><span class="o">.</span><span class="n">column_labels</span><span class="p">())</span>
+<span class="c1"># (optional) store Miller indices as integers</span>
+<span class="n">mtz_df</span> <span class="o">=</span> <span class="n">mtz_df</span><span class="o">.</span><span class="n">astype</span><span class="p">({</span><span class="n">label</span><span class="p">:</span> <span class="s1">&#39;int32&#39;</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="s1">&#39;HKL&#39;</span><span class="p">})</span>
+
+<span class="c1"># make DataFrame from mmCIF file</span>
+<span class="n">cif_doc</span> <span class="o">=</span> <span class="n">gemmi</span><span class="o">.</span><span class="n">cif</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">SFCIF_PATH</span><span class="p">)</span>
+<span class="n">rblock</span> <span class="o">=</span> <span class="n">gemmi</span><span class="o">.</span><span class="n">as_refln_blocks</span><span class="p">(</span><span class="n">cif_doc</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">cif_df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">rblock</span><span class="o">.</span><span class="n">make_index_array</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">,</span><span class="s1">&#39;K&#39;</span><span class="p">,</span><span class="s1">&#39;L&#39;</span><span class="p">])</span>
+<span class="n">cif_df</span><span class="p">[</span><span class="s1">&#39;F_meas_au&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">rblock</span><span class="o">.</span><span class="n">make_float_array</span><span class="p">(</span><span class="s1">&#39;F_meas_au&#39;</span><span class="p">)</span>
+<span class="n">cif_df</span><span class="p">[</span><span class="s1">&#39;d&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">rblock</span><span class="o">.</span><span class="n">make_d_array</span><span class="p">()</span>
+
+<span class="c1"># merge DataFrames</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">mtz_df</span><span class="p">,</span> <span class="n">cif_df</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;K&#39;</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>We want to compare the FP column from the MTZ file and the F_meas_au column
+from mmCIF. We start with plotting one against the other:</p>
+<a class="reference internal image-reference" href="_images/FP_vs_Fmeas_5wkd.png"><img alt="_images/FP_vs_Fmeas_5wkd.png" class="align-right" src="_images/FP_vs_Fmeas_5wkd.png" style="width: 218.0px; height: 173.0px;" /></a>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot FP from MTZ as a function of F_meas_au from mmCIF</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;F_meas_au&#39;</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;FP&#39;</span><span class="p">],</span>
+               <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xmin</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The numbers are similar, but not exactly equal.
+Let us check how the difference between the two values depends on the
+resolution. We will plot the difference as a function of 1/<em>d</em>.
+This extremely small dataset has only three Miller indices <em>k</em> (0, 1 and 2),
+so we can use it for coloring.</p>
+<a class="reference internal image-reference" href="_images/FP_Fmeas_1d_5wkd.png"><img alt="_images/FP_Fmeas_1d_5wkd.png" class="align-right" src="_images/FP_Fmeas_1d_5wkd.png" style="width: 268.0px; height: 250.0px;" /></a>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the ratio FP : F_meas_au as a function of 1/d</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;d&#39;</span><span class="p">],</span>
+               <span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;FP&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;F_meas_au&#39;</span><span class="p">],</span>
+               <span class="n">c</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;K&#39;</span><span class="p">],</span>  <span class="c1"># color by index k</span>
+               <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xmin</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Apparently, some scaling has been applied. The scaling is anisotropic
+and is the strongest along the <em>k</em> axis.</p>
+</div>
+<div class="section" id="hkl-cif">
+<h2>hkl CIF<a class="headerlink" href="#hkl-cif" title="Permalink to this headline">¶</a></h2>
+<p>In the small molecule world reflections are also stored in separate CIF files.
+Similarly to SF mmCIF files, we may take cif::Block and wrap it into
+the ReflnBlock class:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span> <span class="o">=</span> <span class="n">gemmi</span><span class="o">.</span><span class="n">cif</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;../tests/2242624.hkl&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gemmi</span><span class="o">.</span><span class="n">hkl_cif_as_refln_block</span><span class="p">(</span><span class="n">doc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="go">&lt;gemmi.ReflnBlock 2242624 with 7 x 71 loop&gt;</span>
+</pre></div>
+</div>
+<p>The methods of ReflnBlock are the same as in the previous section.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">_</span><span class="o">.</span><span class="n">make_d_array</span><span class="p">(),</span> <span class="n">_</span><span class="o">.</span><span class="n">make_float_array</span><span class="p">(</span><span class="s1">&#39;F_squared_meas&#39;</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="go">[1.7710345  1.03448487 0.71839568 ... 0.67356073 0.69445847 0.56034145]</span>
+<span class="go">[173.17 246.01  11.61 ...  84.99  46.98  16.99]</span>
+</pre></div>
+</div>
+<p>These hkl files in the CIF format are not to be confused with the SHELX hkl
+files. The latter is often included in the coordinate cif file,
+as a text value of _shelx_hkl_file:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cif_doc</span> <span class="o">=</span> <span class="n">gemmi</span><span class="o">.</span><span class="n">cif</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;../tests/4003024.cif&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hkl_str</span> <span class="o">=</span> <span class="n">gemmi</span><span class="o">.</span><span class="n">cif</span><span class="o">.</span><span class="n">as_string</span><span class="p">(</span><span class="n">cif_doc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">find_value</span><span class="p">(</span><span class="s1">&#39;_shelx_hkl_file&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">hkl_str</span><span class="p">[:</span><span class="mi">87</span><span class="p">])</span>
+
+<span class="go">  -1   0   0   20.05    0.74</span>
+<span class="go">   0   0  -1   20.09    0.73</span>
+<span class="go">   0   0   1   19.76    0.73</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-on-3d-grid">
+<h2>Data on 3D grid<a class="headerlink" href="#data-on-3d-grid" title="Permalink to this headline">¶</a></h2>
+<p>The reciprocal space data can be alternatively presented on a 3D grid
+indexed by Miller indices.
+This grid is represented by C++ class ReciprocalGrid,
+which shares most of the properties with the real-space
+class <a class="reference internal" href="grid.html#grid"><span class="std std-ref">Grid</span></a>.</p>
+<p>In C++, the <code class="docutils literal notranslate"><span class="pre">&lt;gemmi/fourier.hpp&gt;</span></code> header defines templated function
+<code class="docutils literal notranslate"><span class="pre">get_f_phi_on_grid()</span></code> that can be used with both MTZ and SF mmCIF data.
+Here, we focus on the usage from Python.</p>
+<p>Both Mtz and ReflnBlock classes have method <code class="docutils literal notranslate"><span class="pre">get_f_phi_on_grid</span></code>
+that takes three mandatory arguments: column names for the amplitude and phase,
+and the grid size.
+It returns reciprocal grid of complex numbers
+(<code class="docutils literal notranslate"><span class="pre">ReciprocalGrid&lt;std::complex&lt;float&gt;&gt;</span></code> in C++,
+<code class="docutils literal notranslate"><span class="pre">ReciprocalComplexGrid</span></code> in Python).
+Symmetry-related reflections are filled automatically (with phase shift).
+All the missing values are set to 0:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span> <span class="o">=</span> <span class="n">rblock</span><span class="o">.</span><span class="n">get_f_phi_on_grid</span><span class="p">(</span><span class="s1">&#39;pdbx_FWT&#39;</span><span class="p">,</span> <span class="s1">&#39;pdbx_PHWT&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">54</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">18</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span>
+<span class="go">&lt;gemmi.ReciprocalComplexGrid(54, 6, 18)&gt;</span>
+</pre></div>
+</div>
+<p>If we’d ever need data from a single column put on a grid,
+we can use analogical function:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rblock</span><span class="o">.</span><span class="n">get_value_on_grid</span><span class="p">(</span><span class="s1">&#39;F_meas_au&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">54</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">18</span><span class="p">])</span>
+<span class="go">&lt;gemmi.ReciprocalFloatGrid(54, 6, 18)&gt;</span>
+</pre></div>
+</div>
+<p>The grids in examples above have capacity to store reflections
+with -27&lt;<em>h</em>&lt;27, -3&lt;<em>k</em>&lt;3 and -9&lt;<em>l</em>&lt;9.
+Reflections outside of this range would be silently ignored.
+To check if the size is big enough you can call:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rblock</span><span class="o">.</span><span class="n">data_fits_into</span><span class="p">([</span><span class="mi">54</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">18</span><span class="p">])</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rblock</span><span class="o">.</span><span class="n">data_fits_into</span><span class="p">([</span><span class="mi">52</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">18</span><span class="p">])</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>To access the data you can use either the buffer protocol
+(<a class="reference internal" href="grid.html#buffer-protocol"><span class="std std-ref">in the same way</span></a> as in the Grid class),
+or getter and setter:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">(31.747737884521484-57.06287384033203j)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">12</span><span class="o">+</span><span class="mi">34</span><span class="n">j</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">(12+34j)</span>
+</pre></div>
+</div>
+<p>The functions above throw IndexError if the reflection is outside of the grid.
+If you prefer zero instead of the error, use:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span><span class="o">.</span><span class="n">get_value_or_zero</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+<span class="go">0j</span>
+</pre></div>
+</div>
+<p>We can also iterate over points of the grid.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">:</span>
+<span class="gp">... </span>   <span class="k">pass</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">point</span><span class="o">.</span><span class="n">value</span>  <span class="c1"># point is the last point from the iteration</span>
+<span class="go">(-178.310546875+99.20561218261719j)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span><span class="o">.</span><span class="n">to_hkl</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+<span class="go">[-1, -1, -1]</span>
+</pre></div>
+</div>
+<div class="section" id="grid-size">
+<span id="id2"></span><h3>Grid size<a class="headerlink" href="#grid-size" title="Permalink to this headline">¶</a></h3>
+<p>To get an appropriate size, we can use method <code class="docutils literal notranslate"><span class="pre">get_size_for_hkl</span></code>
+that has two optional parameters: <code class="docutils literal notranslate"><span class="pre">min_size</span></code> and <code class="docutils literal notranslate"><span class="pre">sample_rate</span></code>.
+<code class="docutils literal notranslate"><span class="pre">min_size</span></code> sets explicitely the minimal size of the grid:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rblock</span><span class="o">.</span><span class="n">get_size_for_hkl</span><span class="p">()</span>
+<span class="go">[54, 6, 18]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rblock</span><span class="o">.</span><span class="n">get_size_for_hkl</span><span class="p">(</span><span class="n">min_size</span><span class="o">=</span><span class="p">[</span><span class="mi">64</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="go">[64, 8, 18]</span>
+</pre></div>
+</div>
+<p>The actual size can be increased to make room for all reflections,
+to obey restrictions imposed by the spacegroup, and to make the size
+FFT-friendly (currently this means factors 2, 3 and 5).</p>
+<p><code class="docutils literal notranslate"><span class="pre">sample_rate</span></code> sets the minimal grid size in relation to <em>d</em><sub>min</sub>.
+It has the same meaning as the keyword SAMPLE in the CCP4 FFT program.
+For example, <code class="docutils literal notranslate"><span class="pre">sample_rate=3</span></code> requests grid size that corresponds
+to real-space sampling <em>d</em><sub>min</sub>/3.
+(N.B. 3 here is equivalent to Clipper oversampling parameter equal 1.5).</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rblock</span><span class="o">.</span><span class="n">get_size_for_hkl</span><span class="p">(</span><span class="n">sample_rate</span><span class="o">=</span><span class="mf">3.0</span><span class="p">)</span>
+<span class="go">[90, 8, 30]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="array-layout">
+<h3>Array layout<a class="headerlink" href="#array-layout" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">get_f_phi_on_grid</span></code> function has also two optional arguments:
+<code class="docutils literal notranslate"><span class="pre">half_l</span></code> and <code class="docutils literal notranslate"><span class="pre">axis_order</span></code>.
+The <code class="docutils literal notranslate"><span class="pre">half_l</span></code> flag is used to shrink the size of the grid in the memory.
+When set, the grid does not include data with negative index <em>l</em>.
+If the data is Hermitian, i.e. if it is a Fourier transform of
+the real data (electron density), the (<em>h</em> <em>k</em> <em>l</em>) reflection
+with negative <em>l</em> can be restored as a complex conjugate of its Friedel mate
+(<em>-h</em> <em>-k</em> <em>-l</em>).</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rblock</span><span class="o">.</span><span class="n">get_f_phi_on_grid</span><span class="p">(</span><span class="s1">&#39;pdbx_FWT&#39;</span><span class="p">,</span> <span class="s1">&#39;pdbx_PHWT&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">54</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span> <span class="n">half_l</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">&lt;gemmi.ReciprocalComplexGrid(54, 6, 10)&gt;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">axis_order</span></code> can take one of the two values : <code class="docutils literal notranslate"><span class="pre">AxisOrder.XYZ</span></code> (the default)
+or <code class="docutils literal notranslate"><span class="pre">AxisOrder.ZYX</span></code>. With the former – the <em>h</em> direction is along the first
+(fast) axis of the grid. The latter results in <em>l</em> along the fast axis.
+(The fast axis is first, which is a Fortran convention. This convention
+affected the design of the CCP4 format, which in turn affected the design of
+the grid classes in Gemmi.)</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rblock</span><span class="o">.</span><span class="n">get_f_phi_on_grid</span><span class="p">(</span><span class="s1">&#39;pdbx_FWT&#39;</span><span class="p">,</span> <span class="s1">&#39;pdbx_PHWT&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">54</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span> <span class="n">order</span><span class="o">=</span><span class="n">gemmi</span><span class="o">.</span><span class="n">AxisOrder</span><span class="o">.</span><span class="n">ZYX</span><span class="p">)</span>
+<span class="go">&lt;gemmi.ReciprocalComplexGrid(18, 6, 54)&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<p>As an example, we will use numpy.fft to calculate electron density map
+from map coefficients. Gemmi can calculate it internally, as described
+in the next section, but it is instructive to do it with a general-purpose
+tool.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">size</span> <span class="o">=</span> <span class="n">rblock</span><span class="o">.</span><span class="n">get_size_for_hkl</span><span class="p">(</span><span class="n">sample_rate</span><span class="o">=</span><span class="mf">2.6</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">full</span> <span class="o">=</span> <span class="n">rblock</span><span class="o">.</span><span class="n">get_f_phi_on_grid</span><span class="p">(</span><span class="s1">&#39;pdbx_FWT&#39;</span><span class="p">,</span> <span class="s1">&#39;pdbx_PHWT&#39;</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">array</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">full</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">complex_map</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">ifftn</span><span class="p">(</span><span class="n">array</span><span class="o">.</span><span class="n">conj</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scale_factor</span> <span class="o">=</span> <span class="n">complex_map</span><span class="o">.</span><span class="n">size</span> <span class="o">/</span> <span class="n">full</span><span class="o">.</span><span class="n">unit_cell</span><span class="o">.</span><span class="n">volume</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">real_map</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">complex_map</span><span class="p">)</span> <span class="o">*</span> <span class="n">scale_factor</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="n">real_map</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="mi">3</span><span class="p">],</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">-0.40554</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="n">real_map</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">0.66338</span>
+</pre></div>
+</div>
+<p>Above, we could use <code class="docutils literal notranslate"><span class="pre">fftn(array)</span></code> instead of <code class="docutils literal notranslate"><span class="pre">ifftn(array.conj())</span></code>,
+but the inverse FFT is more appropriate here (or so I think).</p>
+<p>Since the data is Hermitian, using complex-to-complex FFT is equivant to
+using complex-to-real FFT on a half of the data:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">half</span> <span class="o">=</span> <span class="n">rblock</span><span class="o">.</span><span class="n">get_f_phi_on_grid</span><span class="p">(</span><span class="s1">&#39;pdbx_FWT&#39;</span><span class="p">,</span> <span class="s1">&#39;pdbx_PHWT&#39;</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">half_l</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">array</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">half</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">real_map</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">irfftn</span><span class="p">(</span><span class="n">array</span><span class="o">.</span><span class="n">conj</span><span class="p">())</span> <span class="o">*</span> <span class="n">scale_factor</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="n">real_map</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="mi">3</span><span class="p">],</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">-0.40554</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="n">real_map</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">0.66338</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="fft">
+<h2>FFT<a class="headerlink" href="#fft" title="Permalink to this headline">¶</a></h2>
+<p>Internally, Gemmi is using
+the <a class="reference external" href="https://gitlab.mpcdf.mpg.de/mtr/pocketfft">PocketFFT</a> library
+to transform between real space and reciprocal space.
+This library was picked after evaluation and
+<a class="reference external" href="https://github.com/project-gemmi/benchmarking-fft">benchmarking of many FFT libraries</a>.</p>
+<p>In C++, the relevant functions are in the <code class="docutils literal notranslate"><span class="pre">&lt;gemmi/fourier.hpp&gt;</span></code> header,
+and the <a class="reference internal" href="utils.html#sf2map"><span class="std std-ref">gemmi-sf2map</span></a> program may serve as a code example.
+Like in the previous section, here we will cover only the Python interface.</p>
+<p>Instead of using numpy.fft as in the example above,
+we can use <code class="docutils literal notranslate"><span class="pre">gemmi.transform_f_phi_grid_to_map()</span></code>
+and we expect to get the same result (wrapped in a <a class="reference internal" href="grid.html#grid"><span class="std std-ref">Grid</span></a> class):</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gemmi</span><span class="o">.</span><span class="n">transform_f_phi_grid_to_map</span><span class="p">(</span><span class="n">half</span><span class="p">)</span>
+<span class="go">&lt;gemmi.FloatGrid(72, 8, 24)&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="n">_</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">-0.40554</span>
+</pre></div>
+</div>
+<p>Both Mtz and ReflnBlock classes have method <code class="docutils literal notranslate"><span class="pre">transform_f_phi_to_map</span></code>
+that combines <code class="docutils literal notranslate"><span class="pre">get_f_phi_on_grid()</span></code> with <code class="docutils literal notranslate"><span class="pre">transform_f_phi_grid_to_map()</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">transform_f_phi_to_map</span></code> takes column names for amplitude and
+phase (in degrees), and optional parameters <code class="docutils literal notranslate"><span class="pre">min_size</span></code>, <code class="docutils literal notranslate"><span class="pre">exact_size</span></code> and
+<code class="docutils literal notranslate"><span class="pre">sample_rate</span></code> (normally only one of them is given):</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rblock</span><span class="o">.</span><span class="n">transform_f_phi_to_map</span><span class="p">(</span><span class="s1">&#39;pdbx_FWT&#39;</span><span class="p">,</span> <span class="s1">&#39;pdbx_PHWT&#39;</span><span class="p">,</span> <span class="n">sample_rate</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="go">&lt;gemmi.FloatGrid(120, 12, 36)&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rblock</span><span class="o">.</span><span class="n">transform_f_phi_to_map</span><span class="p">(</span><span class="s1">&#39;pdbx_FWT&#39;</span><span class="p">,</span> <span class="s1">&#39;pdbx_PHWT&#39;</span><span class="p">,</span> <span class="n">min_size</span><span class="o">=</span><span class="p">[</span><span class="mi">127</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">31</span><span class="p">])</span>
+<span class="go">&lt;gemmi.FloatGrid(128, 16, 32)&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rblock</span><span class="o">.</span><span class="n">transform_f_phi_to_map</span><span class="p">(</span><span class="s1">&#39;pdbx_FWT&#39;</span><span class="p">,</span> <span class="s1">&#39;pdbx_PHWT&#39;</span><span class="p">,</span> <span class="n">exact_size</span><span class="o">=</span><span class="p">[</span><span class="mi">70</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">24</span><span class="p">])</span>
+<span class="go">&lt;gemmi.FloatGrid(70, 8, 24)&gt;</span>
+</pre></div>
+</div>
+<p>The grid can be accessed as NumPy 3D array:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">array</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="n">array</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">0.66338</span>
+</pre></div>
+</div>
+<p>and it can be stored in a CCP4 map format:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ccp4</span> <span class="o">=</span> <span class="n">gemmi</span><span class="o">.</span><span class="n">Ccp4Map</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ccp4</span><span class="o">.</span><span class="n">grid</span> <span class="o">=</span> <span class="n">rblock</span><span class="o">.</span><span class="n">transform_f_phi_to_map</span><span class="p">(</span><span class="s1">&#39;pdbx_FWT&#39;</span><span class="p">,</span> <span class="s1">&#39;pdbx_PHWT&#39;</span><span class="p">,</span> <span class="n">sample_rate</span><span class="o">=</span><span class="mf">2.6</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ccp4</span><span class="o">.</span><span class="n">update_ccp4_header</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ccp4</span><span class="o">.</span><span class="n">write_ccp4_map</span><span class="p">(</span><span class="s1">&#39;5wkd.ccp4&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To transform the electron density back to reciprocal space coefficients
+use function <code class="docutils literal notranslate"><span class="pre">transform_map_to_f_phi</span></code>:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ccp4</span><span class="o">.</span><span class="n">grid</span>
+<span class="go">&lt;gemmi.FloatGrid(72, 8, 24)&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gemmi</span><span class="o">.</span><span class="n">transform_map_to_f_phi</span><span class="p">(</span><span class="n">ccp4</span><span class="o">.</span><span class="n">grid</span><span class="p">)</span>
+<span class="go">&lt;gemmi.ReciprocalComplexGrid(72, 8, 24)&gt;</span>
+</pre></div>
+</div>
+<p>Now you can access hkl reflections using <code class="docutils literal notranslate"><span class="pre">Grid.get_value()</span></code>:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">_</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="mi">23</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">(18.440279006958008+26.18924331665039j)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">transform_map_to_f_phi</span></code> has one optional flag: <code class="docutils literal notranslate"><span class="pre">half_l</span></code>.
+It has the same meaning as in the function <code class="docutils literal notranslate"><span class="pre">get_f_phi_on_grid</span></code>.
+When you set <code class="docutils literal notranslate"><span class="pre">half_l=True</span></code> you cannot access directly a data point
+with negative Miller index l, but you can use its Friedel mate:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gemmi</span><span class="o">.</span><span class="n">transform_map_to_f_phi</span><span class="p">(</span><span class="n">ccp4</span><span class="o">.</span><span class="n">grid</span><span class="p">,</span> <span class="n">half_l</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">&lt;gemmi.ReciprocalComplexGrid(72, 8, 13)&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="o">-</span><span class="mi">23</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">conjugate</span><span class="p">()</span>  <span class="c1"># value for (23, -1, -3)</span>
+<span class="go">(18.440279006958008+26.18924331665039j)</span>
+</pre></div>
+</div>
+<p>Then again, you can use <code class="docutils literal notranslate"><span class="pre">transform_f_phi_grid_to_map()</span></code>
+to transform it back to the direct space, and so on…</p>
+</div>
+<div class="section" id="scattering-factors">
+<h2>Scattering factors<a class="headerlink" href="#scattering-factors" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="atomic-form-factor">
+<h3>Atomic form factor<a class="headerlink" href="#atomic-form-factor" title="Permalink to this headline">¶</a></h3>
+<p>TODO</p>
+<p>(also: direct calculation or FFT, tradoffs between performance and accuracy)</p>
+</div>
+<div class="section" id="anomalous-scattering">
+<span id="anomalous"></span><h3>Anomalous scattering<a class="headerlink" href="#anomalous-scattering" title="Permalink to this headline">¶</a></h3>
+<p>The anomalous dispersion is wavelength dependent.
+Gemmi provides function <code class="docutils literal notranslate"><span class="pre">cromer_libermann</span></code> that calculates
+real and imaginary components <em>f’</em> and <em>f”</em>
+for isolated atoms from Z=3 to Z=92.</p>
+<p>As the name suggests, we use the Cromer-Libermann algorithm.
+This algorithm, as is noted on the
+<a class="reference external" href="https://subversion.xray.aps.anl.gov/trac/pyFprime/">pyFprime website</a>,
+“fails in computing <em>f’</em> for wavelengths &lt; 0.16 Å (&gt; 77.48 keV)
+for the heaviest elements (Au-Cf)
+and fails to correctly compute <em>f’</em>, <em>f”</em> and <em>μ</em>
+for wavelengths &gt; 2.67 Å (&lt; 4.64 keV) for very heavy elements (Am-Cf).”</p>
+<p>The implementation is contained in a single C++ header file
+<code class="file docutils literal notranslate"><span class="pre">fprime.hpp</span></code> with no dependencies.
+All the data is embedded in the code.
+The binary size after compilation is about 100kB.</p>
+<p>Admittedly, the data tables synthesised by C.T. Chantler are more accurate.
+Consider using them instead. They are available from the
+<a class="reference external" href="https://www.nist.gov/pml/x-ray-form-factor-attenuation-and-scattering-tables">NIST website</a>
+and from the <a class="reference external" href="https://github.com/xraypy/XrayDB">XrayDB</a> project.</p>
+<p>The code in <code class="file docutils literal notranslate"><span class="pre">fprime.hpp</span></code> is based on the X-ray spectroscopy project
+<a class="reference external" href="https://xraypy.github.io/xraylarch/">Larch</a>
+and should give the same results as the
+<a class="reference external" href="https://xraypy.github.io/xraylarch/xray/index.html#_xray.f1f2_cl">f1f2_cl</a>
+function there. The Fortran code in Larch is, in turn, based on the
+<a class="reference external" href="https://aip.scitation.org/doi/10.1063/1.1142625">Brennan and Cowan</a>
+routines. Which, in turn, were based on the
+<a class="reference external" href="https://doi.org/10.1107/S0021889883010791">original program</a>
+from Don Cromer. Along the way, the code was extensively modified.
+Importantly, the Jensen correction has been removed (as is recommended
+in the chapter 4.2.6 of <a class="reference external" href="https://it.iucr.org/Cb/contents/">ITvC</a>)
+and the <a class="reference external" href="https://doi.org/10.1107/S0108767389010718">Kissel and Pratt (1990)</a>
+correction has been added.
+Therefore, it gives different results than the
+<a class="reference external" href="http://www.ccp4.ac.uk/html/crossec.html">crossec</a> program,
+which was contributed to CCP4 directly by Don Cromer in the 1990’s.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">cromer_libermann</span></code> function is available in both C++ and Python:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gemmi</span><span class="o">.</span><span class="n">Element</span><span class="p">(</span><span class="s1">&#39;Se&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">atomic_number</span>
+<span class="go">34</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gemmi</span><span class="o">.</span><span class="n">cromer_libermann</span><span class="p">(</span><span class="n">z</span><span class="o">=</span><span class="n">_</span><span class="p">,</span> <span class="n">energy</span><span class="o">=</span><span class="mf">10332.0</span><span class="p">)</span> <span class="c1"># energy in eV</span>
+<span class="go">(-1.4186231113544407, 0.7238969498014027)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># use gemmi.hc to convert wavelength [A] to energy [eV]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gemmi</span><span class="o">.</span><span class="n">cromer_libermann</span><span class="p">(</span><span class="n">z</span><span class="o">=</span><span class="mi">34</span><span class="p">,</span> <span class="n">energy</span><span class="o">=</span><span class="n">gemmi</span><span class="o">.</span><span class="n">hc</span><span class="o">/</span><span class="mf">0.71073</span><span class="p">)</span>
+<span class="go">(-0.09201659699543367, 2.2333699118331087)</span>
+</pre></div>
+</div>
+<p>The same values can be printed from the command line program
+<a class="reference internal" href="utils.html#fprime"><span class="std std-ref">gemmi-fprime</span></a>.</p>
+</div>
+<div class="section" id="bulk-solvent-correction">
+<h3>Bulk solvent correction<a class="headerlink" href="#bulk-solvent-correction" title="Permalink to this headline">¶</a></h3>
+<p>TODO</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="utils.html" class="btn btn-neutral float-right" title="Gemmi program" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="grid.html" class="btn btn-neutral float-left" title="Grids and maps" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017-2020 Global Phasing Ltd
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

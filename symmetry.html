@@ -1,0 +1,685 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Symmetry &mdash; Gemmi 0.3.7 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Molecular models" href="mol.html" />
+    <link rel="prev" title="CIF Parser" href="cif.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Gemmi
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.7
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cif.html">CIF Parser</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Symmetry</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#space-group-table">Space group table</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#implementation-notes">Implementation notes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#operations">Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#groups-of-operations">Groups of Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mol.html">Molecular models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analysis.html">Structure analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grid.html">Grids and maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hkl.html">Reciprocal space</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Gemmi program</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://project-gemmi.github.io/gemmi/api/python">Python API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Gemmi</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Symmetry</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/symmetry.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="symmetry">
+<h1>Symmetry<a class="headerlink" href="#symmetry" title="Permalink to this headline">¶</a></h1>
+<p>The Gemmi symmetry module provides space group related functionality
+needed in other parts of the library – when working with coordinate
+files, electron density maps and reflections.</p>
+<p>Although the Gemmi project is developed for macromolecular crystallography,
+for which only 65 space groups are relevant,
+we cover all the 230 crystallographic space groups
+for the sake of completeness.</p>
+<p>For C++: this part of Gemmi has no dependencies,
+all is in a single header <code class="file docutils literal notranslate"><span class="pre">symmetry.hpp</span></code>.</p>
+<div class="section" id="space-group-table">
+<h2>Space group table<a class="headerlink" href="#space-group-table" title="Permalink to this headline">¶</a></h2>
+<p>Gemmi tabulates 550+ settings of the 230 crystallographic space groups.
+Each entry includes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">number</span></code> – space group number (1-230),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ccp4</span></code> – ccp4 number (assigned to particular settings; modulo 1000
+they give space group number: 3 and 1003 correspond to
+<code class="docutils literal notranslate"><span class="pre">P</span> <span class="pre">1</span> <span class="pre">2</span> <span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">P</span> <span class="pre">1</span> <span class="pre">1</span> <span class="pre">2</span></code>; 0 means none),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hm</span></code> – Herman-Mauguin (H-M) symbol a.k.a. the international notation
+(<code class="docutils literal notranslate"><span class="pre">I</span> <span class="pre">a</span> <span class="pre">-3</span> <span class="pre">d</span></code>, <code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">1</span> <span class="pre">2</span> <span class="pre">1</span></code>),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ext</span></code> – extension to the H-M notations (none, <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">2</span></code>, <code class="docutils literal notranslate"><span class="pre">H</span></code>
+or <code class="docutils literal notranslate"><span class="pre">R</span></code>) that make extended H-M symbol (<code class="docutils literal notranslate"><span class="pre">R</span> <span class="pre">3:H</span></code>, <code class="docutils literal notranslate"><span class="pre">P</span> <span class="pre">4/n:1</span></code>),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hall</span></code> – the Hall symbol (<code class="docutils literal notranslate"><span class="pre">-I</span> <span class="pre">4bd</span> <span class="pre">2c</span> <span class="pre">3</span></code>, <code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">2y</span></code>, <code class="docutils literal notranslate"><span class="pre">P</span> <span class="pre">32</span> <span class="pre">2c</span> <span class="pre">(0</span> <span class="pre">0</span> <span class="pre">-1)</span></code>)
+used to generate the space group operations,</p></li>
+<li><p>and <code class="docutils literal notranslate"><span class="pre">basisop</span></code> – change of basis operator from the reference setting.</p></li>
+</ul>
+<p>This data is derived primarily from the CCP4 <code class="file docutils literal notranslate"><span class="pre">syminfo.lib</span></code> file,
+which in turn is based on the data from <a class="reference external" href="https://github.com/rwgk/sglite">sgtbx</a> that was augmented
+with the old data from a CCP4 file named <code class="file docutils literal notranslate"><span class="pre">symop.lib</span></code>.</p>
+<p>The data from sgtbx is also available in the older <a class="reference external" href="https://github.com/rwgk/sginfo">SgInfo</a> library,
+as well as in the <a class="reference external" href="http://it.iucr.org/">International Tables</a>
+for Crystallography Vol. B ch. 1.4 (in 2010 ed.). It has 530 entries
+including 3 duplicates (different names for the same settings)
+in the space group 68.</p>
+<p>Gemmi includes also settings from <a class="reference external" href="https://github.com/openbabel/openbabel">OpenBabel</a> that are absent in
+<code class="file docutils literal notranslate"><span class="pre">syminfo.lib</span></code>. If needed we will add more entries in the future.
+For example, we do not include all
+the C- and F-centred tetragonal space groups featured in
+<a class="reference external" href="http://img.chem.ucl.ac.uk/sgp/mainmenu.htm">Crystallographic Space Group Diagrams and Tables</a>
+by Jeremy Karl Cockcroft
+(they are also listed on
+<a class="reference external" href="https://cci.lbl.gov/cctbx/multiple_cell.html">this page</a>
+written by R.W. Grosse-Kunstleve,
+and mentioned in the 2015 edition of ITfC Vol.A, Table 1.5.4.4).</p>
+<p>We also tabulated alternative names.
+For now this only includes new standard names introduced in 1990’s by the IUCr
+committee. For example, the space group no. 39 is now officially, in the
+Volume A of the <a class="reference external" href="http://it.iucr.org/">International Tables</a>,
+named Aem2 not Abm2.
+Most of the crystallographic software (as well as the Volume B of the Tables)
+still use the old names.
+(<a class="reference external" href="https://atztogo.github.io/spglib/">spglib</a> uses new ones,
+sgtbx reads new names with the option <code class="docutils literal notranslate"><span class="pre">ad_hoc_1992</span></code>).</p>
+<p>The usual way to access a space group from the table is to search
+it by name. In C++:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;gemmi/symmetry.hpp&gt;</span><span class="cp"></span>
+<span class="c1">// ...</span>
+<span class="k">const</span> <span class="n">SpaceGroup</span><span class="o">*</span> <span class="n">sg</span> <span class="o">=</span> <span class="n">find_spacegroup_by_name</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>and in Python:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">gemmi</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gemmi</span><span class="o">.</span><span class="n">find_spacegroup_by_name</span><span class="p">(</span><span class="s1">&#39;I2&#39;</span><span class="p">)</span>
+<span class="go">&lt;gemmi.SpaceGroup(&quot;I 1 2 1&quot;)&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The rest of this section has only Python examples mixed with the text.
+One longer C++ example is at the end.</p>
+</div>
+<p>The name above is expected to be either a full international Herman-Mauguin
+symbol or a short symbol (<em>I2</em> instead of <em>I 1 2 1</em>).
+This functions also searches the tabulated alternative names:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gemmi</span><span class="o">.</span><span class="n">find_spacegroup_by_name</span><span class="p">(</span><span class="s1">&#39;C m m e&#39;</span><span class="p">)</span> <span class="c1"># new names have &#39;e&#39; and &#39;g&#39;</span>
+<span class="go">&lt;gemmi.SpaceGroup(&quot;C m m a&quot;)&gt;</span>
+</pre></div>
+</div>
+<p>Sometimes in the PDB, the setting of the hexagonal crystal system
+is not clear from the symmetry symbol alone. For instance, the H-M symbol
+“R 3” can mean either hexagonal or rhombohedral setting.
+This ambiguity can be resolved by comparing angles of the unit cell.
+The ratio of gamma to alpha angles is 120:90 in the hexagonal system
+and 1:1 in rhombohedral. Therefore, <code class="docutils literal notranslate"><span class="pre">find_spacegroup_by_name()</span></code>
+accepts also alpha and gamma angles. If the angles are not passed,
+the hexagonal system is returned:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gemmi</span><span class="o">.</span><span class="n">find_spacegroup_by_name</span><span class="p">(</span><span class="s1">&#39;R 3 2&#39;</span><span class="p">)</span>
+<span class="go">&lt;gemmi.SpaceGroup(&quot;R 3 2:H&quot;)&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gemmi</span><span class="o">.</span><span class="n">find_spacegroup_by_name</span><span class="p">(</span><span class="s1">&#39;R 3 2&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">92.02</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">92.02</span><span class="p">)</span>
+<span class="go">&lt;gemmi.SpaceGroup(&quot;R 3 2:R&quot;)&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gemmi</span><span class="o">.</span><span class="n">find_spacegroup_by_name</span><span class="p">(</span><span class="s1">&#39;R 3 2&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
+<span class="go">&lt;gemmi.SpaceGroup(&quot;R 3 2:H&quot;)&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># of course, you do not need angles if you use extended H-M symbol</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gemmi</span><span class="o">.</span><span class="n">find_spacegroup_by_name</span><span class="p">(</span><span class="s1">&#39;R 3 2:R&#39;</span><span class="p">)</span>
+<span class="go">&lt;gemmi.SpaceGroup(&quot;R 3 2:R&quot;)&gt;</span>
+</pre></div>
+</div>
+<p>You can also get space group by number:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gemmi</span><span class="o">.</span><span class="n">find_spacegroup_by_number</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">&lt;gemmi.SpaceGroup(&quot;C 1 2 1&quot;)&gt;</span>
+</pre></div>
+</div>
+<p>The number is the ccp4 number mentioned above,
+so some 4-digit numbers are also recognized:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gemmi</span><span class="o">.</span><span class="n">find_spacegroup_by_number</span><span class="p">(</span><span class="mi">4005</span><span class="p">)</span>
+<span class="go">&lt;gemmi.SpaceGroup(&quot;I 1 2 1&quot;)&gt;</span>
+</pre></div>
+</div>
+<p>For values 1-230 the number corresponds to the first setting of
+this space group in the table in ITfC vol. B.
+Usually, it is the reference (standard) setting of the space group,
+but unfortunately not always. So we have another function that returns
+always the reference setting:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gemmi</span><span class="o">.</span><span class="n">get_spacegroup_reference_setting</span><span class="p">(</span><span class="mi">48</span><span class="p">)</span>
+<span class="go">&lt;gemmi.SpaceGroup(&quot;P n n n:2&quot;)&gt;</span>
+</pre></div>
+</div>
+<p>The next function for searching the space group table checks
+symmetry operations:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gemmi</span><span class="o">.</span><span class="n">symops_from_hall</span><span class="p">(</span><span class="s1">&#39;C 2y (x,y,-x+z)&#39;</span><span class="p">)</span>  
+<span class="go">&lt;gemmi.GroupOps object at 0x...&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gemmi</span><span class="o">.</span><span class="n">find_spacegroup_by_ops</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
+<span class="go">&lt;gemmi.SpaceGroup(&quot;I 1 2 1&quot;)&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span><span class="o">.</span><span class="n">hall</span>
+<span class="go">&#39;I 2y&#39;</span>
+</pre></div>
+</div>
+<p>This example shows also how to find space group corresponding to a Hall symbol.
+The Hall notation encodes all the group operations.
+Unfortunately, in a non-unique way.
+Different Hall symbols can be used to encode the same symmetry operations.
+In the example above “C 2y (x,y,-x+z)” is equivalent to “I 2y”.
+That’s why we compare operations not symbols.</p>
+<p>The last function for searching space group is also comparing operations.
+It takes two arguments: a space group and a change-of-basis operator,
+and searches for space group settings that match the transformed operations
+of the original space group:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># I2 -&gt; C2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gemmi</span><span class="o">.</span><span class="n">find_spacegroup_by_change_of_basis</span><span class="p">(</span><span class="n">gemmi</span><span class="o">.</span><span class="n">SpaceGroup</span><span class="p">(</span><span class="s1">&#39;I2&#39;</span><span class="p">),</span> <span class="n">gemmi</span><span class="o">.</span><span class="n">Op</span><span class="p">(</span><span class="s1">&#39;x,y,x+z&#39;</span><span class="p">))</span>
+<span class="go">&lt;gemmi.SpaceGroup(&quot;C 1 2 1&quot;)&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># enantiomorphic pair</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gemmi</span><span class="o">.</span><span class="n">find_spacegroup_by_change_of_basis</span><span class="p">(</span><span class="n">gemmi</span><span class="o">.</span><span class="n">SpaceGroup</span><span class="p">(</span><span class="s1">&#39;P 41&#39;</span><span class="p">),</span> <span class="n">gemmi</span><span class="o">.</span><span class="n">Op</span><span class="p">(</span><span class="s1">&#39;-x,-y,-z&#39;</span><span class="p">))</span>
+<span class="go">&lt;gemmi.SpaceGroup(&quot;P 43&quot;)&gt;</span>
+</pre></div>
+</div>
+<p>Finally, we may iterate over the space group table:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">sg</span> <span class="ow">in</span> <span class="n">gemmi</span><span class="o">.</span><span class="n">spacegroup_table</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="n">sg</span><span class="o">.</span><span class="n">ext</span> <span class="o">==</span> <span class="s1">&#39;H&#39;</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="nb">print</span><span class="p">(</span><span class="n">sg</span><span class="p">)</span>
+<span class="go">&lt;gemmi.SpaceGroup(&quot;R 3:H&quot;)&gt;</span>
+<span class="go">&lt;gemmi.SpaceGroup(&quot;R -3:H&quot;)&gt;</span>
+<span class="go">&lt;gemmi.SpaceGroup(&quot;R 3 2:H&quot;)&gt;</span>
+<span class="go">&lt;gemmi.SpaceGroup(&quot;R 3 m:H&quot;)&gt;</span>
+<span class="go">&lt;gemmi.SpaceGroup(&quot;R 3 c:H&quot;)&gt;</span>
+<span class="go">&lt;gemmi.SpaceGroup(&quot;R -3 m:H&quot;)&gt;</span>
+<span class="go">&lt;gemmi.SpaceGroup(&quot;R -3 c:H&quot;)&gt;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">gemmi.SpaceGroup</span></code> represents an entry in the space group table.
+It has the properties listed at the beginning of this section
+(<code class="docutils literal notranslate"><span class="pre">number</span></code>, <code class="docutils literal notranslate"><span class="pre">ccp4</span></code>, <code class="docutils literal notranslate"><span class="pre">hm</span></code>, <code class="docutils literal notranslate"><span class="pre">ext</span></code>, <code class="docutils literal notranslate"><span class="pre">hall</span></code>) and a few methods:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sg</span> <span class="o">=</span> <span class="n">gemmi</span><span class="o">.</span><span class="n">SpaceGroup</span><span class="p">(</span><span class="s1">&#39;R3&#39;</span><span class="p">)</span> <span class="c1"># equivalent to find_spacegroup_by_name()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sg</span><span class="o">.</span><span class="n">xhm</span><span class="p">()</span>                    <span class="c1"># extended Hermann-Mauguin name</span>
+<span class="go">&#39;R 3:H&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sg</span><span class="o">.</span><span class="n">short_name</span><span class="p">()</span>             <span class="c1"># short name</span>
+<span class="go">&#39;H3&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sg</span><span class="o">.</span><span class="n">is_enantiomorphic</span><span class="p">()</span>      <span class="c1"># is it one of 22 chiral space groups?</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sg</span><span class="o">.</span><span class="n">is_sohncke</span><span class="p">()</span>             <span class="c1"># is it one of 65 Sohncke space groups?</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sg</span><span class="o">.</span><span class="n">point_group_hm</span><span class="p">()</span>         <span class="c1"># H-M name of the point group</span>
+<span class="go">&#39;3&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sg</span><span class="o">.</span><span class="n">laue_str</span><span class="p">()</span>               <span class="c1"># name of the Laue class</span>
+<span class="go">&#39;-3&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sg</span><span class="o">.</span><span class="n">crystal_system_str</span><span class="p">()</span>     <span class="c1"># name of the crystal system</span>
+<span class="go">&#39;trigonal&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sg</span><span class="o">.</span><span class="n">is_reference_setting</span><span class="p">()</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># and the most important...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sg</span><span class="o">.</span><span class="n">operations</span><span class="p">()</span>             
+<span class="go">&lt;gemmi.GroupOps object at 0x...&gt;</span>
+</pre></div>
+</div>
+<p>Categories related to chirality can be confusing.
+Here, we follow the IUCr dictionary:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://dictionary.iucr.org/Sohncke_groups">Sohncke groups</a>
+(a.k.a. non-enantiogenic space groups)
+are “the three-dimensional space groups containing only operations
+of the first kind (rotations, rototranslations, translations)”;
+65 groups in which chiral structures crystallize.</p></li>
+<li><p>Enantiomorphic space groups
+(a.k.a. <a class="reference external" href="https://dictionary.iucr.org/Chiral_space_group">chiral groups</a>)
+are those whose <em>group</em> structure is chiral;
+22 groups forming 11 enantiomorphic pairs.
+(So chiral structures can crystallize not only in the chiral space groups
+but also in 43 of the achiral ones.)</p></li>
+</ul>
+<p>If you would like to ignore entries that are absent in SgInfo, sgtbx, spglib
+and in the International Tables vol. B, use only the first 530 entries
+of the gemmi table. In Python, we have a helper function for this:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">sg</span> <span class="ow">in</span> <span class="n">gemmi</span><span class="o">.</span><span class="n">spacegroup_table_itb</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">pass</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sg</span><span class="o">.</span><span class="n">ccp4</span>  <span class="c1"># sg here is the last space group that was iterated</span>
+<span class="go">230</span>
+</pre></div>
+</div>
+<div class="section" id="implementation-notes">
+<h3>Implementation notes<a class="headerlink" href="#implementation-notes" title="Permalink to this headline">¶</a></h3>
+<p>The choice between having an explicit list of all
+the operations and generating them from a smaller set of symbols is a
+trade-off between simplicity of the code and the amount of the tabulated data.</p>
+<p>The number of symmetry operations per space group is between 1 and 192,
+but they can be split into symmetry operations (max. 48 for point group m-3m)
+and so-called <em>centring vectors</em> (max. 4 for the face-centered lattice).</p>
+<ul>
+<li><p>The simplest way of storing the operations is to list them all (i.e. 192
+triplets for no. 228) in a text file.
+This approach is used by <a class="reference external" href="https://github.com/openbabel/openbabel">OpenBabel</a> (in <code class="file docutils literal notranslate"><span class="pre">space-groups.txt</span></code>).</p></li>
+<li><p>It makes sense to keep the centring vectors separately
+(192 becomes 48 + 4).
+This is done in the CCP4 <code class="file docutils literal notranslate"><span class="pre">syminfo.lib</span></code> file (539 entries),
+which is used by <a class="reference external" href="http://www.ccp4.ac.uk/html/C_library/csymlib_8h.html">csymlib</a> (part of libccp4) and a few other projects.</p></li>
+<li><p>The operations can be as well tabulated in the code.
+This approach is used (with one or two layers of indirection to reduce
+the data size) by <a class="reference external" href="https://atztogo.github.io/spglib/">spglib</a> (C library) and <a class="reference external" href="https://github.com/arose/ngl">NGL</a>.</p></li>
+<li><p>The inversion center (if applicable) can be kept separately,
+to reduce the maximum number of stored operations (48 -&gt; 24+1).
+This is how the symmetry data is encoded in <a class="reference external" href="https://github.com/wojdyr/fityk">Fityk</a>.</p></li>
+<li><p>Actually all the operations can be generated from only a few generators,
+at the expense of more complex code.
+Example: <a class="reference external" href="https://github.com/mantidproject/mantid">Mantid</a> (<code class="file docutils literal notranslate"><span class="pre">SpaceGroupFactory.cpp</span></code>).</p></li>
+<li><p>Finally, one can use one of the two computer-adapted descriptions from ITfC.
+The so-called explicit notation (<code class="docutils literal notranslate"><span class="pre">ICC$I3Q000$P4C393$P2D933</span></code>) is the
+longer of the two, but easier to parse by the computer.
+It is used in the <a class="reference external" href="http://dx.doi.org/10.1107/S1600576716007330">SPGGEN</a> program.</p></li>
+<li><p>The Hall notation (<code class="docutils literal notranslate"><span class="pre">-I</span> <span class="pre">4bd</span> <span class="pre">2c</span> <span class="pre">3</span></code>), first proposed by Sydney R. Hall
+in 1981, is shorter and more popular.
+It can be interpreted by a few libraries:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/rwgk/sginfo">SgInfo</a> and <a class="reference external" href="https://github.com/rwgk/sglite">SgLite</a> (old C libraries from Ralf W. Grosse-Kunstleve
+recently re-licensed to BSD),</p></li>
+<li><p><a class="reference external" href="https://github.com/rwgk/sglite">sgtbx</a> (successor of SgInfo written in C++/Python, part of cctbx),</p></li>
+<li><p>CCP4 <a class="reference external" href="http://www.ysbl.york.ac.uk/~cowtan/clipper/doc/">Clipper</a>,</p></li>
+</ul>
+<p>and by many programs.
+On the bad side, the conciseness is achieved by complex
+<a class="reference external" href="http://cci.lbl.gov/sginfo/hall_symbols.html">rules</a> of interpreting
+the symbols; the choice of a Hall symbol for given settings
+is not unambiguous and the symbols differ
+between editions of ITfC, and between sgtbx and <code class="file docutils literal notranslate"><span class="pre">syminfo.lib</span></code>.</p>
+</li>
+</ul>
+<p>After contemplating all the possibilities we ended up implementing
+the most complex solution: Hall symbols. The relative complexity
+does not mean it is slow: translating a Hall notation to generators
+takes less than a microsecond on a typical desktop machine.
+Closing a group is also below a microsecond for most of the groups,
+and up to a few microseconds for the highest symmetry group Fm3̅m
+(Gemmi uses Dimino’s algorithm for this).</p>
+</div>
+</div>
+<div class="section" id="operations">
+<h2>Operations<a class="headerlink" href="#operations" title="Permalink to this headline">¶</a></h2>
+<p>Crystallographic symmetry operations have a few notations.
+Gemmi undertands only coordinate triplets (sometimes called
+the Jones’ faithful notation) such as <code class="docutils literal notranslate"><span class="pre">x,x-y,z+1/2</span></code>.
+The symmetry operation is represented by class Op.
+It can be created in C++ as:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;gemmi/symmetry.hpp&gt;</span><span class="cp"></span>
+<span class="p">...</span>
+<span class="n">gemmi</span><span class="o">::</span><span class="n">Op</span> <span class="n">op</span> <span class="o">=</span> <span class="n">gemmi</span><span class="o">::</span><span class="n">parse_triplet</span><span class="p">(</span><span class="s">&quot;-y,x-y,z&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>and in Python as:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">gemmi</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">op</span> <span class="o">=</span> <span class="n">gemmi</span><span class="o">.</span><span class="n">Op</span><span class="p">(</span><span class="s1">&#39;-y,x-y,z+1/3&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We can also do the opposite:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">op</span><span class="o">.</span><span class="n">triplet</span><span class="p">()</span>
+<span class="go">&#39;-y,x-y,z+1/3&#39;</span>
+</pre></div>
+</div>
+<p>The operation consists of a 3x3 rotation matrix and
+a translation vector, both stored internally as integers that need to be
+divided by <code class="docutils literal notranslate"><span class="pre">DEN</span></code> == 24 to get the actual values.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">op</span><span class="o">.</span><span class="n">rot</span>
+<span class="go">[[0, -24, 0], [24, -24, 0], [0, 0, 24]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">op</span><span class="o">.</span><span class="n">tran</span>
+<span class="go">[0, 0, 8]</span>
+</pre></div>
+</div>
+<p>Alternatively, the operation can be expressed as a single 4x4 transformation
+matrix (which in crystallography is called <em>Seitz matrix</em>).</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">op</span><span class="o">.</span><span class="n">seitz</span><span class="p">()</span>
+<span class="go">[[0, -1, 0, 0], [1, -1, 0, 0], [0, 0, 1, Fraction(1, 3)], [0, 0, 0, 1]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">op</span><span class="o">.</span><span class="n">float_seitz</span><span class="p">()</span>
+<span class="go">[[0.0, -1.0, 0.0, 0.0],</span>
+<span class="go"> [1.0, -1.0, 0.0, 0.0],</span>
+<span class="go"> [0.0, 0.0, 1.0, 0.3333333333333333],</span>
+<span class="go"> [0.0, 0.0, 0.0, 1.0]]</span>
+</pre></div>
+</div>
+<p>Operations can be combined, inverted and wrapped:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gemmi</span><span class="o">.</span><span class="n">Op</span><span class="p">(</span><span class="s1">&#39;x-y,x,z+1/6&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="s1">&#39;-x,-y,z+1/2&#39;</span>
+<span class="go">&lt;gemmi.Op(&quot;-x+y,-x,z+2/3&quot;)&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span>
+<span class="go">&lt;gemmi.Op(&quot;-y,x-y,z-2/3&quot;)&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span><span class="o">.</span><span class="n">wrap</span><span class="p">()</span>
+<span class="go">&lt;gemmi.Op(&quot;-y,x-y,z+1/3&quot;)&gt;</span>
+</pre></div>
+</div>
+<p>Wrapping applies <em>modulo</em> 1 to the translational part.
+Which is usually desirable for crystallographic symmetry.
+But the triplets and matrices may represent also, for example,
+generation of a biological assembly.
+For this reason, <code class="docutils literal notranslate"><span class="pre">x,y+1,z</span></code> is not automatically reduced to the identity.
+But when operations are combined,
+they are assumed to be symmetry operations and the result is wrapped to [0,1):</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">op</span>
+<span class="go">&lt;gemmi.Op(&quot;-y,x-y,z+1/3&quot;)&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">op</span> <span class="o">*</span> <span class="n">op</span>
+<span class="go">&lt;gemmi.Op(&quot;-x+y,-x,z+2/3&quot;)&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">op</span> <span class="o">*</span> <span class="n">op</span> <span class="o">*</span> <span class="n">op</span>  <span class="c1"># without wrapping we&#39;d have z+1</span>
+<span class="go">&lt;gemmi.Op(&quot;x,y,z&quot;)&gt;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Op.rot</span></code> matrix is called “rotation matrix”, because that’s the primary
+purpose, but it can also represent different linear transformations:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">enlarging_op</span> <span class="o">=</span> <span class="n">gemmi</span><span class="o">.</span><span class="n">Op</span><span class="p">(</span><span class="s2">&quot;-y+z,x+z,-x+y+z&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">enlarging_op</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span>
+<span class="go">&lt;gemmi.Op(&quot;-1/3*x+2/3*y-1/3*z,-2/3*x+1/3*y+1/3*z,1/3*x+1/3*y+1/3*z&quot;)&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">*</span> <span class="n">enlarging_op</span>
+<span class="go">&lt;gemmi.Op(&quot;x,y,z&quot;)&gt;</span>
+</pre></div>
+</div>
+<p>In the real space, a crystal symmetry operation can be applied
+to the fractional atom position to get an equivalent position:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">op</span><span class="o">.</span><span class="n">apply_to_xyz</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.21875</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])</span>
+<span class="go">[-0.21875, 0.03125, 0.6333333333333333]</span>
+</pre></div>
+</div>
+<p>In the reciprocal space, the same operation relates equivalent reflections.
+The rotational part determines Miller indices,
+the translational part – phase shift.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hkl</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">op</span><span class="o">.</span><span class="n">apply_to_hkl</span><span class="p">(</span><span class="n">hkl</span><span class="p">)</span>
+<span class="go">[0, -3, 1]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">op</span><span class="o">.</span><span class="n">phase_shift</span><span class="p">(</span><span class="n">hkl</span><span class="p">)</span>  <span class="c1"># -120 degrees in radians</span>
+<span class="go">-2.0943951023931953</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="groups-of-operations">
+<h2>Groups of Operations<a class="headerlink" href="#groups-of-operations" title="Permalink to this headline">¶</a></h2>
+<p>Each space group setting corresponds to a unique set of operations.
+This set is represented by class <code class="docutils literal notranslate"><span class="pre">GroupOps</span></code>.</p>
+<p>Symmetry operations (rotation + translation) and
+centring vectors (translation only) are stored separately:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ops</span> <span class="o">=</span> <span class="n">gemmi</span><span class="o">.</span><span class="n">find_spacegroup_by_name</span><span class="p">(</span><span class="s1">&#39;I2&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">operations</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ops</span>  
+<span class="go">&lt;gemmi.GroupOps object at 0x...&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">ops</span><span class="o">.</span><span class="n">sym_ops</span><span class="p">)</span>
+<span class="go">[&lt;gemmi.Op(&quot;x,y,z&quot;)&gt;, &lt;gemmi.Op(&quot;-x,y,-z&quot;)&gt;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">ops</span><span class="o">.</span><span class="n">cen_ops</span><span class="p">)</span>
+<span class="go">[[0, 0, 0], [12, 12, 12]]</span>
+</pre></div>
+</div>
+<p>but they are be combined on the fly:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">ops</span><span class="p">)</span>
+<span class="go">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="n">ops</span><span class="p">:</span>
+<span class="gp">... </span>  <span class="nb">print</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">triplet</span><span class="p">())</span>
+<span class="gp">...</span>
+<span class="go">x,y,z</span>
+<span class="go">-x,y,-z</span>
+<span class="go">x+1/2,y+1/2,z+1/2</span>
+<span class="go">-x+1/2,y+1/2,-z+1/2</span>
+</pre></div>
+</div>
+<p>We can apply a change-of-basis operator to GroupOps:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ops</span><span class="o">.</span><span class="n">change_basis</span><span class="p">(</span><span class="n">gemmi</span><span class="o">.</span><span class="n">Op</span><span class="p">(</span><span class="s1">&#39;x,y,x+z&#39;</span><span class="p">))</span>  <span class="c1"># I2 -&gt; C2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gemmi</span><span class="o">.</span><span class="n">find_spacegroup_by_ops</span><span class="p">(</span><span class="n">ops</span><span class="p">)</span>
+<span class="go">&lt;gemmi.SpaceGroup(&quot;C 1 2 1&quot;)&gt;</span>
+</pre></div>
+</div>
+<p>We can create GroupOps from a list of operations:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">op_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x,y,z&#39;</span><span class="p">,</span> <span class="s1">&#39;x,-y,z+1/2&#39;</span><span class="p">,</span> <span class="s1">&#39;x+1/2,y+1/2,z&#39;</span><span class="p">,</span> <span class="s1">&#39;x+1/2,-y+1/2,z+1/2&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">new_ops</span> <span class="o">=</span> <span class="n">gemmi</span><span class="o">.</span><span class="n">GroupOps</span><span class="p">([</span><span class="n">gemmi</span><span class="o">.</span><span class="n">Op</span><span class="p">(</span><span class="n">o</span><span class="p">)</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">op_list</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>or from a Hall symbol:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gemmi</span><span class="o">.</span><span class="n">symops_from_hall</span><span class="p">(</span><span class="s1">&#39;P 4w 2c&#39;</span><span class="p">)</span>  
+<span class="go">&lt;gemmi.GroupOps object at 0x...&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
+<span class="go">8</span>
+</pre></div>
+</div>
+<p>The Hall symbols encode <em>generators</em> which are then used to obtain
+all the operations. If you’d wonder what generators are encoded, use:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">gemmi</span><span class="o">.</span><span class="n">generators_from_hall</span><span class="p">(</span><span class="s1">&#39;P 4w 2c&#39;</span><span class="p">))</span>  <span class="c1"># no.93</span>
+<span class="go">[&lt;gemmi.Op(&quot;x,y,z&quot;)&gt;, &lt;gemmi.Op(&quot;-y,x,z+1/4&quot;)&gt;, &lt;gemmi.Op(&quot;x,-y,-z+1/2&quot;)&gt;]</span>
+</pre></div>
+</div>
+<p>Combining these 3 generators reconstructs all the 8 symmetry operations.</p>
+<p>The GroupOps object has a couple of functions:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">new_ops</span><span class="o">.</span><span class="n">is_centric</span><span class="p">()</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">new_ops</span><span class="o">.</span><span class="n">find_centering</span><span class="p">()</span>
+<span class="go">&#39;C&#39;</span>
+</pre></div>
+</div>
+<p>and, again, it can be used to search in the space group table:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gemmi</span><span class="o">.</span><span class="n">find_spacegroup_by_ops</span><span class="p">(</span><span class="n">new_ops</span><span class="p">)</span>
+<span class="go">&lt;gemmi.SpaceGroup(&quot;C 1 c 1&quot;)&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="c-example">
+<h2>C++ Example<a class="headerlink" href="#c-example" title="Permalink to this headline">¶</a></h2>
+<p>Since the code snippets above were only in Python,
+here we compensate it with one longer example in C++.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;assert.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;gemmi/symmetry.hpp&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// operators</span>
+  <span class="n">gemmi</span><span class="o">::</span><span class="n">Op</span> <span class="n">op</span> <span class="o">=</span> <span class="n">gemmi</span><span class="o">::</span><span class="n">parse_triplet</span><span class="p">(</span><span class="s">&quot;-y,x-y,z&quot;</span><span class="p">);</span> <span class="c1">// one operation from P 3</span>
+  <span class="n">assert</span><span class="p">(</span><span class="n">op</span> <span class="o">*</span> <span class="n">op</span> <span class="o">==</span> <span class="n">gemmi</span><span class="o">::</span><span class="n">parse_triplet</span><span class="p">(</span><span class="s">&quot;-x+y,-x,z&quot;</span><span class="p">));</span> <span class="c1">// and the other one</span>
+  <span class="n">assert</span><span class="p">(</span><span class="n">op</span> <span class="o">*</span> <span class="n">op</span> <span class="o">==</span> <span class="n">op</span><span class="p">.</span><span class="n">inverse</span><span class="p">());</span>
+
+  <span class="c1">// iteration over all tabulated settings</span>
+  <span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="n">gemmi</span><span class="o">::</span><span class="n">SpaceGroup</span><span class="o">&amp;</span> <span class="nl">sg</span> <span class="p">:</span> <span class="n">gemmi</span><span class="o">::</span><span class="n">spacegroup_tables</span><span class="o">::</span><span class="n">main</span><span class="p">)</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">sg</span><span class="p">.</span><span class="n">number</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span> <span class="o">&lt;&lt;</span> <span class="n">sg</span><span class="p">.</span><span class="n">xhm</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;   &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">sg</span><span class="p">.</span><span class="n">hall</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+
+  <span class="c1">// selecting a space group</span>
+  <span class="k">const</span> <span class="n">gemmi</span><span class="o">::</span><span class="n">SpaceGroup</span><span class="o">*</span> <span class="n">c2</span> <span class="o">=</span> <span class="n">gemmi</span><span class="o">::</span><span class="n">find_spacegroup_by_number</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+  <span class="n">assert</span><span class="p">(</span><span class="n">c2</span><span class="o">-&gt;</span><span class="n">xhm</span><span class="p">()</span> <span class="o">==</span> <span class="s">&quot;C 1 2 1&quot;</span><span class="p">);</span>
+  <span class="n">assert</span><span class="p">(</span><span class="n">c2</span><span class="o">-&gt;</span><span class="n">ccp4</span> <span class="o">==</span> <span class="mi">5</span><span class="p">);</span>
+
+  <span class="k">const</span> <span class="n">gemmi</span><span class="o">::</span><span class="n">SpaceGroup</span><span class="o">*</span> <span class="n">i2</span> <span class="o">=</span> <span class="n">gemmi</span><span class="o">::</span><span class="n">find_spacegroup_by_name</span><span class="p">(</span><span class="s">&quot;I2&quot;</span><span class="p">);</span>
+  <span class="n">assert</span><span class="p">(</span><span class="n">i2</span><span class="o">-&gt;</span><span class="n">number</span> <span class="o">==</span> <span class="mi">5</span><span class="p">);</span>
+  <span class="n">assert</span><span class="p">(</span><span class="n">i2</span><span class="o">-&gt;</span><span class="n">ccp4</span> <span class="o">==</span> <span class="mi">4005</span><span class="p">);</span>
+  <span class="n">assert</span><span class="p">(</span><span class="n">i2</span><span class="o">-&gt;</span><span class="n">xhm</span><span class="p">()</span> <span class="o">==</span> <span class="s">&quot;I 1 2 1&quot;</span><span class="p">);</span>
+
+  <span class="n">gemmi</span><span class="o">::</span><span class="n">GroupOps</span> <span class="n">ops</span> <span class="o">=</span> <span class="n">i2</span><span class="o">-&gt;</span><span class="n">operations</span><span class="p">();</span>
+  <span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="n">gemmi</span><span class="o">::</span><span class="n">Op</span><span class="o">&amp;</span> <span class="nl">operation</span> <span class="p">:</span> <span class="n">ops</span><span class="p">)</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;   &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">operation</span><span class="p">.</span><span class="n">triplet</span><span class="p">();</span>
+  <span class="c1">// output:   x,y,z   -x,y,-z   x+1/2,y+1/2,z+1/2   -x+1/2,y+1/2,-z+1/2</span>
+  <span class="n">ops</span><span class="p">.</span><span class="n">change_basis</span><span class="p">(</span><span class="n">gemmi</span><span class="o">::</span><span class="n">parse_triplet</span><span class="p">(</span><span class="s">&quot;x,y,x+z&quot;</span><span class="p">));</span>
+  <span class="n">assert</span><span class="p">(</span><span class="n">gemmi</span><span class="o">::</span><span class="n">find_spacegroup_by_ops</span><span class="p">(</span><span class="n">ops</span><span class="p">)</span> <span class="o">==</span> <span class="n">c2</span><span class="p">);</span>
+
+  <span class="n">assert</span><span class="p">(</span><span class="n">gemmi</span><span class="o">::</span><span class="n">find_spacegroup_by_name</span><span class="p">(</span><span class="s">&quot;C m m e&quot;</span><span class="p">)</span> <span class="o">==</span>  <span class="c1">// new name with &#39;e&#39;</span>
+         <span class="n">gemmi</span><span class="o">::</span><span class="n">find_spacegroup_by_name</span><span class="p">(</span><span class="s">&quot;C m m a&quot;</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mol.html" class="btn btn-neutral float-right" title="Molecular models" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="cif.html" class="btn btn-neutral float-left" title="CIF Parser" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017-2020 Global Phasing Ltd
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

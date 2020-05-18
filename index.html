@@ -1,0 +1,362 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta content="LsEfb1rjo2RL8WOSZGigV11Kgyhtk9v1Vb-6GZFnHKo" name="google-site-verification" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>GEMMI - library for structural biology &mdash; Gemmi 0.3.7 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="install.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> Gemmi
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.7
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cif.html">CIF Parser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="symmetry.html">Symmetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mol.html">Molecular models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analysis.html">Structure analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grid.html">Grids and maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hkl.html">Reciprocal space</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Gemmi program</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://sizmailov.github.io/gemmi/api/python">Python API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Gemmi</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>GEMMI - library for structural biology</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="gemmi-library-for-structural-biology">
+<h1>GEMMI - library for structural biology<a class="headerlink" href="#gemmi-library-for-structural-biology" title="Permalink to this headline">¶</a></h1>
+<p>Gemmi is a library, accompanied by a set of programs,
+developed primarily for use in <strong>macromolecular crystallography</strong> (MX).
+For working with:</p>
+<ul class="simple">
+<li><p>macromolecular models (content of PDB, PDBx/mmCIF and mmJSON files),</p></li>
+<li><p>refinement restraints (CIF files),</p></li>
+<li><p>reflection data (MTZ and mmCIF formats),</p></li>
+<li><p>data on a 3D grid (electron density maps, masks, MRC/CCP4 format)</p></li>
+<li><p>crystallographic symmetry.</p></li>
+</ul>
+<p>Parts of this library can be useful in structural bioinformatics
+(for symmetry-aware analysis of protein models),
+and in other molecular-structure sciences that use CIF files
+(we have the <a class="reference external" href="https://github.com/project-gemmi/mmcif-benchmark">fastest</a>
+open-source CIF parser).</p>
+<p>Gemmi is open-source (<a class="reference external" href="https://www.mozilla.org/en-US/MPL/2.0/">MPL</a>) and portable – it runs on Linux, Windows,
+MacOS and even inside a web browser if compiled to WebAssembly.
+It is written in C++11, with Python (2 and 3) bindings,
+and with partial C and Fortran 2003 interface.</p>
+<p>Occasionally, the project gets sidetracked into
+<a class="reference external" href="https://project-gemmi.github.io/pdb-stats/">visualization of the PDB data</a>.</p>
+<p>Gemmi is a joint project of
+<a class="reference external" href="https://www.globalphasing.com/">Global Phasing Ltd</a>
+and <a class="reference external" href="http://www.ccp4.ac.uk">CCP4</a>.</p>
+<p>The project is named after
+<a class="reference external" href="https://goo.gl/maps/akBLbGfrGE9j1oWC7">Gemmi Pass</a>.
+The name can also be expanded as <em>GEneral MacroMolecular I/o</em>.</p>
+<p>Source code repository: <a class="reference external" href="https://github.com/project-gemmi/gemmi">https://github.com/project-gemmi/gemmi</a></p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>As of 2020 the library is under intensive development and not
+everything is documented yet. Just ask questions.</p>
+</div>
+<div class="section" id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install.html#c-library">C++ library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#python-2-7-3-x-module">Python 2.7/3.x module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#fortran-and-c-bindings">Fortran and C bindings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#gemmi-program">Gemmi program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#credits">Credits</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cif.html">CIF Parser</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cif.html#what-are-star-cif-ddl-mmcif">What are STAR, CIF, DDL, mmCIF?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cif.html#what-is-parsed">What is parsed?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cif.html#getting-started">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cif.html#dom-and-sax">DOM and SAX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cif.html#reading-a-file">Reading a file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cif.html#writing-a-file">Writing a file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cif.html#document">Document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cif.html#block">Block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cif.html#frame">Frame</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cif.html#pairs-and-loops">Pairs and Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cif.html#column">Column</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cif.html#table">Table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cif.html#json">JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cif.html#design-choices">Design choices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cif.html#performance">Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cif.html#directory-walking">Directory walking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cif.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="symmetry.html">Symmetry</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="symmetry.html#space-group-table">Space group table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="symmetry.html#operations">Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="symmetry.html#groups-of-operations">Groups of Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="symmetry.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mol.html">Molecular models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mol.html#elements">Elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mol.html#small-molecules">Small Molecules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mol.html#chemical-components">Chemical Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mol.html#coordinates-and-matrices">Coordinates and matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mol.html#unit-cell">Unit Cell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mol.html#reading-coordinate-files">Reading coordinate files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mol.html#pdb-format">PDB format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mol.html#pdbx-mmcif-format">PDBx/mmCIF format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mol.html#mmjson-format">mmJSON format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mol.html#hierarchy">Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mol.html#structure">Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mol.html#sequence">Sequence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mol.html#model">Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mol.html#chain">Chain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mol.html#residuespan-residuegroup">ResidueSpan, ResidueGroup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mol.html#residue">Residue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mol.html#atomgroup">AtomGroup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mol.html#atom">Atom</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mol.html#atomaddress-and-cra">AtomAddress and CRA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mol.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="analysis.html">Structure analysis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="analysis.html#neighbor-search">Neighbor search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="analysis.html#contact-search">Contact search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="analysis.html#selections">Selections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="analysis.html#graph-analysis">Graph analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="analysis.html#torsion-angles">Torsion Angles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="analysis.html#local-copy-of-the-pdb-archive">Local copy of the PDB archive</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="grid.html">Grids and maps</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="grid.html#volumetric-grid">Volumetric grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grid.html#mrc-ccp4-maps">MRC/CCP4 maps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hkl.html">Reciprocal space</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hkl.html#mtz-format">MTZ format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hkl.html#sf-mmcif">SF mmCIF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hkl.html#hkl-cif">hkl CIF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hkl.html#data-on-3d-grid">Data on 3D grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hkl.html#fft">FFT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hkl.html#scattering-factors">Scattering factors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Gemmi program</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#validate">validate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#grep">grep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#cif2json">cif2json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#json2cif">json2cif</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#convert">convert</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#tags">tags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#map">map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#mask">mask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#mtz">mtz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#mtz2cif">mtz2cif</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#cif2mtz">cif2mtz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#sf2map">sf2map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#map2sf">map2sf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#sfcalc">sfcalc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#fprime">fprime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#residues">residues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#align">align</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#sg">sg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#contents">contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#contact">contact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#blobs">blobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#h">h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#mondiff">mondiff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#wcn">wcn</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://sizmailov.github.io/gemmi/api/python">Python API</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="install.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017-2020 Global Phasing Ltd
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

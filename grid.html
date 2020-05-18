@@ -1,0 +1,598 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Grids and maps &mdash; Gemmi 0.3.7 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Reciprocal space" href="hkl.html" />
+    <link rel="prev" title="Structure analysis" href="analysis.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Gemmi
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.7
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cif.html">CIF Parser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="symmetry.html">Symmetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mol.html">Molecular models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analysis.html">Structure analysis</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Grids and maps</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#volumetric-grid">Volumetric grid</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#c">C++</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#python">Python</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#mrc-ccp4-maps">MRC/CCP4 maps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">C++</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#reading">Reading</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#header">Header</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#setup">setup()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#writing">Writing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Python</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hkl.html">Reciprocal space</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Gemmi program</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://project-gemmi.github.io/gemmi/api/python">Python API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Gemmi</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Grids and maps</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/grid.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="grids-and-maps">
+<h1>Grids and maps<a class="headerlink" href="#grids-and-maps" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="volumetric-grid">
+<span id="grid"></span><h2>Volumetric grid<a class="headerlink" href="#volumetric-grid" title="Permalink to this headline">¶</a></h2>
+<p>Macromolecular models are often accompanied by 3D data on an evenly spaced,
+rectangular grid.
+The data may represent electron density, a mask of the protein area,
+or any other scalar data.</p>
+<p>In Gemmi such a data is stored in a class called Grid.
+Actually, it is a set of classes for storing
+different types of data: floating point numbers, integers or boolean masks.
+These classes also store:</p>
+<ul class="simple">
+<li><p>unit cell dimensions (so the grid nodes can be assigned atomic coordinates),</p></li>
+<li><p>and crystallographic symmetry (that determines which points on the grid
+are equivalent under the symmetry).</p></li>
+</ul>
+<p>If the symmetry is not set (or is set to P1)
+then we effectively have a box with periodic boundary conditions.</p>
+<div class="section" id="c">
+<h3>C++<a class="headerlink" href="#c" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">gemmi/grid.hpp</span></code> header defines:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">=</span><span class="kt">float</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="n">Grid</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>which stores dimensions and data:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">nu</span><span class="p">,</span> <span class="n">nv</span><span class="p">,</span> <span class="n">nw</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">data</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The data point can be accessed with:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="n">Grid</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">get_value</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">,</span> <span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">w</span><span class="p">)</span> <span class="k">const</span>
+<span class="kt">void</span> <span class="n">Grid</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">set_value</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">,</span> <span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">w</span><span class="p">,</span> <span class="n">T</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The unit cell and symmetry:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">UnitCell</span> <span class="n">unit_cell</span><span class="p">;</span>
+<span class="k">const</span> <span class="n">SpaceGroup</span><span class="o">*</span> <span class="n">spacegroup</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>can be accessed directly, except that <code class="docutils literal notranslate"><span class="pre">unit_cell</span></code> should
+be set using <code class="docutils literal notranslate"><span class="pre">Grid&lt;T&gt;::set_unit_cell()</span></code>.</p>
+<p>Unit cell parameters enable conversion between coordinates and grid
+points. To get an interpolated value at any position (in either fractional
+or orthogonal coordinates), use:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="n">Grid</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">interpolate_value</span><span class="p">(</span><span class="k">const</span> <span class="n">Fractional</span><span class="o">&amp;</span> <span class="n">fctr</span><span class="p">)</span> <span class="k">const</span>
+<span class="n">T</span> <span class="n">Grid</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">interpolate_value</span><span class="p">(</span><span class="k">const</span> <span class="n">Position</span><span class="o">&amp;</span> <span class="n">ctr</span><span class="p">)</span> <span class="k">const</span>
+</pre></div>
+</div>
+<p>We also have a few more specialized functions.
+For example, a member function used primarily for masking area around atoms:</p>
+<blockquote>
+<div><p>void Grid&lt;T&gt;::set_points_around(const Position&amp; ctr, double radius, T value)</p>
+</div></blockquote>
+<p>To make it more efficient, the function above does not consider symmetry.
+At the end, we should call one of the <em>symmetrizing</em> functions.
+In this case, if two symmetry-related grid point have values 0 and 1
+we want to set both to 1. It can be done by calling:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">Grid</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">symmetrize_max</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This illustrates how the Grid is meant to be used.
+For more information consult the source code or contact the author.</p>
+</div>
+<div class="section" id="python">
+<h3>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h3>
+<p>Let us create a new grid:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">gemmi</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span> <span class="o">=</span> <span class="n">gemmi</span><span class="o">.</span><span class="n">FloatGrid</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="go">7.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># we can test wrapping of indices (a.k.a. periodic boundary conditions)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="o">-</span><span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+<span class="go">7.0</span>
+</pre></div>
+</div>
+<p>The main advantage of Grid over generic 3D arrays is that
+it understands crystallographic symmetry.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span><span class="o">.</span><span class="n">spacegroup</span> <span class="o">=</span> <span class="n">gemmi</span><span class="o">.</span><span class="n">find_spacegroup_by_name</span><span class="p">(</span><span class="s1">&#39;P2&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.125</span><span class="p">)</span>  <span class="c1"># a special position</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>  <span class="c1"># for now only two points: 7.0 + 0.125</span>
+<span class="go">7.125</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span><span class="o">.</span><span class="n">symmetrize_max</span><span class="p">()</span>  <span class="c1"># applying symmetry</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>  <span class="c1"># one point got duplicated, the other is on rotation axis</span>
+<span class="go">14.125</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">:</span>
+<span class="gp">... </span>  <span class="k">if</span> <span class="n">point</span><span class="o">.</span><span class="n">value</span> <span class="o">!=</span> <span class="mf">0.</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+<span class="go">&lt;gemmi.FloatGridPoint (0, 0, 0) -&gt; 0.125&gt;</span>
+<span class="go">&lt;gemmi.FloatGridPoint (1, 1, 1) -&gt; 7&gt;</span>
+<span class="go">&lt;gemmi.FloatGridPoint (11, 1, 11) -&gt; 7&gt;</span>
+</pre></div>
+</div>
+<p>The point that you get when iterating over grid has four properties:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span><span class="o">.</span><span class="n">get_point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">&lt;gemmi.FloatGridPoint (0, 0, 0) -&gt; 0.125&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span><span class="o">.</span><span class="n">u</span><span class="p">,</span> <span class="n">_</span><span class="o">.</span><span class="n">v</span><span class="p">,</span> <span class="n">_</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="n">_</span><span class="o">.</span><span class="n">value</span>
+<span class="go">(0, 0, 0, 0.125)</span>
+</pre></div>
+</div>
+<p>The point can also be converted to index and to fractional and orthoghonal
+c oordinates, as will be demonstrated later.</p>
+<p id="buffer-protocol">The data can be also acesssed through the
+<a class="reference external" href="https://docs.python.org/3/c-api/buffer.html">buffer protocol</a>.
+It means that you can use it as a NumPy array (Fortran-style contiguous)
+without copying the data:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">array</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">array</span><span class="o">.</span><span class="n">dtype</span>
+<span class="go">dtype(&#39;float32&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">array</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(12, 12, 12)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">numpy</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">array</span> <span class="o">==</span> <span class="mf">7.0</span><span class="p">)</span>
+<span class="go">array([[ 1,  1,  1],</span>
+<span class="go">       [11,  1, 11]])</span>
+</pre></div>
+</div>
+<p>(It does not make gemmi dependent on NumPy – gemmi talks with NumPy
+through the buffer protocol, and it can talk with any other Python library
+that supports this protocol.)</p>
+<p>We may be interested only in selected part of the map.
+For this, we have MaskedGrid that combines two Grid objects,
+using one of them as a mask for the other.</p>
+<p>When an element of the mask is 0 (false), the corresponding element
+of the other grid is unmasked and is to be used. The same convention
+is used in numpy MaskedArray.</p>
+<p>The primary use for MaskedGrid is working with asymmetric unit (asu) only:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">asu</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">asu</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">asu</span>  
+<span class="go">&lt;gemmi.MaskedFloatGrid object at 0x...&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">asu</span><span class="o">.</span><span class="n">grid</span> <span class="ow">is</span> <span class="n">grid</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">asu</span><span class="o">.</span><span class="n">mask</span>
+<span class="go">&lt;gemmi.Int8Grid(12, 12, 12)&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">sum</span><span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">asu</span><span class="p">)</span>
+<span class="go">7.125</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">asu</span><span class="p">:</span>
+<span class="gp">... </span>  <span class="k">if</span> <span class="n">point</span><span class="o">.</span><span class="n">value</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+<span class="go">&lt;gemmi.FloatGridPoint (0, 0, 0) -&gt; 0.125&gt;</span>
+<span class="go">&lt;gemmi.FloatGridPoint (1, 1, 1) -&gt; 7&gt;</span>
+</pre></div>
+</div>
+<p>To convert a point to index or to fractional coordinates use:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">point</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">get_point</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span><span class="o">.</span><span class="n">point_to_index</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+<span class="go">942</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span><span class="o">.</span><span class="n">point_to_fractional</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+<span class="go">&lt;gemmi.Fractional(0.5, 0.5, 0.5)&gt;</span>
+</pre></div>
+</div>
+<p>In addition to the symmetry, Grid may also have associated unit cell.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span><span class="o">.</span><span class="n">set_unit_cell</span><span class="p">(</span><span class="n">gemmi</span><span class="o">.</span><span class="n">UnitCell</span><span class="p">(</span><span class="mi">45</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mf">82.5</span><span class="p">,</span> <span class="mi">90</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span><span class="o">.</span><span class="n">unit_cell</span>
+<span class="go">&lt;gemmi.UnitCell(45, 45, 45, 90, 82.5, 90)&gt;</span>
+</pre></div>
+</div>
+<p>This allows us to translate location on the grid to position in Angstroms:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span><span class="o">.</span><span class="n">point_to_position</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+<span class="go">&lt;gemmi.Position(25.4368, 22.5, 22.3075)&gt;</span>
+</pre></div>
+</div>
+<p>And the other way around.
+We can translate position in Angstroms to the location in grid,
+and get an interpolated value (with trilinear interpolation) at any point:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span><span class="o">.</span><span class="n">interpolate_value</span><span class="p">(</span><span class="n">gemmi</span><span class="o">.</span><span class="n">Position</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="go">2.0333263874053955</span>
+</pre></div>
+</div>
+<p>This function can also take fractional position:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span><span class="o">.</span><span class="n">interpolate_value</span><span class="p">(</span><span class="n">gemmi</span><span class="o">.</span><span class="n">Fractional</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">24</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">24</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">24</span><span class="p">))</span>
+<span class="go">0.890625</span>
+</pre></div>
+</div>
+<p>If you need to interpolate values at so many points on a regular 3D grid
+that calling <code class="docutils literal notranslate"><span class="pre">interpolate_value()</span></code> for each point would be too slow,
+use <code class="docutils literal notranslate"><span class="pre">interpolate_values()</span></code> (with s at the end) instead.
+It takes a 3D numpy array and a <a class="reference internal" href="mol.html#transform"><span class="std std-ref">Transform</span></a> that
+relates indices of the array to positions in the grid,
+and fills the array with the interpolated values:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># first we create a numpy array of the same type as the grid</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arr</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># then we setup a transformation (array indices) -&gt; (position [A]).</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">gemmi</span><span class="o">.</span><span class="n">Transform</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span><span class="o">.</span><span class="n">mat</span><span class="o">.</span><span class="n">fromlist</span><span class="p">([[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span><span class="o">.</span><span class="n">vec</span><span class="o">.</span><span class="n">fromlist</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span><span class="o">.</span><span class="n">interpolate_values</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">tr</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arr</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>  <span class="c1"># -&gt; corresponds to Position(2, 3, 4)</span>
+<span class="go">2.0333264</span>
+</pre></div>
+</div>
+<p>If you would like to set grid points near a specified position
+use the <code class="docutils literal notranslate"><span class="pre">set_points_around()</span></code> function:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span><span class="o">.</span><span class="n">set_points_around</span><span class="p">(</span><span class="n">gemmi</span><span class="o">.</span><span class="n">Position</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">),</span> <span class="n">radius</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">numpy</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">array</span> <span class="o">==</span> <span class="mi">10</span><span class="p">)</span>
+<span class="go">array([[6, 6, 7],</span>
+<span class="go">       [6, 7, 7]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># now the data does not obey symmetry, we should call symmetrize*()</span>
+</pre></div>
+</div>
+<p>To set all point values, do:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mf">1.23</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="mrc-ccp4-maps">
+<h2>MRC/CCP4 maps<a class="headerlink" href="#mrc-ccp4-maps" title="Permalink to this headline">¶</a></h2>
+<p>We support one file format for storing the grid data on disk: MRC/CCP4 map.
+The content of the map file is stored in a class that contains
+both the Grid class and all the meta-data from the CCP4 file header.</p>
+<p>The CCP4 format has a few different modes that correspond to different
+data types. Gemmi supports:</p>
+<ul class="simple">
+<li><p>mode 0 – which correspond to the C++ type int8_t,</p></li>
+<li><p>mode 1 – corresponds to int16_t,</p></li>
+<li><p>mode 2 – float,</p></li>
+<li><p>and mode 6 – uint16_t.</p></li>
+</ul>
+<p>CCP4 programs use mode 2 (float) for the electron density,
+and mode 0 (int8_t) for masks. Mask is 0/1 data that marks part of the volume
+(e.g. the solvent region). Other modes are not used in crystallography,
+but may be used for CryoEM data.</p>
+<p>The CCP4 format is quite flexible. The data is stored as sections,
+rows and columns that correspond to a permutation of the X, Y and Z axes
+as defined in the file header.
+The file can contain only a part of the asymmetric unit,
+or more than an asymmetric unit (i.e. redundant data).
+There are two typical approaches to generate a crystallographic map:</p>
+<ul class="simple">
+<li><p>old-school way: a map covering a molecule with some margin
+around it is produced using CCP4 utilities such as <code class="docutils literal notranslate"><span class="pre">fft</span></code> and <code class="docutils literal notranslate"><span class="pre">mapmask</span></code>,</p></li>
+<li><p>or a map is made for the asymmetric unit (asu), and the program that reads
+the map is supposed to expand the symmetry. This approach is used by
+the CCP4 clipper library and by programs that use this library,
+such as <code class="docutils literal notranslate"><span class="pre">cfft</span></code> and Coot.</p></li>
+</ul>
+<p>The latter approach generates map for exactly one asu, if possible.
+It is not possible if the shape of the asu in fractional coordinates
+is not rectangular, and in such case we must have some redundancy.
+On average, the maps generated for asu are significantly smaller,
+as compared in the
+<a class="reference external" href="https://github.com/uglymol/uglymol/wiki/ccp4-dsn6-mtz">UglyMol wiki</a>.</p>
+<p>Nowadays, the CCP4 format is rarely used in crystallography.
+Almost all programs read the reflection data and calculate maps on the fly.</p>
+<div class="section" id="id2">
+<h3>C++<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="reading">
+<h4>Reading<a class="headerlink" href="#reading" title="Permalink to this headline">¶</a></h4>
+<p>To read and write CCP4 maps you need:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;gemmi/ccp4.hpp&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p>We normally use float type when reading a map file:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">gemmi</span><span class="o">::</span><span class="n">Ccp4</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">map</span><span class="p">;</span>
+<span class="n">map</span><span class="p">.</span><span class="n">read_ccp4_map</span><span class="p">(</span><span class="s">&quot;my_map.ccp4&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>and int8_t when reading a mask (mask typically has only values 0 and 1,
+but in principle it can have values from -127 to 128):</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">gemmi</span><span class="o">::</span><span class="n">Ccp4</span><span class="o">&lt;</span><span class="kt">int8_t</span><span class="o">&gt;</span> <span class="n">mask</span><span class="p">;</span>
+<span class="n">mask</span><span class="p">.</span><span class="n">read_ccp4_map</span><span class="p">(</span><span class="s">&quot;my_mask.ccp4&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>If the grid data type does not match the file data type, the library
+will attempt to convert the data when reading.</p>
+</div>
+<div class="section" id="header">
+<h4>Header<a class="headerlink" href="#header" title="Permalink to this headline">¶</a></h4>
+<p>The CCP4 map header is organised as 56 words followed by space for ten
+80-character text labels.
+The member functions that access the data from the map header use the word
+number (as in the format description) as a location in the header:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int32_t</span> <span class="nf">header_i32</span><span class="p">(</span><span class="kt">int</span> <span class="n">w</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+<span class="kt">float</span> <span class="nf">header_float</span><span class="p">(</span><span class="kt">int</span> <span class="n">w</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+<span class="c1">// ccp4 map header has mostly 80-byte strings</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">header_str</span><span class="p">(</span><span class="kt">int</span> <span class="n">w</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">len</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">set_header_i32</span><span class="p">(</span><span class="kt">int</span> <span class="n">w</span><span class="p">,</span> <span class="kt">int32_t</span> <span class="n">value</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">set_header_float</span><span class="p">(</span><span class="kt">int</span> <span class="n">w</span><span class="p">,</span> <span class="kt">float</span> <span class="n">value</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">set_header_str</span><span class="p">(</span><span class="kt">int</span> <span class="n">w</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>For example:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">mode</span> <span class="o">=</span> <span class="n">map</span><span class="p">.</span><span class="n">header_i32</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="kt">float</span> <span class="n">x</span> <span class="o">=</span> <span class="n">map</span><span class="p">.</span><span class="n">header_float</span><span class="p">(</span><span class="mi">11</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="setup">
+<h4>setup()<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">read_ccp4_map()</span></code> stores the data as it is written in the file.
+In many situation, it is convenient to have the data expanded to the whole
+unit cell, with axes in a specific order (X, Y, Z is the most conventional
+one). For this we have a function:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">map</span><span class="p">.</span><span class="n">setup</span><span class="p">(</span><span class="n">GridSetup</span><span class="o">::</span><span class="n">Full</span><span class="p">,</span> <span class="n">NAN</span><span class="p">);</span>  <span class="c1">// unknown values are set to NAN</span>
+</pre></div>
+</div>
+<p>This call is required to make grid functions work correctly with the
+unit cell parameters.</p>
+</div>
+<div class="section" id="writing">
+<h4>Writing<a class="headerlink" href="#writing" title="Permalink to this headline">¶</a></h4>
+<p>To write a map to a file:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// the file header needs to be prepared/updated with an explicit call</span>
+<span class="kt">int</span> <span class="n">mode</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// ccp4 file mode: 2 for floating-point data, 0 for masks</span>
+<span class="kt">bool</span> <span class="n">update_stats</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span> <span class="c1">// update min/max/mean/rms values in the header</span>
+<span class="n">map</span><span class="p">.</span><span class="n">update_ccp4_header</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">update_stats</span><span class="p">);</span>
+
+<span class="n">map</span><span class="p">.</span><span class="n">write_ccp4_map</span><span class="p">(</span><span class="n">filename</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>Python<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>The Python API is similar.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">gemmi</span><span class="o">.</span><span class="n">read_ccp4_map</span><span class="p">(</span><span class="s1">&#39;../tests/5i55_tiny.ccp4&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span>
+<span class="go">&lt;gemmi.Ccp4Map with grid (8, 6, 10) in SG #4&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">grid</span>  <span class="c1"># tiny grid as it is a toy example</span>
+<span class="go">&lt;gemmi.FloatGrid(8, 6, 10)&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">spacegroup</span>
+<span class="go">&lt;gemmi.SpaceGroup(&quot;P 1 21 1&quot;)&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">unit_cell</span>
+<span class="go">&lt;gemmi.UnitCell(29.45, 10.5, 29.7, 90, 111.975, 90)&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">grid</span>
+<span class="go">&lt;gemmi.FloatGrid(60, 24, 60)&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">write_ccp4_map</span><span class="p">(</span><span class="s1">&#39;out.ccp4&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For the low-level access to header one can use the same getters and
+setters as in the C++ version.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">header_float</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="n">m</span><span class="o">.</span><span class="n">header_float</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span>  <span class="c1"># dmin, dmax</span>
+<span class="go">(-0.5310382843017578, 2.3988280296325684)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">header_i32</span><span class="p">(</span><span class="mi">28</span><span class="p">)</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">set_header_i32</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">20140</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">header_str</span><span class="p">(</span><span class="mi">57</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<span class="go">&#39;Created by MAPMAN V. 080625/7.8.5 at Wed Jan 3 12:57:38 2018 for A. Nonymous&#39;</span>
+</pre></div>
+</div>
+<p>Let us end with a short code that draws a contour plot similar to mapslicer
+plots
+(see Fig. 3 in <a class="reference external" href="http://dx.doi.org/10.1107/S0907444902016116">this CCP4 paper</a>
+if you wonder what is mapslicer).
+To keep the example short we assume that the lattice vectors are orthogonal.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
+<span class="kn">import</span> <span class="nn">gemmi</span>
+
+<span class="c1"># toxd_aupatt.map is generated by $CCP4/examples/unix/runnable/patterson</span>
+<span class="n">ccp4</span> <span class="o">=</span> <span class="n">gemmi</span><span class="o">.</span><span class="n">read_ccp4_map</span><span class="p">(</span><span class="s1">&#39;/tmp/wojdyr/toxd_aupatt.map&#39;</span><span class="p">)</span>
+<span class="n">ccp4</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ccp4</span><span class="o">.</span><span class="n">grid</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ccp4</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">unit_cell</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ccp4</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">unit_cell</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">)</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">arr</span><span class="p">[:,:,</span><span class="mi">40</span><span class="p">])</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">,</span> <span class="n">adjustable</span><span class="o">=</span><span class="s1">&#39;box&#39;</span><span class="p">)</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/patterson_slice.png"><img alt="_images/patterson_slice.png" class="align-center" src="_images/patterson_slice.png" style="width: 436.0px; height: 238.0px;" /></a>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="hkl.html" class="btn btn-neutral float-right" title="Reciprocal space" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="analysis.html" class="btn btn-neutral float-left" title="Structure analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017-2020 Global Phasing Ltd
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

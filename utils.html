@@ -1,0 +1,1523 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Gemmi program &mdash; Gemmi 0.3.7 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Reciprocal space" href="hkl.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Gemmi
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.7
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cif.html">CIF Parser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="symmetry.html">Symmetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mol.html">Molecular models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analysis.html">Structure analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grid.html">Grids and maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hkl.html">Reciprocal space</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Gemmi program</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#validate">validate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#grep">grep</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#comp-id-check">comp_id check</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#planarity">planarity</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#cif2json">cif2json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#json2cif">json2cif</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#convert">convert</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tags">tags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#map">map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mask">mask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mtz">mtz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mtz2cif">mtz2cif</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cif2mtz">cif2mtz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sf2map">sf2map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#map2sf">map2sf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sfcalc">sfcalc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fprime">fprime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#residues">residues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#align">align</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sg">sg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contents">contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contact">contact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#blobs">blobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#h">h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mondiff">mondiff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wcn">wcn</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#background">Background</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tls">TLS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#details">Details</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#metrics-for-comparison">Metrics for comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#results">Results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#program">Program</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://project-gemmi.github.io/gemmi/api/python">Python API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Gemmi</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Gemmi program</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/utils.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="gemmi-program">
+<h1>Gemmi program<a class="headerlink" href="#gemmi-program" title="Permalink to this headline">¶</a></h1>
+<p>The library comes with a command-line program which is also named gemmi;
+running a program is easier than calling a library function.</p>
+<p>This program is actually a set of small programs, each of them
+corresponding to a subcommand:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi -h
+<span class="go">gemmi 0.3.7</span>
+<span class="go">Command-line utility that accompanies the GEMMI library,</span>
+<span class="go">which is a joint project of CCP4 and Global Phasing Ltd.</span>
+<span class="go">Licence: Mozilla Public License 2.0.</span>
+<span class="go">Copyright 2017-2020 Global Phasing Ltd.</span>
+<span class="go">https://github.com/project-gemmi/gemmi</span>
+
+<span class="go">Usage: gemmi [--version] [--help] &lt;command&gt; [&lt;args&gt;]</span>
+
+<span class="go">Commands:</span>
+<span class="go"> align         sequence alignment (global, pairwise, affine gap penalty)</span>
+<span class="go"> blobs         list unmodelled electron density blobs</span>
+<span class="go"> cif2mtz       convert structure factor mmCIF to MTZ</span>
+<span class="go"> cif2json      translate (mm)CIF to (mm)JSON</span>
+<span class="go"> contact       searches for contacts (neighbouring atoms)</span>
+<span class="go"> contents      info about content of a coordinate file (pdb, mmCIF, ...)</span>
+<span class="go"> convert       convert file (CIF - JSON, mmCIF - PDB) or modify structure</span>
+<span class="go"> fprime        calculate anomalous scattering factors f&#39; and f&quot;</span>
+<span class="go"> grep          search for tags in CIF file(s)</span>
+<span class="go"> h             add or remove hydrogen atoms</span>
+<span class="go"> json2cif      translate mmJSON to mmCIF</span>
+<span class="go"> map           print info or modify a CCP4 map</span>
+<span class="go"> map2sf        transform CCP4 map to map coefficients (in MTZ or mmCIF)</span>
+<span class="go"> mask          make mask in the CCP4 format</span>
+<span class="go"> mondiff       compare two monomer CIF files</span>
+<span class="go"> mtz           print info about MTZ reflection file</span>
+<span class="go"> mtz2cif       convert MTZ to structure factor mmCIF</span>
+<span class="go"> residues      list residues from a coordinate file</span>
+<span class="go"> rmsz          validate geometry using monomer library</span>
+<span class="go"> sf2map        transform map coefficients (from MTZ or mmCIF) to map</span>
+<span class="go"> sfcalc        calculate structure factors from a model</span>
+<span class="go"> sg            info about space groups</span>
+<span class="go"> tags          list tags from CIF file(s)</span>
+<span class="go"> validate      validate CIF 1.1 syntax</span>
+<span class="go"> wcn           calculate local density / contact numbers (WCN, CN, ACN, LDM)</span>
+</pre></div>
+</div>
+<div class="section" id="validate">
+<h2>validate<a class="headerlink" href="#validate" title="Permalink to this headline">¶</a></h2>
+<p>A CIF validator. Apart from checking the syntax it can check most of the rules
+imposed by DDL1 and DDL2 dictionaries.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi validate -h
+<span class="go">Usage: gemmi validate [options] FILE [...]</span>
+
+<span class="go">Options:</span>
+<span class="go">  -h, --help      Print usage and exit.</span>
+<span class="go">  -V, --version   Print version and exit.</span>
+<span class="go">  -v, --verbose   Verbose output.</span>
+<span class="go">  -q, --quiet     Show only errors.</span>
+<span class="go">  -f, --fast      Syntax-only check.</span>
+<span class="go">  -s, --stat      Show token statistics</span>
+<span class="go">  -d, --ddl=PATH  DDL for validation.</span>
+<span class="go">  -m, --monomer   Extra checks for Refmac dictionary files.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="grep">
+<span id="id1"></span><h2>grep<a class="headerlink" href="#grep" title="Permalink to this headline">¶</a></h2>
+<p>Searches for a specified tag in CIF files and prints the associated values,
+one value per line:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi grep _refine.ls_R_factor_R_free 5fyi.cif.gz
+<span class="go">5FYI:0.2358</span>
+<span class="gp">$</span> gemmi grep _refine.ls_R_factor_R_free mmCIF/mo/?moo.cif.gz
+<span class="go">1MOO:0.177</span>
+<span class="go">3MOO:0.21283</span>
+<span class="go">4MOO:0.22371</span>
+<span class="go">5MOO:0.1596</span>
+<span class="go">5MOO:0.1848</span>
+<span class="gp">$</span> gemmi grep -b _software.name 5fyi.cif.gz
+<span class="go">DIMPLE</span>
+<span class="go">PHENIX</span>
+</pre></div>
+</div>
+<p>Some of the command-line options correspond to the options of GNU grep
+(<code class="docutils literal notranslate"><span class="pre">-c</span></code>, <code class="docutils literal notranslate"><span class="pre">-l</span></code>, <code class="docutils literal notranslate"><span class="pre">-H</span></code>, <code class="docutils literal notranslate"><span class="pre">-n</span></code>).
+As with other utilities, option <code class="docutils literal notranslate"><span class="pre">--help</span></code> shows the usage:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi grep -h
+<span class="go">Usage: gemmi grep [options] TAG FILE_OR_DIR_OR_PDBID[...]</span>
+<span class="go">       gemmi grep -f FILE [options] TAG</span>
+<span class="go">Search for TAG in CIF files.</span>
+<span class="go">By default, recursive directory search checks only *.cif(.gz) files.</span>
+<span class="go">To change it, specify --name=* or --name=*.hkl.</span>
+
+<span class="go">Options:</span>
+<span class="go">  -h, --help               display this help and exit</span>
+<span class="go">  -V, --version            display version information and exit</span>
+<span class="go">  -f, --file=FILE          obtain file (or PDB ID) list from FILE</span>
+<span class="go">  --name=PATTERN           filename glob pattern used in recursive grep; by</span>
+<span class="go">                           default, *.cif and *.cif.gz files are searched</span>
+<span class="go">  -m, --max-count=NUM      print max NUM values per file</span>
+<span class="go">  -O, --one-block          optimize assuming one block per file</span>
+<span class="go">  -a, --and=tag            Append delimiter (default &#39;;&#39;) and the tag value</span>
+<span class="go">  -d, --delimiter=DELIM    CSV-like output with specified delimiter</span>
+<span class="go">  -n, --line-number        print line number with output lines</span>
+<span class="go">  -H, --with-filename      print the file name for each match</span>
+<span class="go">  -b, --no-blockname       suppress the block name on output</span>
+<span class="go">  -t, --with-tag           print the tag name for each match</span>
+<span class="go">  -l, --files-with-tag     print only names of files with the tag</span>
+<span class="go">  -L, --files-without-tag  print only names of files without the tag</span>
+<span class="go">  -c, --count              print only a count of values per block or file</span>
+<span class="go">  -r, --recursive          ignored (directories are always recursed)</span>
+<span class="go">  -w, --raw                include &#39;?&#39;, &#39;.&#39;, and string quotes</span>
+<span class="go">  -s, --summarize          display joint statistics for all files</span>
+</pre></div>
+</div>
+<p>This is a minimalistic program designed to be used together with Unix
+text-processing utilities. For example, it cannot filter values itself,
+but one may use grep:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi grep _pdbx_database_related.db_name /pdb/mmCIF/aa/* <span class="p">|</span> grep EMDB
+<span class="go">4AAS:EMDB</span>
+<span class="go">5AA0:EMDB</span>
+</pre></div>
+</div>
+<p>Gemmi-grep tries to be simple to use like Unix grep, but at the same time
+it is aware of the CIF syntax rules. In particular, <code class="docutils literal notranslate"><span class="pre">gemmi</span> <span class="pre">grep</span> <span class="pre">_one</span></code>
+will give the same output for both <code class="docutils literal notranslate"><span class="pre">_one</span> <span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">loop_</span> <span class="pre">_one</span> <span class="pre">_two</span> <span class="pre">1</span> <span class="pre">2</span></code>.
+This is helpful in surprising corner cases. For example, when a PDB entry
+has two Rfree values (see the 5MOO example above).</p>
+<p>Gemmi-grep does not support regular expression, only globbing (wildcards):
+<code class="docutils literal notranslate"><span class="pre">?</span></code> represents any single character, <code class="docutils literal notranslate"><span class="pre">*</span></code> represents any number of
+characters (including zero). When using wildcards you may also want
+to use the <code class="docutils literal notranslate"><span class="pre">-t</span></code> option which prints the tag:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi grep -t _*free 3gem.cif
+<span class="go">3GEM:[_refine.ls_R_factor_R_free] 0.182</span>
+<span class="go">3GEM:[_refine.ls_percent_reflns_R_free] 5.000</span>
+<span class="go">3GEM:[_refine.ls_number_reflns_R_free] 3951</span>
+<span class="go">3GEM:[_refine.correlation_coeff_Fo_to_Fc_free] 0.952</span>
+<span class="go">3GEM:[_refine_ls_shell.R_factor_R_free] 0.272</span>
+<span class="go">3GEM:[_refine_ls_shell.number_reflns_R_free] 253</span>
+</pre></div>
+</div>
+<p>Let say we want to find extreme unit cell angles in the PDB.
+<code class="docutils literal notranslate"><span class="pre">_cell.angle_*a</span></code> will match _cell.angle_alpha as well as beta and gamma,
+but not _cell.angle_alpha_esd etc.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi grep -d<span class="s1">&#39; &#39;</span> _cell.angle_*a /pdb/mmCIF/ <span class="p">|</span> awk <span class="s1">&#39;$2 &lt; 50 || $2 &gt; 140 { print $0; }&#39;</span>
+<span class="go">4AL2 144.28</span>
+<span class="go">2EX3 45.40</span>
+<span class="go">2GMV 145.09</span>
+<span class="go">4NX1 140.060</span>
+<span class="go">4OVP 140.070</span>
+<span class="go">1SPG 141.90</span>
+<span class="go">2W1I 146.58</span>
+</pre></div>
+</div>
+<p>The option <code class="docutils literal notranslate"><span class="pre">-O</span></code> is used to make gemmi-grep faster.
+With this option the program finds only the first occurence of the tag
+in file. Note that if the file has only one block (like mmCIF coordinate
+files) and the tag is specified without wildcards then we cannot have
+more than one match anyway.</p>
+<p>Searching the whole compressed mmCIF archive from the PDB
+(35GB of gzipped files) should take on an average computer
+between 10 and 30 minutes, depending where the searched tag is located.
+This is much faster than with other CIF parsers (to my best knowledge)
+and it makes the program useful for ad-hoc PDB statistics:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi grep -O -b _entity_poly.type /pdb/mmCIF <span class="p">|</span> sort <span class="p">|</span> uniq -c
+<span class="go">      1 cyclic-pseudo-peptide</span>
+<span class="go">      4 other</span>
+<span class="go">      2 peptide nucleic acid</span>
+<span class="go">   9905 polydeoxyribonucleotide</span>
+<span class="go">    156 polydeoxyribonucleotide/polyribonucleotide hybrid</span>
+<span class="go">     57 polypeptide(D)</span>
+<span class="go"> 168923 polypeptide(L)</span>
+<span class="go">   4559 polyribonucleotide</span>
+<span class="go">     18 polysaccharide(D)</span>
+</pre></div>
+</div>
+<p>Option <code class="docutils literal notranslate"><span class="pre">-c</span></code> counts the values in each block or file. As an example
+we may check which entries have the biggest variety of chemical components
+(spoiler: ribosomes):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi grep -O -c _chem_comp.id /pdb/mmCIF <span class="p">|</span> sort -t: -k2 -nr <span class="p">|</span> head
+<span class="go">5J91:58</span>
+<span class="go">5J8A:58</span>
+<span class="go">5J7L:58</span>
+<span class="go">5J5B:58</span>
+<span class="go">4YBB:58</span>
+<span class="go">5JC9:57</span>
+<span class="go">5J88:57</span>
+<span class="go">5IT8:57</span>
+<span class="go">5IQR:50</span>
+<span class="go">5AFI:50</span>
+</pre></div>
+</div>
+<p>Going back to moo, we may want to know to what experimental method
+the Rfree values correspond:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi grep _refine.ls_R_factor_R_free -a _refine.pdbx_refine_id mmCIF/mo/?moo.cif.gz
+<span class="go">1MOO:0.177;X-RAY DIFFRACTION</span>
+<span class="go">3MOO:0.21283;X-RAY DIFFRACTION</span>
+<span class="go">4MOO:0.22371;X-RAY DIFFRACTION</span>
+<span class="go">5MOO:0.1596;X-RAY DIFFRACTION</span>
+<span class="go">5MOO:0.1848;NEUTRON DIFFRACTION</span>
+</pre></div>
+</div>
+<p>Option <code class="docutils literal notranslate"><span class="pre">-a</span></code> (<code class="docutils literal notranslate"><span class="pre">--and</span></code>) can be specified many times.
+If we would add <code class="docutils literal notranslate"><span class="pre">-a</span> <span class="pre">_pdbx_database_status.recvd_initial_deposition_date</span></code>
+we would get the deposition date in each line. In this case it would be
+repeated for 5MOO:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">5MOO:0.1596;X-RAY DIFFRACTION;2016-12-14</span>
+<span class="go">5MOO:0.1848;NEUTRON DIFFRACTION;2016-12-14</span>
+</pre></div>
+</div>
+<p>To output TSV (tab-separated values) add <code class="docutils literal notranslate"><span class="pre">--delimiter='\t'</span></code>.
+What are the heaviest chains?</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi grep --delimiter<span class="o">=</span><span class="s1">&#39;\t&#39;</span> _entity.formula_weight -a _entity.pdbx_description /hdd/mmCIF/ <span class="p">|</span> sort -nrk2 <span class="p">|</span> head -3
+<span class="go">6EK0    1641906.750     28S ribosomal RNA</span>
+<span class="go">5T2C    1640238.125     28S rRNA</span>
+<span class="go">5LKS    1640238.125     28S ribosomal RNA</span>
+</pre></div>
+</div>
+<p>With some further processing the option <code class="docutils literal notranslate"><span class="pre">-a</span></code> can be used to generate
+quite sophisticated reports. Here is a little demo:
+<a class="reference external" href="https://project-gemmi.github.io/pdb-stats/">https://project-gemmi.github.io/pdb-stats/</a></p>
+<p>The major limitation here is that gemmi-grep cannot match
+corresponding values from different tables (it is not possible
+on the syntax level).
+In the example above we have two values from the same table (<code class="docutils literal notranslate"><span class="pre">_refine</span></code>)
+and a deposition date (single value). This works well.
+But we are not able to add corresponding wavelengths from <code class="docutils literal notranslate"><span class="pre">_diffrn_source</span></code>.
+If an extra tag (specified with <code class="docutils literal notranslate"><span class="pre">-a</span></code>) is not in the same table
+as the main tag, gemmi-grep uses only the first value for this tag.</p>
+<p>Unless we just count the number of value. Counting works for any combination
+of tags:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi grep -c _refln.intensity_meas -a _diffrn_refln.intensity_net r5paysf.ent.gz
+<span class="go">r5paysf:63611;0</span>
+<span class="go">r5payAsf:0;356684</span>
+</pre></div>
+</div>
+<p>(The file used in this example is structure factor (SF) mmCIF.
+Strangely these files in the PDB have extension <code class="docutils literal notranslate"><span class="pre">ent</span></code> not <code class="docutils literal notranslate"><span class="pre">cif</span></code>.)</p>
+<p>The first number in the output above is the number of specified intensities.
+If you would like to count in also values <code class="docutils literal notranslate"><span class="pre">?</span></code> and <code class="docutils literal notranslate"><span class="pre">.</span></code> specify
+the option <code class="docutils literal notranslate"><span class="pre">--raw</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi grep --raw -c _refln.intensity_meas r5paysf.ent.gz
+<span class="go">r5paysf:63954</span>
+<span class="go">r5payAsf:0</span>
+</pre></div>
+</div>
+<p>Gemmi-grep can work with any CIF files but it has one feature
+specific to the PDB data. When <a class="reference internal" href="analysis.html#pdb-dir"><span class="std std-ref">$PDB_DIR</span></a> is set
+one may use PDB codes: just <code class="docutils literal notranslate"><span class="pre">5moo</span></code> or <code class="docutils literal notranslate"><span class="pre">5MOO</span></code> instead of the path
+to <code class="docutils literal notranslate"><span class="pre">5moo.cif.gz</span></code>. And for convenience, using a PDB code implies
+option <code class="docutils literal notranslate"><span class="pre">-O</span></code>.</p>
+<p>The file paths or PDB codes can be read from a file.
+For example, if we want to analyse PDB data deposited in 2016
+we may first make a file that lists all such files:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi grep -H -O _pdbx_database_status.recvd_initial_deposition_date <span class="nv">$PDB_DIR</span>/structures/divided/mmCIF <span class="p">|</span> <span class="se">\</span>
+        grep <span class="m">2016</span> &gt;year2016.txt
+</pre></div>
+</div>
+<p>The 2016.txt file file has lines that start with the filename:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">/hdd/structures/divided/mmCIF/ww/5ww9.cif.gz:5WW9:2016-12-31</span>
+<span class="go">/hdd/structures/divided/mmCIF/ww/5wwc.cif.gz:5WWC:2016-12-31</span>
+</pre></div>
+</div>
+<p>and a command such as:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi grep -f year2016.out _diffrn.ambient_temp
+</pre></div>
+</div>
+<p>will grep only the listed cif files.</p>
+<p>Exit status of gemmi-grep has the same meaning as in GNU grep:
+0 if a line is selected, 1 if no lines were selected,
+and 2 if an error occurred.</p>
+<div class="section" id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="comp-id-check">
+<h4>comp_id check<a class="headerlink" href="#comp-id-check" title="Permalink to this headline">¶</a></h4>
+<p>The monomer library (Refmac dictionary) has tags such as
+<code class="docutils literal notranslate"><span class="pre">_chem_comp_atom.comp_id</span></code>, <code class="docutils literal notranslate"><span class="pre">_chem_comp_bond.comp_id</span></code> that are expected
+to be consistent with the block name:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi grep _*.comp_id <span class="nv">$CLIBD_MON</span>/a/ASN.cif
+<span class="go">comp_ASN:ASN</span>
+<span class="go">[repeated 106 times]</span>
+</pre></div>
+</div>
+<p>We can quickly check if the names are always consistent by filtering
+the output above with awk, for all monomer files, to print only lines
+where the block name and comp_id differ:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi grep _*.comp_id <span class="nv">$CLIBD_MON</span>/? <span class="p">|</span> awk -F: <span class="s1">&#39;substr($1, 6) != $2&#39;</span>
+<span class="go">comp_M43:N09</span>
+<span class="go">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="planarity">
+<h4>planarity<a class="headerlink" href="#planarity" title="Permalink to this headline">¶</a></h4>
+<p>The monomer library includes planarity restraints.
+Each row in the <code class="docutils literal notranslate"><span class="pre">_chem_comp_plane_atom</span></code> table with the same <code class="docutils literal notranslate"><span class="pre">plane_id</span></code>
+represents atom belonging to the same plane.
+What is the maximum number of atoms in one plane?</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi grep _chem_comp_plane_atom.plane_id <span class="nv">$CLIBD_MON</span>/? <span class="p">|</span> uniq -c <span class="p">|</span> sort -nr <span class="p">|</span> head -3
+<span class="go"> 38 comp_LG8:plan-1</span>
+<span class="go"> 36 comp_UCM:plan-1</span>
+<span class="go"> 36 comp_SA3:plan-1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="cif2json">
+<span id="json"></span><h2>cif2json<a class="headerlink" href="#cif2json" title="Permalink to this headline">¶</a></h2>
+<p>Syntax-level conversion from CIF 1.1 to JSON.
+The JSON representation of the CIF data can be customized.
+In particular we support <a class="reference external" href="http://comcifs.github.io/cif-json">CIF-JSON</a> standard from COMCIFS
+and <a class="reference external" href="https://pdbj.org/help/mmjson?lang=en">mmJSON</a> standard from PDBj (the latter is specific to mmCIF files).</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi cif2json -h
+<span class="go">Usage:</span>
+<span class="go"> gemmi cif2json [options] INPUT_FILE OUTPUT_FILE</span>
+
+<span class="go">Convert CIF file (any CIF files, including mmCIF) to JSON.</span>
+<span class="go">The output can be COMCIFS CIF-JSON (-c), mmJSON (-m),</span>
+<span class="go">or a custom JSON flavor (default).</span>
+
+<span class="go">General options:</span>
+<span class="go">  -h, --help             Print usage and exit.</span>
+<span class="go">  -V, --version          Print version and exit.</span>
+<span class="go">  -v, --verbose          Verbose output.</span>
+
+<span class="go">JSON output options:</span>
+<span class="go">  -c, --comcifs          Conform to the COMCIFS CIF-JSON standard draft.</span>
+<span class="go">  -m, --mmjson           Compatible with mmJSON from PDBj.</span>
+<span class="go">  --bare-tags            Output tags without the first underscore.</span>
+<span class="go">  --numb=quote|nosu|mix  Convert the CIF numb type to one of:</span>
+<span class="go">                           quote - string in quotes,</span>
+<span class="go">                           nosu - number without s.u.,</span>
+<span class="go">                           mix (default) - quote only numbs with s.u.</span>
+<span class="go">  --dot=STRING           JSON representation of CIF&#39;s &#39;.&#39; (default: null).</span>
+
+<span class="go">Modifications:</span>
+<span class="go">  --skip-category=CAT    Do not output tags starting with _CAT</span>
+<span class="go">  --sort                 Sort tags in alphabetical order.</span>
+
+<span class="go">When output file is -, write to standard output.</span>
+</pre></div>
+</div>
+<p>The major difference between the two is that CIF-JSON is dictionary-agnostic:
+it cannot recognize categories (mmJSON groups by categories),
+and it cannot recognize numbers (so it quotes the numbers).
+CIF-JSON adds also two extra objects: “CIF-JSON” and “Metadata”.
+The minor differences are:</p>
+<blockquote>
+<div><table class="docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>CIF</p></th>
+<th class="head"><p>CIF-JSON</p></th>
+<th class="head"><p>mmJSON</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data_a</p></td>
+<td><p>a</p></td>
+<td><p>data_a</p></td>
+</tr>
+<tr class="row-odd"><td><p>_tag</p></td>
+<td><p>_tag</p></td>
+<td><p>tag</p></td>
+</tr>
+<tr class="row-even"><td><p>_CasE</p></td>
+<td><p>_case</p></td>
+<td><p>CasE</p></td>
+</tr>
+<tr class="row-odd"><td><p>.</p></td>
+<td><p>false</p></td>
+<td><p>null</p></td>
+</tr>
+<tr class="row-even"><td><p>?</p></td>
+<td><p>null</p></td>
+<td><p>null</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="json2cif">
+<h2>json2cif<a class="headerlink" href="#json2cif" title="Permalink to this headline">¶</a></h2>
+<p>The opposite of cif2json, but currently the only supported input is mmJSON.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi json2cif -h
+<span class="go">Usage:</span>
+<span class="go"> gemmi json2cif [options] INPUT_FILE OUTPUT_FILE</span>
+
+<span class="go">Convert mmJSON to mmCIF.</span>
+
+<span class="go">Options:</span>
+<span class="go">  -h, --help           Print usage and exit.</span>
+<span class="go">  -V, --version        Print version and exit.</span>
+<span class="go">  -v, --verbose        Verbose output.</span>
+<span class="go">  --pdbx-style         Similar styling (formatting) as in wwPDB.</span>
+<span class="go">  --cif2cif            Read CIF not JSON.</span>
+<span class="go">  --skip-category=CAT  Do not output tags starting with _CAT</span>
+<span class="go">  --sort               Sort tags in alphabetical order.</span>
+
+<span class="go">When output file is -, write to standard output.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="convert">
+<span id="id2"></span><h2>convert<a class="headerlink" href="#convert" title="Permalink to this headline">¶</a></h2>
+<p>Conversion between macromolecular coordinate formats: PDB, mmCIF and mmJSON.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi convert -h
+<span class="go">Usage:</span>
+<span class="go"> gemmi convert [options] INPUT_FILE OUTPUT_FILE</span>
+
+<span class="go">with possible conversions between PDB, mmCIF and mmJSON.</span>
+<span class="go">FORMAT can be specified as one of: mmcif, mmjson, pdb, ccd (read-only).</span>
+<span class="go">ccd = coordinates of a chemical component from CCD or monomer library.</span>
+
+<span class="go">General options:</span>
+<span class="go">  -h, --help             Print usage and exit.</span>
+<span class="go">  -V, --version          Print version and exit.</span>
+<span class="go">  -v, --verbose          Verbose output.</span>
+<span class="go">  --from=FORMAT          Input format (default: from the file extension).</span>
+<span class="go">  --to=FORMAT            Output format (default: from the file extension).</span>
+
+<span class="go">CIF output options:</span>
+<span class="go">  --pdbx-style           Similar styling (formatting) as in wwPDB.</span>
+<span class="go">  -b NAME, --block=NAME  Set block name and default _entry.id</span>
+<span class="go">  --sort                 Sort tags in alphabetical order.</span>
+<span class="go">  --skip-category=CAT    Do not output tags starting with _CAT</span>
+
+<span class="go">PDB input options:</span>
+<span class="go">  --segment-as-chain     Append segment id to label_asym_id (chain name).</span>
+<span class="go">  --old-pdb              Read only the first 72 characters in line.</span>
+
+<span class="go">PDB output options:</span>
+<span class="go">  --short-ter            Write PDB TER records without numbers (iotbx compat.).</span>
+<span class="go">  --linkr                Write LINKR record (for Refmac) if link_id is known.</span>
+<span class="go">  --minimal-pdb          Write only the most essential records.</span>
+
+<span class="go">Any output options:</span>
+<span class="go">  --shorten              Shorten chain names to 1 (if # &lt; 63) or 2 characters.</span>
+
+<span class="go">Macromolecular operations:</span>
+<span class="go">  --expand-ncs=dup|new   Expand strict NCS specified in MTRIXn or equivalent.</span>
+<span class="go">                         New chain names are the same or have added numbers.</span>
+<span class="go">  --assembly=ID          Output bioassembly with given ID (1, 2, ...).</span>
+<span class="go">  --remove-h             Remove hydrogens.</span>
+<span class="go">  --remove-waters        Remove waters.</span>
+<span class="go">  --remove-lig-wat       Remove ligands and waters.</span>
+<span class="go">  --trim-to-ala          Trim aminoacids to alanine.</span>
+
+<span class="go">When output file is -, write to standard output.</span>
+</pre></div>
+</div>
+<p>The PDB records written by Gemmi are formatted in the same way as in the wwPDB.
+This makes possible to use <code class="docutils literal notranslate"><span class="pre">diff</span></code> to compare a PDB file from wwPDB
+and a file converted by Gemmi from mmCIF. The file from wwPDB will have
+more records, but the diff should still be readable.</p>
+<p>The option <code class="docutils literal notranslate"><span class="pre">--expand-ncs</span></code> expands strict NCS, defined in
+the <code class="docutils literal notranslate"><span class="pre">MTRIX</span></code> record (PDB) or in the <code class="docutils literal notranslate"><span class="pre">_struct_ncs_oper</span></code> table (mmCIF).
+It is not obvious how to name the new chains that are added.
+We have two options: either new names are generated (<code class="docutils literal notranslate"><span class="pre">=new</span></code>) or
+the chain names are not changed but distinct segment IDs are added (<code class="docutils literal notranslate"><span class="pre">=dup</span></code>).</p>
+</div>
+<div class="section" id="tags">
+<h2>tags<a class="headerlink" href="#tags" title="Permalink to this headline">¶</a></h2>
+<p>Lists tags from one or multiple CIF files together with some statistics.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi tags -h
+<span class="go">Usage:</span>
+<span class="go"> gemmi tags [options] FILE_OR_DIR[...]</span>
+<span class="go">List CIF tags with counts of blocks and values.</span>
+<span class="go">  -h, --help     Print usage and exit.</span>
+<span class="go">  -V, --version  Print version and exit.</span>
+<span class="go">  --count-files  Count files instead of blocks.</span>
+<span class="go">  --glob=GLOB    Process files matching glob pattern.</span>
+
+<span class="go">Options for making https://project-gemmi.github.io/pdb-stats/tags.html</span>
+<span class="go">  --full         Gather data for tags.html</span>
+<span class="go">  --entries-idx  Use entries.idx to read more recent entries first.</span>
+<span class="go">  --sf           (for use with --entries-idx) Read SF mmCIF files.</span>
+</pre></div>
+</div>
+<p>By default, the tag statistics show in how many blocks the tag is present,
+and the total number of non-null values for the tag:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi tags components.cif.gz
+<span class="go">tag   block-count     value-count</span>
+<span class="go">_chem_comp.formula    29748   29748</span>
+<span class="go">_chem_comp.formula_weight     29749   29749</span>
+<span class="go">...</span>
+<span class="go">_pdbx_chem_comp_identifier.type       29338   52899</span>
+<span class="go">Tag count: 67</span>
+<span class="go">Block count: 29749</span>
+<span class="go">File count: 1</span>
+</pre></div>
+</div>
+<p>This program is run with option <code class="docutils literal notranslate"><span class="pre">--full</span></code>
+on the whole PDB archive to produce data for
+<a class="reference external" href="https://project-gemmi.github.io/pdb-stats/tags.html">pdb-stats/tags.html</a>.</p>
+</div>
+<div class="section" id="map">
+<h2>map<a class="headerlink" href="#map" title="Permalink to this headline">¶</a></h2>
+<p>Shows a summary of a CCP4 map file, optionally performing simple
+transformations.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi map -h
+<span class="go">Usage:</span>
+<span class="go"> gemmi map [options] CCP4_MAP[...]</span>
+
+<span class="go">  -h, --help         Print usage and exit.</span>
+<span class="go">  -V, --version      Print version and exit.</span>
+<span class="go">  -v, --verbose      Verbose output.</span>
+<span class="go">  --deltas           Statistics of dx, dy and dz.</span>
+<span class="go">  --check-symmetry   Compare the values of symmetric points.</span>
+<span class="go">  --write-xyz=FILE   Write transposed map with fast X axis and slow Z.</span>
+<span class="go">  --write-full=FILE  Write map extended to cover whole unit cell.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="mask">
+<h2>mask<a class="headerlink" href="#mask" title="Permalink to this headline">¶</a></h2>
+<p>Makes a mask in the CCP4 format. It has two functions:</p>
+<ul class="simple">
+<li><p>masking atoms if the input file is a coordinate file,</p></li>
+<li><p>using a threshold to convert a CCP4 map file to a mask file.</p></li>
+</ul>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi mask -h
+<span class="go">Usage:</span>
+<span class="go"> gemmi mask [options] INPUT output.msk</span>
+
+<span class="go">Makes a mask in the CCP4 format.</span>
+<span class="go">If INPUT is a CCP4 map the mask is created by thresholding the map.</span>
+<span class="go">If INPUT is a coordinate file (mmCIF, PDB, etc) the atoms are masked.</span>
+<span class="go">  -h, --help           Print usage and exit.</span>
+<span class="go">  -V, --version        Print version and exit.</span>
+<span class="go">  -v, --verbose        Verbose output.</span>
+<span class="go">  --from=coor|map      Input type (default: from file extension).</span>
+
+<span class="go">Options for making a mask from a map:</span>
+<span class="go">  -t, --threshold      The density cutoff value.</span>
+<span class="go">  -f, --fraction       The volume fraction to be above the threshold.</span>
+
+<span class="go">Options for masking a model:</span>
+<span class="go">  -s, --spacing=D      Max. sampling for the grid (default: 1A).</span>
+<span class="go">  -g, --grid=NX,NY,NZ  Grid sampling.</span>
+<span class="go">  -r, --radius         Radius of atom spheres (default: 3.0A).</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="mtz">
+<h2>mtz<a class="headerlink" href="#mtz" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi mtz -h
+<span class="go">Usage:</span>
+<span class="go"> gemmi mtz [options] MTZ_FILE[...]</span>
+<span class="go">Print informations from an mtz file.</span>
+<span class="go">  -h, --help       Print usage and exit.</span>
+<span class="go">  -V, --version    Print version and exit.</span>
+<span class="go">  -v, --verbose    Verbose output.</span>
+<span class="go">  -H, --headers    Print raw headers, until the END record.</span>
+<span class="go">  -d, --dump       Print a subset of CCP4 mtzdmp informations.</span>
+<span class="go">  -b, --batches    Print data from batch headers.</span>
+<span class="go">  --tsv            Print all the data as tab-separated values.</span>
+<span class="go">  --stats          Print column statistics (completeness, mean, etc).</span>
+<span class="go">  --check-asu      Check if reflections are in conventional ASU.</span>
+<span class="go">  --toggle-endian  Toggle assumed endiannes (little &lt;-&gt; big).</span>
+<span class="go">  --no-isym        Do not apply symmetry from M/ISYM column.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="mtz2cif">
+<h2>mtz2cif<a class="headerlink" href="#mtz2cif" title="Permalink to this headline">¶</a></h2>
+<p>Converts reflection data from MTZ to mmCIF.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi mtz2cif -h
+<span class="go">Usage:</span>
+<span class="go">  gemmi mtz2cif [options] MTZ_FILE CIF_FILE</span>
+<span class="go">Options:</span>
+<span class="go">  -h, --help             Print usage and exit.</span>
+<span class="go">  -V, --version          Print version and exit.</span>
+<span class="go">  -v, --verbose          Verbose output.</span>
+<span class="go">  --spec=FILE            Column and format specification.</span>
+<span class="go">  --print-spec           Print default spec and exit.</span>
+<span class="go">  -b NAME, --block=NAME  mmCIF block name: data_NAME (default: mtz).</span>
+<span class="go">  --skip-empty           Skip reflections with no values.</span>
+<span class="go">  --no-comments          Do not write comments in the mmCIF file.</span>
+<span class="go">  --wavelength=LAMBDA    Set wavelengths (default: from input file).</span>
+
+<span class="go">If CIF_FILE is -, the output is printed to stdout.</span>
+<span class="go">If spec is -, it is read from stdin.</span>
+
+<span class="go">Lines in the spec file have format:</span>
+<span class="go">  [FLAG] COLUMN TYPE TAG [FORMAT]</span>
+<span class="go">for example:</span>
+<span class="go">  SIGF_native * SIGF_meas_au 12.5e</span>
+<span class="go">  FREE I pdbx_r_free_flag 3.0f</span>
+<span class="go">FLAG (optional) is either ? or &amp;:</span>
+<span class="go">  ? = ignored if no column in the MTZ file has this name.</span>
+<span class="go">  &amp; = ignored if the previous line was ignored.</span>
+<span class="go">  Example:</span>
+<span class="go">      ? I    J intensity_meas</span>
+<span class="go">      &amp; SIGI Q intensity_sigma</span>
+<span class="go">COLUMN is MTZ column label. Columns H K L are added if not specified.</span>
+<span class="go">  Alternative labels can be separated with | (e.g. FREE|FreeR_flag).</span>
+<span class="go">TYPE is used for checking the columm type, unless it is &#39;*&#39;.</span>
+<span class="go">TAG does not include category name, it is only the part after _refln.</span>
+<span class="go">FORMAT (optional) is printf-like floating-point format:</span>
+<span class="go"> - one of e, f, g with optional flag, width and precision</span>
+<span class="go"> - flag is one of + - # _; &#39;_&#39; stands for &#39; &#39;, for example &#39;_.4f&#39;</span>
+<span class="go"> - since all numbers in MTZ are stored as float, the integer columns use</span>
+<span class="go">   the same format as float. The format of _refln.status is ignored.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="cif2mtz">
+<h2>cif2mtz<a class="headerlink" href="#cif2mtz" title="Permalink to this headline">¶</a></h2>
+<p>Converts reflection data from mmCIF to MTZ.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi cif2mtz -h
+<span class="go">Usage:</span>
+<span class="go">  gemmi cif2mtz [options] CIF_FILE MTZ_FILE</span>
+<span class="go">  gemmi cif2mtz [options] CIF_FILE --dir=DIRECTORY</span>
+<span class="go">Options:</span>
+<span class="go">  -h, --help               Print usage and exit.</span>
+<span class="go">  -V, --version            Print version and exit.</span>
+<span class="go">  -v, --verbose            Verbose output.</span>
+<span class="go">  -b NAME, --block=NAME    mmCIF block to convert.</span>
+<span class="go">  -d DIR, --dir=NAME       Output directory.</span>
+<span class="go">  --title                  MTZ title.</span>
+<span class="go">  -H LINE, --history=LINE  Add a history line.</span>
+<span class="go">  -u, --unmerged           Write unmerged MTZ file(s).</span>
+
+<span class="go">First variant: converts the first block of CIF_FILE, or the block</span>
+<span class="go">specified with --block=NAME, to MTZ file with given name.</span>
+
+<span class="go">Second variant: converts each block of CIF_FILE to one MTZ file</span>
+<span class="gp gp-VirtualEnv">(block-name.mtz)</span> <span class="go">in the specified DIRECTORY.</span>
+
+<span class="go">If CIF_FILE is -, the input is read from stdin.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sf2map">
+<span id="id3"></span><h2>sf2map<a class="headerlink" href="#sf2map" title="Permalink to this headline">¶</a></h2>
+<p>Transforms map coefficients from either MTZ or SF mmCIF to CCP4 map.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi sf2map -h
+<span class="go">Usage:</span>
+<span class="go">  gemmi sf2map [options] INPUT_FILE MAP_FILE</span>
+
+<span class="go">INPUT_FILE must be either MTZ or mmCIF with map coefficients.</span>
+
+<span class="go">By default, the program searches for 2mFo-DFc map coefficients in:</span>
+<span class="go">  - MTZ columns FWT/PHWT or 2FOFCWT/PH2FOFCWT,</span>
+<span class="go">  - mmCIF tags _refln.pdbx_FWT/pdbx_PHWT.</span>
+<span class="go">If option &quot;-d&quot; is given, mFo-DFc map coefficients are searched in:</span>
+<span class="go">  - MTZ columns DELFWT/PHDELWT or FOFCWT/PHFOFCWT,</span>
+<span class="go">  - mmCIF tags _refln.pdbx_DELFWT/pdbx_DELPHWT.</span>
+
+
+<span class="go">Options:</span>
+<span class="go">  -h, --help           Print usage and exit.</span>
+<span class="go">  -V, --version        Print version and exit.</span>
+<span class="go">  -v, --verbose        Verbose output.</span>
+<span class="go">  -d, --diff           Use difference map coefficients.</span>
+<span class="go">  --section=NAME       MTZ dataset name or CIF block name</span>
+<span class="go">  -f COLUMN            F column (MTZ label or mmCIF tag).</span>
+<span class="go">  -p COLUMN            Phase column (MTZ label or mmCIF tag).</span>
+<span class="go">  --weight=COLUMN      (normally not needed) weighting for F.</span>
+<span class="go">  -g, --grid=NX,NY,NZ  Grid size (user-specified minimum).</span>
+<span class="go">  --exact              Use the exact grid size specified by --grid.</span>
+<span class="go">  -s, --sample=NUMBER  Set spacing to d_min/NUMBER (3 is usual).</span>
+<span class="go">  --zyx                Output axes Z Y X as fast, medium, slow (default is X Y</span>
+<span class="go">                       Z).</span>
+<span class="go">  -G                   Print size of the grid that would be used and exit.</span>
+<span class="go">  --timing             Print calculation times.</span>
+<span class="go">  --normalize          Scale the map to standard deviation 1 and mean 0.</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">--sample</span></code> option is named after the <code class="docutils literal notranslate"><span class="pre">GRID</span> <span class="pre">SAMPLE</span></code> keyword of
+the venerable CCP4 FFT program; its value has the same meaning.</p>
+</div>
+<div class="section" id="map2sf">
+<h2>map2sf<a class="headerlink" href="#map2sf" title="Permalink to this headline">¶</a></h2>
+<p>Transforms CCP4 map into map coefficients.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi map2sf -h
+<span class="go">Usage:</span>
+<span class="go">  gemmi map2sf [options] MAP_FILE OUTPUT_FILE COL_F COL_PH</span>
+
+<span class="go">Writes map coefficients (amplitude and phase) of a map to OUTPUT_FILE.</span>
+<span class="go">The output is MTZ if it has mtz extension, otherwise it is mmCIF.</span>
+
+<span class="go">Options:</span>
+<span class="go">  -h, --help       Print usage and exit.</span>
+<span class="go">  -V, --version    Print version and exit.</span>
+<span class="go">  -v, --verbose    Verbose output.</span>
+<span class="go">  -b, --base=PATH  Add new columns to the data from this file.</span>
+<span class="go">  --section=NAME   Add new columns to this MTZ dataset or CIF block.</span>
+<span class="go">  --dmin=D_MIN     Resolution limit.</span>
+<span class="go">  --ftype=TYPE     MTZ amplitude column type (default: F).</span>
+<span class="go">  --phitype=TYPE   MTZ phase column type (default: P).</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sfcalc">
+<h2>sfcalc<a class="headerlink" href="#sfcalc" title="Permalink to this headline">¶</a></h2>
+<p>Calculates structure factors from a model.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi sfcalc -h
+<span class="go">Usage:</span>
+<span class="go">  gemmi sfcalc [options] INPUT_FILE</span>
+
+<span class="go">Calculates structure factors of a model (PDB, mmCIF or SMX CIF file).</span>
+
+<span class="go">Uses FFT to calculate all reflections up to requested resolution for MX</span>
+<span class="go">files. Otherwise, for SMX and --hkl, F&#39;s are calculated directly.</span>
+<span class="go">This program can also compare F&#39;s calculated directly with values</span>
+<span class="go">calculated through FFT or with values read from a reflection file.</span>
+
+<span class="go">Options:</span>
+<span class="go">  -h, --help        Print usage and exit.</span>
+<span class="go">  -V, --version     Print version and exit.</span>
+<span class="go">  -v, --verbose     Verbose output.</span>
+<span class="go">  --hkl=H,K,L       Calculate structure factor F_hkl.</span>
+<span class="go">  --dmin=NUM        Calculate structure factors up to given resolution.</span>
+<span class="go">  --ciffp           Read f&#39; from _atom_type_scat_dispersion_real in CIF.</span>
+<span class="go">  --wavelength=NUM  Wavelength [A] for calculation of f&#39; (use --wavelength=0 or</span>
+<span class="go">                    -w0 to ignore anomalous scattering).</span>
+<span class="go">  --unknown=SYMBOL  Use form factor of SYMBOL for unknown atoms.</span>
+<span class="go">  --noaniso         Ignore anisotropic ADPs.</span>
+
+<span class="go">Options for FFT-based calculations:</span>
+<span class="go">  --rate=NUM        Shannon rate used for grid spacing (default: 1.5).</span>
+<span class="go">  --blur=NUM        B added for Gaussian blurring (default: auto).</span>
+<span class="go">  --rcut=Y          Use atomic radius r such that rho(r) &lt; Y (default: 5e-5).</span>
+<span class="go">  --test[=CACHE]    Calculate exact values and report differences (slow).</span>
+
+<span class="go">Options for comparing calculated values with values from a file:</span>
+<span class="go">  --check=FILE      Re-calculate Fcalc and report differences.</span>
+<span class="go">  --f=LABEL         MTZ column label (default: FC) or small molecule cif tag</span>
+<span class="go">                    (default: F_calc or F_squared_calc).</span>
+<span class="go">  --phi=LABEL       MTZ column label (default: PHIC)</span>
+<span class="go">  --scale=S         Multiply calculated F by sqrt(S) (default: 1).</span>
+</pre></div>
+</div>
+<p>In general, structure factors can be calculated</p>
+<ul class="simple">
+<li><p>either directly, by summing contributions from each atom to each reflection,</p></li>
+<li><p>or by calculating an electron density on a grid and using discrete
+Fourier transform.</p></li>
+</ul>
+<p>This program can measure the errors resulting from the latter method
+(in addition to its main function – calculation of the structure factors).
+The errors depend on</p>
+<ul class="simple">
+<li><p>the grid spacing – controlled by the oversampling <code class="docutils literal notranslate"><span class="pre">--rate=R</span></code>;
+the maximum spacing is <em>d</em><sub>min</sub>/2<em>R</em>,</p></li>
+<li><p>atomic radius – we neglect electron density of the atom beyond this radius;
+only density contributions above the (absolute) value specified with
+<code class="docutils literal notranslate"><span class="pre">--rcut</span></code> are taken into account,</p></li>
+<li><p>Gaussian dampening (blurring) factor – artificial temperature factor
+<em>B</em><sub>extra</sub> added to all atomic B-factors (the structure factors
+are later corrected to cancel it out); either specified with <code class="docutils literal notranslate"><span class="pre">--blur</span></code>
+or picked automatically.</p></li>
+</ul>
+<p>Choosing these parameters is a trade-off between efficiency and accuracy.
+<em>B</em><sub>extra</sub> is the most interesting one.
+It is discussed in the <a class="reference external" href="https://it.iucr.org/Bb/contents/">ITfC vol B</a>,
+chapter 1.3 by G. Bricogne, section 1.3.4.4.5, and further in papers by
+<a class="reference external" href="https://doi.org/10.1107/S0108767302016318">J. Navaza (2002)</a> and by
+<a class="reference external" href="https://doi.org/10.1107/S0108767303022062">P. Afonine and A. Urzhumtsev (2003)</a>.
+Still, I have not found a practical recipe how to pick a good value.
+Increasing the dampening makes the computations slower (because it
+increases atomic radius), while the value of <em>B</em><sub>extra</sub> that
+gives the most accurate results depends on the resolution, oversampling,
+atomic radius cut-off, and on the distribution of B-factors
+(normally, only the minimal B-factor in the model is considered).</p>
+<p>The option <code class="docutils literal notranslate"><span class="pre">--test</span></code> can be used to see how accuracy and efficiency
+depends on the choice of parameters.  For example, this shell script
+performs a series of calculations with differing <em>B</em><sub>extra</sub>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">model</span><span class="o">=</span>1mru.pdb
+<span class="nv">dmin</span><span class="o">=</span><span class="m">2</span>.5
+gemmi sfcalc --dmin<span class="o">=</span><span class="nv">$dmin</span> --test <span class="nv">$model</span> &gt;cache.tsv
+<span class="k">for</span> i in <span class="sb">`</span>seq -20 <span class="m">5</span> <span class="m">20</span><span class="sb">`</span><span class="p">;</span> <span class="k">do</span>
+    <span class="nb">printf</span> -- <span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">\t&quot;</span> &gt;<span class="p">&amp;</span><span class="m">2</span>
+    gemmi sfcalc --dmin<span class="o">=</span><span class="nv">$dmin</span> --rate<span class="o">=</span><span class="m">1</span>.5 --rcut<span class="o">=</span>1e-4 --blur<span class="o">=</span><span class="nv">$i</span> --test<span class="o">=</span>cache.tsv <span class="nv">$model</span>
+<span class="k">done</span> &gt;/dev/null
+</pre></div>
+</div>
+<p>Running it prints:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>-20   RMSE=0.93304  0.5495%  max|dF|=38.80  R=0.301%   0.27671s
+-15   RMSE=0.37007  0.2179%  max|dF|=41.26  R=0.094%   0.28366s
+-10   RMSE=0.27075  0.1595%  max|dF|=44.35  R=0.041%   0.29322s
+-5    RMSE=0.27228  0.1604%  max|dF|=47.59  R=0.029%   0.30459s
+0     RMSE=0.28903  0.1702%  max|dF|=50.95  R=0.029%   0.31399s
+5     RMSE=0.30806  0.1814%  max|dF|=54.35  R=0.032%   0.32527s
+10    RMSE=0.32847  0.1934%  max|dF|=57.92  R=0.036%   0.33360s
+15    RMSE=0.35028  0.2063%  max|dF|=61.66  R=0.041%   0.34181s
+20    RMSE=0.37283  0.2196%  max|dF|=65.44  R=0.047%   0.35380s
+</pre></div>
+</div>
+<p>The error used in RMSE is the magnitude of the difference of two vectors:
+|F<sub>approx</sub> – F<sub>exact</sub>|.
+The next column is RMSE normalized by the sum of |F<sub>calc</sub>|.
+Then we have maximum error for a single reflection, and the wall time
+of computations.
+We can see that in this case negative “dampening” (subtracting about
+10A<sup>2</sup> from all B-factors) improves both accuracy and performance.</p>
+</div>
+<div class="section" id="fprime">
+<span id="id4"></span><h2>fprime<a class="headerlink" href="#fprime" title="Permalink to this headline">¶</a></h2>
+<p>Calculate anomalous scattering factors (<em>f’</em> and <em>f”</em>).
+Uses <a class="reference external" href="https://doi.org/10.1107/S0567739481000600">Cromer-Libermann</a>
+algorithm with corrections from
+<a class="reference external" href="https://doi.org/10.1107/S0108767389010718">Kissel and Pratt</a>.
+This and different approaches are discussed in the documentation
+of the <a class="reference internal" href="hkl.html#anomalous"><span class="std std-ref">underlying functions</span></a>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi fprime -h
+<span class="go">Usage:</span>
+<span class="go"> gemmi fprime [options] ELEMENT[...]</span>
+<span class="go">Prints anomalous scattering factors f&#39; and f&quot;.</span>
+
+<span class="go">Options:</span>
+<span class="go">  -h, --help               Print usage and exit.</span>
+<span class="go">  -V, --version            Print version and exit.</span>
+<span class="go">  -e, --energy=ENERGY      Energy [eV]</span>
+<span class="go">  -w, --wavelength=LAMBDA  Wavelength [A]</span>
+</pre></div>
+</div>
+<p>Here is an example how to print <em>f’</em> and <em>f”</em> using gemmi, XrayDB,
+CCP4 crossec and cctbx (pyFprime is not included because it is
+a GUI-only program). The Chantler’s data from XrayDB is probably
+the most reliable one:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi fprime --wavelength<span class="o">=</span><span class="m">1</span>.2 Se
+<span class="go">Element  E[eV]  Wavelength[A]      f&#39;             f&quot;</span>
+<span class="go">Se      10332.0  1.2             -1.4186        0.72389</span>
+
+<span class="gp">$</span> python3 -c <span class="s2">&quot;import xraydb; print(xraydb.f1_chantler(&#39;Se&#39;, 10332.0), xraydb.f2_chantler(&#39;Se&#39;, 10332.0))&quot;</span>
+<span class="go">-1.4202028957329489 0.7100533627953146</span>
+
+<span class="gp">$</span> <span class="nb">echo</span> -e <span class="s2">&quot;atom SE\n cwav 1 1.2 0\n END&quot;</span> <span class="p">|</span> crossec <span class="p">|</span> grep ^SE
+<span class="go">SE          1.2000    -1.5173     0.7240</span>
+
+<span class="gp">$</span> cctbx.eltbx.show_fp_fdp --wavelength<span class="o">=</span><span class="m">1</span>.2 --elements<span class="o">=</span>Se
+<span class="go">Wavelength: 1.2 Angstrom</span>
+
+<span class="go">Element: Se</span>
+<span class="go">  Henke et al.  : f&#39;=-1.44568 , f&#39;&#39;=0.757958</span>
+<span class="go">  Sasaki et al. : f&#39;=-1.5104  , f&#39;&#39;=0.724000</span>
+<span class="go">  diff f&#39;&#39;=-2.29 %</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="residues">
+<h2>residues<a class="headerlink" href="#residues" title="Permalink to this headline">¶</a></h2>
+<p>List residues from a coordinate file, one per line.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi residues -h
+<span class="go">Usage:</span>
+<span class="go"> gemmi residues [options] INPUT[...]</span>
+<span class="go">Prints one residue per line, with atom names.</span>
+<span class="go">  -h, --help          Print usage and exit.</span>
+<span class="go">  -V, --version       Print version and exit.</span>
+<span class="go">  --format=FORMAT     Input format (default: from the file extension).</span>
+<span class="go">  -mSEL, --match=SEL  Print residues/atoms matching the selection.</span>
+<span class="go">  -l, --label         Print &#39;label&#39; chain ID and seq ID in brackets.</span>
+<span class="go">INPUT is a coordinate file (mmCIF, PDB, etc).</span>
+<span class="go">The selection SEL has MMDB syntax:</span>
+<span class="go">/mdl/chn/s1.i1(res)-s2.i2/at[el]:aloc (all fields are optional)</span>
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi residues -m <span class="s1">&#39;/3/*/(CYS,CSD)&#39;</span> 4pth.pdb
+<span class="go">Model 3</span>
+<span class="go">A   85  CYS: N CA C O CB SG H HA HB2 HB3 HG</span>
+<span class="go">A  152  CSD: N CA CB SG C O OD1 OD2 HA HB2 HB3</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="align">
+<span id="gemmi-align"></span><h2>align<a class="headerlink" href="#align" title="Permalink to this headline">¶</a></h2>
+<p>Sequence alignment (global, pairwise, affine gap penalty).
+Used primarily for aligning the residues in the model’s chains
+to the full sequence from the SEQRES record.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi align -h
+<span class="go">Pairwise sequence alignment with scoring matrix and affine gap penalty.</span>
+
+<span class="go">Usage:</span>
+
+<span class="go">gemmi align [options] FILE[...]</span>
+<span class="go">    Aligns sequence from the model to the full sequence (SEQRES).</span>
+<span class="go">    Both are from the same FILE - either in the PDB or mmCIF format.</span>
+<span class="go">    If the mmCIF format is used, option --check-mmcif can be used.</span>
+
+<span class="go">gemmi align [options] --query=CHAIN1 --target=CHAIN2 FILE1 FILE2</span>
+<span class="go">    Aligns CHAIN1 from FILE1 to CHAIN2 from FILE2.</span>
+<span class="go">    By default, the sequence of residues in the model is used.</span>
+<span class="go">    To use SEQRES prepend &#39;+&#39; to the chain name (e.g. --query=+A).</span>
+
+<span class="go">gemmi align [options] --text-align STRING1 STRING2</span>
+<span class="go">    Aligns two ASCII strings (used for testing).</span>
+
+<span class="go">Options:</span>
+<span class="go">  -h, --help         Print usage and exit.</span>
+<span class="go">  -V, --version      Print version and exit.</span>
+<span class="go">  --check-mmcif      checks alignment agains _atom_site.label_seq_id</span>
+<span class="go">  --query=[+]CHAIN   Align CHAIN from file INPUT1.</span>
+<span class="go">  --target=[+]CHAIN  Align CHAIN from file INPUT2.</span>
+<span class="go">  --text-align       Align characters in two strings (for testing).</span>
+
+<span class="go">Scoring (absolute values):</span>
+<span class="go">  --match=INT        Match score (default: 1).</span>
+<span class="go">  --mism=INT         Mismatch penalty (default: -1).</span>
+<span class="go">  --gapo=INT         Gap opening penalty (default: -1).</span>
+<span class="go">  --gape=INT         Gap extension penalty (default: -1).</span>
+
+<span class="go">Output options:</span>
+<span class="go">  -p                 Print formatted alignment with one-letter codes.</span>
+<span class="go">  -v, --verbose      Verbose output.</span>
+</pre></div>
+</div>
+<p>For the testing purpose, it can align text strings.
+For example, the Levenshtein distance can be calculated by setting
+the gap opening penalty to zero:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi align -p --match<span class="o">=</span><span class="m">0</span> --gapo<span class="o">=</span><span class="m">0</span> --text-align Saturday Sunday
+<span class="go">Score: -3   CIGAR: 1M2I5M</span>
+<span class="go">Saturday</span>
+<span class="go">|  |.|||</span>
+<span class="go">S--unday</span>
+</pre></div>
+</div>
+<p>This tool uses modified code from <a class="reference external" href="https://github.com/lh3/ksw2">ksw2</a>.
+See the <a class="reference internal" href="mol.html#sequence-alignment"><span class="std std-ref">Sequence alignment</span></a> section for more details.</p>
+</div>
+<div class="section" id="sg">
+<h2>sg<a class="headerlink" href="#sg" title="Permalink to this headline">¶</a></h2>
+<p>Prints information about given space group.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi sg -h
+<span class="go">Usage:</span>
+<span class="go"> gemmi sg [options] SPACEGROUP[...]</span>
+<span class="go">Prints information about the space group.</span>
+<span class="go">  -h, --help     Print usage and exit.</span>
+<span class="go">  -V, --version  Print version and exit.</span>
+<span class="go">  -v, --verbose  Verbose output.</span>
+<span class="go">  --asu=N        Draw ASU in NxNxN map grid and exit. Uses N(N+1) columns.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="contents">
+<span id="gemmi-contents"></span><h2>contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
+<p>Analyses and summarizes content of a coordinate file.
+Inspired by CCP4 program <code class="docutils literal notranslate"><span class="pre">rwcontents</span></code>.</p>
+<p>By default, it prints atom count, estimated number of hydrogens in the protein,
+molecular weight of the protein, ASU volume, Matthews coefficient
+and the fractional volume of solvent in the crystal.</p>
+<p>It has options to print other information – see the help message below.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi contents -h
+<span class="go">Usage:</span>
+<span class="go"> gemmi contents [options] INPUT[...]</span>
+<span class="go">Analyses content of a PDB or mmCIF.</span>
+<span class="go">  -h, --help     Print usage and exit.</span>
+<span class="go">  -V, --version  Print version and exit.</span>
+<span class="go">  -v, --verbose  Verbose output.</span>
+<span class="go">  -b             Print statistics of isotropic ADPs (B-factors).</span>
+<span class="go">  --dihedrals    Print peptide dihedral angles.</span>
+<span class="go">  -n             Do not print content (for use with other options).</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="contact">
+<span id="gemmi-contact"></span><h2>contact<a class="headerlink" href="#contact" title="Permalink to this headline">¶</a></h2>
+<p>Searches for contacts in a model.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi contact -h
+<span class="go">Usage:</span>
+<span class="go"> gemmi contact [options] INPUT[...]</span>
+<span class="go">Searches for contacts in a model (PDB or mmCIF).</span>
+<span class="go">  -h, --help     Print usage and exit.</span>
+<span class="go">  -V, --version  Print version and exit.</span>
+<span class="go">  -v, --verbose  Verbose output.</span>
+<span class="go">  -d, --maxdist=D  Maximal distance in A (default 3.0)</span>
+<span class="go">  --cov=TOL      Use max distance = covalent radii sum + TOL [A].</span>
+<span class="go">  --covmult=M    Use max distance = M * covalent radii sum + TOL [A].</span>
+<span class="go">  --minocc=MIN   Ignore atoms with occupancy &lt; MIN.</span>
+<span class="go">  --ignore=N     Ignores atom pairs from the same: 0=none, 1=residue, 2=same or</span>
+<span class="go">                 adjacent residue, 3=chain, 4=asu.</span>
+<span class="go">  --nosym        Ignore contacts between symmetry mates.</span>
+<span class="go">  --assembly=ID  Output bioassembly with given ID (1, 2, ...).</span>
+<span class="go">  --noh          Ignore hydrogen (and deuterium) atoms.</span>
+<span class="go">  --nowater      Ignore water.</span>
+<span class="go">  --noligand     Ignore ligands and water.</span>
+<span class="go">  --count        Print only a count of atom pairs.</span>
+<span class="go">  --twice        Print each atom pair A-B twice (A-B and B-A).</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="blobs">
+<h2>blobs<a class="headerlink" href="#blobs" title="Permalink to this headline">¶</a></h2>
+<p>Searches for unmodelled blobs in electron density.
+Similar to “Validate &gt; Unmodelled blobs…” in Coot.
+For use in <a class="reference external" href="https://ccp4.github.io/dimple/">Dimple</a>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi blobs -h
+<span class="go">Usage:</span>
+<span class="go"> gemmi blobs [options] MTZ_OR_MMCIF PDB_OR_MMCIF</span>
+
+<span class="go">Search for umodelled blobs of electron density.</span>
+
+<span class="go">Options:</span>
+<span class="go">  -h, --help            Print usage and exit.</span>
+<span class="go">  -V, --version         Print version and exit.</span>
+<span class="go">  -v, --verbose         Verbose output.</span>
+
+<span class="go">The area around model is masked to search only unmodelled density.</span>
+<span class="go">  --mask-radius=NUMBER  Mask radius (default: 2.0 A).</span>
+<span class="go">  --mask-water          Mask water (water is not masked by default).</span>
+
+<span class="go">Searching blobs of density above:</span>
+<span class="go">  --sigma=NUMBER        Sigma (RMSD) level (default: 1.0).</span>
+<span class="go">  --abs=NUMBER          Absolute level in electrons/A^3.</span>
+
+<span class="go">Blob criteria:</span>
+<span class="go">  --min-volume=NUMBER   Minimal volume (default: 10.0 A^3).</span>
+<span class="go">  --min-score=NUMBER    Min. this electrons in blob (default: 15.0).</span>
+<span class="go">  --min-sigma=NUMBER    Min. peak rmsd (default: 0.0).</span>
+<span class="go">  --min-peak=NUMBER     Min. peak density (default: 0.0 el/A^3).</span>
+
+<span class="go">Options for map calculation:</span>
+<span class="go">  -d, --diff            Use difference map coefficients.</span>
+<span class="go">  --section=NAME        MTZ dataset name or CIF block name</span>
+<span class="go">  -f COLUMN             F column (MTZ label or mmCIF tag).</span>
+<span class="go">  -p COLUMN             Phase column (MTZ label or mmCIF tag).</span>
+<span class="go">  --weight=COLUMN       (normally not needed) weighting for F.</span>
+<span class="go">  -g, --grid=NX,NY,NZ   Grid size (user-specified minimum).</span>
+<span class="go">  --exact               Use the exact grid size specified by --grid.</span>
+<span class="go">  -s, --sample=NUMBER   Set spacing to d_min/NUMBER (3 is usual).</span>
+<span class="go">  -G                    Print size of the grid that would be used and exit.</span>
+<span class="go">  --timing              Print calculation times.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="h">
+<h2>h<a class="headerlink" href="#h" title="Permalink to this headline">¶</a></h2>
+<p>Adds or removes hydrogens.
+Hydrogen are put in positions based only on restraints from a monomer library.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi h -h
+<span class="go">Usage:</span>
+<span class="go"> gemmi h [options] INPUT_FILE OUTPUT_FILE</span>
+
+<span class="go">Add hydrogens in positions specified by the monomer library.</span>
+<span class="go">By default, it removes and re-adds all hydrogens.</span>
+<span class="go">By default, hydrogens are not added to water.</span>
+
+<span class="go">Options:</span>
+<span class="go">  -h, --help      Print usage and exit.</span>
+<span class="go">  -V, --version   Print version and exit.</span>
+<span class="go">  -v, --verbose   Verbose output.</span>
+<span class="go">  --monomers=DIR  Monomer library dir (default: $CLIBD_MON).</span>
+<span class="go">  --remove        Only remove hydrogens.</span>
+<span class="go">  --keep          Do not add/remove hydrogens, only change positions.</span>
+<span class="go">  --water         Add hydrogens also to waters.</span>
+<span class="go">  --sort          Order atoms in residues according to _chem_comp_atom.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="mondiff">
+<h2>mondiff<a class="headerlink" href="#mondiff" title="Permalink to this headline">¶</a></h2>
+<p>Compares restraints from two monomer CIF files.
+It is intended for comparing restraints for the same monomer,
+but generated with different programs (or different versions of the same
+program).</p>
+<p>The files should have format used by the CCP4/Refmac monomer library.
+This format is supported by all major macromolecular refinement programs.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi mondiff -h
+<span class="go">Usage:</span>
+<span class="go">  gemmi mondiff [options] FILE1 FILE2</span>
+<span class="go">Options:</span>
+<span class="go">  -h, --help         Print usage and exit.</span>
+<span class="go">  -V, --version      Print version and exit.</span>
+<span class="go">  -v, --verbose      Verbose output.</span>
+
+<span class="go">Minimal reported differences:</span>
+<span class="go">  --bond=DELTA       difference in distance value (default: 0.01).</span>
+<span class="go">  --bond-esd=DELTA   difference in distance esd (default: 0.1).</span>
+<span class="go">  --angle=DELTA      difference in angle value (default: 0.1).</span>
+<span class="go">  --angle-esd=DELTA  difference in angle esd (default: 1.0).</span>
+<span class="go">  --rel=SIGMA         abs(value difference) / esd &gt; SIGMA (default: 0.0).</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="wcn">
+<h2>wcn<a class="headerlink" href="#wcn" title="Permalink to this headline">¶</a></h2>
+<p>Calculates Weighted Contact Number (WCN) and a few other similar metrics.</p>
+<p>WCN can be used to predicts B-factors (ADPs) from coordinates,
+and to compare this prediction with the values from refinement.</p>
+<div class="section" id="background">
+<h3>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h3>
+<p>Protein flexibility and dynamic properties can be to some degree inferred
+from the atomic coordinates of the structure. Various approaches are used
+in the literature:
+molecular dynamics, Gaussian or elastic network models, normal mode analysis,
+calculation of solvent accessibility or local packing density, and so on.</p>
+<p>Here we apply the simplest approach, which is pretty effective.
+It originates from the
+<a class="reference external" href="http://www.pnas.org/content/99/3/1274">2002 PNAS paper</a>
+in which Bertil Halle concluded that B-factors are more accurately predicted
+by counting nearby atoms than by Gaussian network models. This claim was
+based on the analysis of only 38 high resolution structures (and a neat theory),
+but later on the method was validated on many other structures.</p>
+<p>In particular, in 2007 Manfred Weiss brought this method to the attention
+of crystallographers
+by <a class="reference external" href="https://doi.org/10.1107/S0907444907052146">analysing in Acta Cryst D</a>
+different variants of the methods
+on a wider set of more representative crystals.
+Recently, the parameters fine-tuned by Weiss have been used for guessing
+which high B-factors (high comparing with the predicted value) result
+<a class="reference external" href="https://doi.org/10.1107/S1600577515002131">from the radiation damage</a>.</p>
+<p>Only a few months later, in 2008,
+<a class="reference external" href="https://doi.org/10.1002/prot.21983">Chih-Peng Lin et al. devised</a>
+a simple yet significant improvement to the original Halle’s method:
+weighting the counted atoms by 1/<em>d</em><sup>2</sup>, the inverse of squared distance.
+It nicely counters the increasing average number of atoms with the distance
+(~ <em>d</em><sup>2</sup>).
+This method was named WCN – weighted contact number (hmm.. “contact”).</p>
+<p>These two methods are so simple that it seems easy to find a better one.
+But according to my quick literature search, no better method of this kind
+has been found yet. In 2009
+<a class="reference external" href="https://doi.org/10.1016/j.bpj.2009.01.011">Li and Bruschweiler</a>
+proposed weighting that decreases exponentially (that model was named LCBM),
+but in my hands it does not give better results than WCN.</p>
+<p><a class="reference external" href="https://doi.org/10.1002/prot.25034">In 2016 Shahmoradi and Wilke</a>
+did a data analysis aiming to disentangle the effects of local
+and longer-range packing in the above methods.
+They were not concerned with B-factors, though, but with
+the rate of protein sequence evolution.
+Because the “contact” methods predict many things.
+Interestingly, if the exponent in WCN is treated as a parameter
+(equal -2 in the canonical version), the value -2.3 gives the best results
+in predicting evolution.</p>
+</div>
+<div class="section" id="tls">
+<h3>TLS<a class="headerlink" href="#tls" title="Permalink to this headline">¶</a></h3>
+<p>We also need to note that
+<a class="reference external" href="https://doi.org/10.1107/S0567740868001718">TLS</a>-like methods
+that model B-factors as rigid-body motion of molecules are reported
+to give better correlation with experimental B-factors
+than other methods. But because such models use experimental B-factors on
+the input and employ more parameters, they are not directly comparable
+with WCN.</p>
+<p>Unlike the TLS that is routinely used in the refinement of diffraction data,
+the TLS modelling described here is isotropic.
+It uses 10 parameters (anisotropic TLS requires 20) as described in a
+<a class="reference external" href="https://doi.org/10.1073/pnas.88.7.2773">paper by Kuriyan and Weis</a> (1991).
+<a class="reference external" href="https://doi.org/10.1088/1478-3975/5/2/026008">Soheilifard et al (2008)</a>
+got even better results by increasing B-factors at the protein ends,
+using 13 parameters all together. This model was named eTLS (e = extended).</p>
+<p>The high effectiveness of the TLS model does not mean that B-factors
+are dominated by the rigid-body motion. As noted by Kuriyan and Weis,
+the TLS model captures also the fact that atoms in the interior of
+a protein molecule generally have smaller displacements than those
+on the exterior. Additionally, authors of the LCBM paper find that
+the TLS model fitted to only half of the protein poorly fits
+the other half, which suggests overfitting.</p>
+<p>We may revisit rigid-body modelling in the future, but now we get back
+to the contact numbers.</p>
+</div>
+<div class="section" id="details">
+<h3>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h3>
+<p>The overview above skipped a few details.</p>
+<ul class="simple">
+<li><p>While the WCN method is consistently called WCN,
+the Halle’s method was named LDM (local density model) in the original paper,
+and is called CN (contact number) in some other papers. CN is memorable
+when comparing with WCN (which adds ‘W’ – weighting)
+and with ACN (which adds ‘A’ – atomic).</p></li>
+<li><p>These method are used either per-atom (for predicting B-factors, etc.)
+or per-residue (for evolutionary rate, etc.).
+So having “A” in ACN clarifies how it is used.
+To calculate the contact number per-residue one needs to pick
+a reference point in the residue (Cβ, the center of mass or something else),
+but here we do only per-atom calculations.</p></li>
+<li><p>The CN method requires a cut-off, and the cut-off values vary widely,
+from about 5 to 18Å. In the original paper it was 7.35Å,
+Weiss got 7.0Å as the optimal value, Shahmoradi 14.3Å.</p></li>
+<li><p>The CN can be seen as weighted by Heaviside step function,
+and smoothing it helps a little bit (as reported by both Halle and Weiss).</p></li>
+<li><p>Similarly to eTLS, the LCBM method has eLCBM variant that adds
+“end effects” – special treatment of the termini.</p></li>
+<li><p>Finally, these methods may or may not consider the symmetry mates
+in the crystal. Halle checked that including symmetric images
+improves the prediction.
+Weiss (ACN) and Li and Bruschweiler (LCBM) are also taking symmetry into
+account. But I think other papers don’t.</p></li>
+</ul>
+</div>
+<div class="section" id="metrics-for-comparison">
+<h3>Metrics for comparison<a class="headerlink" href="#metrics-for-comparison" title="Permalink to this headline">¶</a></h3>
+<p>To compare a number of nearby atoms with B-factor we either rescale
+the former, or we use a metric that does not require rescaling.
+The Pearson correlation coefficient (CC) is invariant under linear
+transformation,
+so it can be calculated directly unless we would like to apply non-linear
+scaling. Which was tried only in the Manfred Weiss’ paper: scaling
+function with three parameters improved CC by 0.012 comparing with linear
+function (that has two parameters). Here, to keep it simple, we only do
+linear scaling.</p>
+<p>As noted by Halle, Pearson CC as well as mean-square deviation
+can be dominated by a few outliers. Therefore Halle used relative mean
+absolute deviation (RMAD): sum of absolute differences divided
+by the average absolute deviation in the experimantal values.
+Halle justifies this normalization writing that it allows to compare
+structures determined at different temperatures.
+This is debatable as can be seen from ccp4bb
+<a class="reference external" href="https://www.mail-archive.com/ccp4bb&#64;jiscmail.ac.uk/msg30444.html">discussions</a>
+on how to compare B-factors between two structures.
+But for sure RMAD is a more robust metric, so we also use it.
+It adds another complication, though. To minimize the absolute deviation
+we cannot use least-squares fitting, but rather quantile regression with q=0.5.</p>
+<p>Another metric is the rank correlation. It is interesting because it is
+invariant under any monotonic scaling. But it is not guaranteed to be
+a good measure of similarity.</p>
+</div>
+<div class="section" id="results">
+<h3>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h3>
+<p>To be wrapped up and published. But in the meantime here are some thoughts:</p>
+<ul class="simple">
+<li><p>The optimal exponent is slightly larger than 2; the difference is small,
+so we prefer to use 2 (i.e. <em>w</em>=1/<em>r</em><sup>2</sup>).</p></li>
+<li><p>Accounting for all symmetry mates (i.e. for intermolecular contacts
+in the crystal) improves the results – and then the cut-off is necessary.</p></li>
+<li><p>The optimal cut-off is around 15A – let’s use 15A.</p></li>
+<li><p>Averaging predicted B-factors of nearby atoms helps; we use Gaussian
+smoothing (blurring) with σ around 2A.</p></li>
+<li><p>Pearson CC around 0.8 may seem high, but it corresponds to R2=0.64,
+i.e. it we explain only 64% of the B-factor variance.
+Even less of the absolute deviation – below 50%.</p></li>
+<li><p>Minimizing absolute deviation (with quantile regression)
+gives similar results as the ordinary least squares (OLS).
+The difference in terms of RMAS is only ~0.03.</p></li>
+<li><p>Combining WCN with CN is helping only a tiny bit (i.e. both are highly
+correlated) at the cost of additional parameter that is fitted.
+Combining WCN with rotation-only model (squared distance from the center
+of mass) increases CC slightly more, but still not much.</p></li>
+<li><p>Accounting for symmetry mates worsens prediction of evolutionary rates.
+I used <a class="reference external" href="https://github.com/shahmoradi/cordiv">data</a>
+from Shahmoradi and Wilke to check this.</p></li>
+</ul>
+</div>
+<div class="section" id="program">
+<h3>Program<a class="headerlink" href="#program" title="Permalink to this headline">¶</a></h3>
+<p>gemmi-wcn implements combination of the CN and WCN methods above.</p>
+<p>Being based on a general-purpose crystallographic library it handles
+corner cases that are often ignored. A good example is searching
+for contacts. For most of the structures, considering only the same
+and neighbouring unit cells (1+26) is enough.
+But some structures have contacts between molecules several unit cells apart,
+even with only <a class="reference internal" href="mol.html#long-chain"><span class="std std-ref">a single chain in the asu</span></a>.</p>
+<p>TBC</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gemmi wcn -h
+<span class="go">Usage:</span>
+<span class="go"> gemmi wcn [options] INPUT[...]</span>
+<span class="go">Calculation of local density / contact numbers: WCN, CN, ACN, LDM, etc.</span>
+<span class="go">  -h, --help       Print usage and exit.</span>
+<span class="go">  -V, --version    Print version and exit.</span>
+<span class="go">  -v, --verbose    Verbose output.</span>
+<span class="go">  -f, --file=FILE  Obtain paths or PDB IDs from FILE, one per line.</span>
+<span class="go">  -l, --list       List per-residue values.</span>
+<span class="go">  --min-dist=DIST  Minimum distance for &quot;contacts&quot; (default: 0.8).</span>
+<span class="go">  --cutoff=DIST    Maximum distance for &quot;contacts&quot; (default: 15).</span>
+<span class="go">  --pow=P          Exponent in the weighting (default: 2).</span>
+<span class="go">  --blur=SIGMA     Apply Gaussian smoothing of predicted B-factors.</span>
+<span class="go">  --rom            Rotation only model: |pos-ctr_of_chain|^P instead of WCN.</span>
+<span class="go">  --chain=CHAIN    Use only one chain from the INPUT file.</span>
+<span class="go">  --sanity         Run sanity checks first.</span>
+<span class="go">  --sidechains=X   One of: include, exclude, only (default: include).</span>
+<span class="go">  --no-crystal     Ignore crystal symmetry and intermolecular contacts.</span>
+<span class="go">  --omit-ends=N    Ignore N terminal residues from each chain end.</span>
+<span class="go">  --print-res      Print also resolution and R-free.</span>
+<span class="go">  --xy-out=DIR     Write DIR/name.xy files with WCN and B(exper).</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="hkl.html" class="btn btn-neutral float-left" title="Reciprocal space" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017-2020 Global Phasing Ltd
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
