@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>gemmi/elem.hpp file | GEMMI C++ API</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
+  <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
+  <link rel="icon" href="favicon-dark.png" type="image/png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#22272e" />
+</head>
+<body>
+<header><nav id="navigation">
+  <div class="m-container">
+    <div class="m-row">
+      <span id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m">
+        <a href="../..">GEMMI</a> <span class="m-breadcrumb">|</span> <a href="index.html" class="m-thin">C++ API</a>
+      </span>
+      <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
+        <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+          <path id="m-doc-search-icon-path" d="m6 0c-3.31 0-6 2.69-6 6 0 3.31 2.69 6 6 6 1.49 0 2.85-0.541 3.89-1.44-0.0164 0.338 0.147 0.759 0.5 1.15l3.22 3.79c0.552 0.614 1.45 0.665 2 0.115 0.55-0.55 0.499-1.45-0.115-2l-3.79-3.22c-0.392-0.353-0.812-0.515-1.15-0.5 0.895-1.05 1.44-2.41 1.44-3.89 0-3.31-2.69-6-6-6zm0 1.56a4.44 4.44 0 0 1 4.44 4.44 4.44 4.44 0 0 1-4.44 4.44 4.44 4.44 0 0 1-4.44-4.44 4.44 4.44 0 0 1 4.44-4.44z"/>
+        </svg></a>
+        <a id="m-navbar-show" href="#navigation" title="Show navigation"></a>
+        <a id="m-navbar-hide" href="#" title="Hide navigation"></a>
+      </div>
+      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
+        <div class="m-row">
+          <ol class="m-col-t-6 m-col-m-none">
+          </ol>
+          <ol class="m-col-t-6 m-col-m-none" start="1">
+            <li><a href="namespaces.html">Namespaces</a></li>
+            <li><a href="annotated.html">Classes</a></li>
+            <li><a href="files.html">Files</a></li>
+            <li><a href="../python/index.html">Python API</a></li>
+            <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+              <use href="#m-doc-search-icon-path" />
+            </svg></a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav></header>
+<main><article>
+  <div class="m-container m-container-inflatable">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <h1>
+          <span class="m-breadcrumb"><a href="dir_c5b8fc87970ee713285cf5bc9d6a8cb4.html">gemmi</a>/</span>elem.hpp <span class="m-thin">file</span>
+        </h1>
+        <p><span></span></p>
+        <div class="m-block m-default">
+          <h3>Contents</h3>
+          <ul>
+            <li>
+              Reference
+              <ul>
+                <li><a href="#namespaces">Namespaces</a></li>
+                <li><a href="#nested-classes">Classes</a></li>
+                <li><a href="#enum-members">Enums</a></li>
+                <li><a href="#func-members">Functions</a></li>
+                <li><a href="#var-members">Variables</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <section id="namespaces">
+          <h2><a href="#namespaces">Namespaces</a></h2>
+          <dl class="m-doc">
+            <dt>namespace <a href="namespacegemmi.html" class="m-doc">gemmi</a></dt>
+            <dd><span></span></dd>
+            <dt>namespace <a href="namespacegemmi_1_1impl.html" class="m-doc">gemmi::impl</a></dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="nested-classes">
+          <h2><a href="#nested-classes">Classes</a></h2>
+          <dl class="m-doc">
+            <dt>
+              struct <a href="structgemmi_1_1Element.html" class="m-doc">gemmi::Element</a>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="enum-members">
+          <h2><a href="#enum-members">Enums</a></h2>
+          <dl class="m-doc">
+            <dt id="a94546274ac42b2449734db86790c2cb5">
+              <span class="m-doc-wrap-bumper">enum class <a href="#a94546274ac42b2449734db86790c2cb5" class="m-doc-self">El</a>: unsigned char { </span><span class="m-doc-wrap"><a href="#a94546274ac42b2449734db86790c2cb5a02129bb861061d1a052c592e2dc6b383" class="m-doc">X</a> =0,
+              <a href="#a94546274ac42b2449734db86790c2cb5ac1d9f50f86825a1a2302ec2449c17196" class="m-doc">H</a> =1,
+              <a href="#a94546274ac42b2449734db86790c2cb5aa64cf5823262686e1a28b2245be34ce0" class="m-doc">He</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a8640d08847fe5e081f0a41c4579bf26a" class="m-doc">Li</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a3c9547d2fcb523a7ae5681eedde43fb6" class="m-doc">Be</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a9d5ed678fe57bcca610140957afab571" class="m-doc">B</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a0d61f8370cad1d412f80b84d143e1257" class="m-doc">C</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a8d9c307cb7f3c4a32822a51922d1ceaa" class="m-doc">N</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5af186217753c37b9b9f958d906208506e" class="m-doc">O</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a800618943025315f869e4e1f09471012" class="m-doc">F</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a4dec99baa99738721da9c9b0c1a92498" class="m-doc">Ne</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a91fbc1ffc46dc5e768f6b154bb548e37" class="m-doc">Na</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5aaf6cdb852ac107524b150b227c2886e6" class="m-doc">Mg</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a197cdcc53f062530d6256eddc6fc18e6" class="m-doc">Al</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a29bf7a323f1088692c1ad29f08f4f573" class="m-doc">Si</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a44c29edb103a2872f519ad0c9a0fdaaa" class="m-doc">P</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a5dbc98dcc983a70728bd082d1a47546e" class="m-doc">S</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a30781641129e34de0449ccb1fba670da" class="m-doc">Cl</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a864d72283695e6edd1fcdceb473de77f" class="m-doc">Ar</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5aa5f3c6a11b03839d46af9fb43c97c188" class="m-doc">K</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a346dd877a908ff6c7132acb0910a33d8" class="m-doc">Ca</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5acb3f593eee6bf3a8ca2a807055521c5c" class="m-doc">Sc</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a5bcf1228cc875c5071ead303f941a4db" class="m-doc">Ti</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a5206560a306a2e085a437fd258eb57ce" class="m-doc">V</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a46ce6eed09dd5a60280b497637d1697a" class="m-doc">Cr</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a6659d586c5ad74744a2f010f833eafb7" class="m-doc">Mn</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5ad684f8322b7404cd384bf1e425d9356e" class="m-doc">Fe</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a6bc2d2565ee5fbde75273949f2d2df0a" class="m-doc">Co</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5aa26e174e330476756d2601ea5368aec3" class="m-doc">Ni</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5aa78dd5e8411c67a38ac02dde3250c029" class="m-doc">Cu</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a61c25728f97910cd02b3443362a2f5ae" class="m-doc">Zn</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5ae78cf885951f47a47bf1efcd5c9cc1c1" class="m-doc">Ga</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5ac6a675552648c0becb8283f05c172483" class="m-doc">Ge</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a27baf79af932bd1592a6f4d5d61e96a9" class="m-doc">As</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5aa59bd4a85b4f8a13ce1135d82748d70b" class="m-doc">Se</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a8d37869ebc7af08a31df14fe3f48bee2" class="m-doc">Br</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a556d3324187fb853cefacd8eaabe9f2b" class="m-doc">Kr</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5aa9548f83764f3733e69c1c23503de5b2" class="m-doc">Rb</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a8aed7b13501e351db8ecf73c4fa5e65e" class="m-doc">Sr</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a57cec4137b614c87cb4e24a3d003a3e0" class="m-doc">Y</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a8981ce23159740fa7be5e3e3c0f5fb6c" class="m-doc">Zr</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a04d25f81d9337b5b5c640de788559d87" class="m-doc">Nb</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5ac08df9bb5fb44242a6291b1eee5d09ad" class="m-doc">Mo</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a1e165145a97571da936032f6bdc25987" class="m-doc">Tc</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5aabe295e74fbc82f9450d6537bcfebbed" class="m-doc">Ru</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a6148fe1f88038beee78fbaf681419d60" class="m-doc">Rh</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a70c62818a3aed8e80d799f643acf98b2" class="m-doc">Pd</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a13dd5366ed5f0098f6f581b7b8f24a1f" class="m-doc">Ag</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a1261c406ebcfd0bcdc532969d6a73458" class="m-doc">Cd</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5aefeb369cccbd560588a756610865664c" class="m-doc">In</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a6cb321460d08fef1babca1ef07a2ddec" class="m-doc">Sn</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5ada16f2cb03094a7bacfd9c425df967dc" class="m-doc">Sb</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a2408730ad248ad4e4aa36fb14f5e0631" class="m-doc">Te</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5add7536794b63bf90eccfd37f9b147d7f" class="m-doc">I</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a8fde9df1bf2567b76160d1beedca3130" class="m-doc">Xe</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a8b847cfae498e96e3fa08a56cb42b838" class="m-doc">Cs</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5ab5ca4406a7e0b4f20a0ffa5ffdd8f0a2" class="m-doc">Ba</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a1586bf9a7ebb455f9a1b133d05248a59" class="m-doc">La</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a3cc3b8d3e69bb5d5086df205779b622e" class="m-doc">Ce</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5abb17fc8ecf947279911e814c8e48f8a7" class="m-doc">Pr</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a0f685c57363a378127e7487e5b670d40" class="m-doc">Nd</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a50ff364aba0bc0868a2ac51275f5cf42" class="m-doc">Pm</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a20c4c6104a283ee7383776e722439342" class="m-doc">Sm</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5adbf59bd164fe55695cc7d960da4f1516" class="m-doc">Eu</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5ab115cb923e798de4de059cf37aa362cb" class="m-doc">Gd</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5abd63cda5e59ddb168ec03847f26b831b" class="m-doc">Tb</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5ac7142cf9913b2210eca7f98e8fc365da" class="m-doc">Dy</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a71aafd38484f3160708c6a6d2d5f736b" class="m-doc">Ho</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a222b57de868c251432f8cd2a3eb03fc6" class="m-doc">Er</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a0f3526400dc9d9fd89be71e0074ee009" class="m-doc">Tm</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a2e2859e5289e2ce75e64cf4ef8e35ba6" class="m-doc">Yb</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5ab3a17f7c339aaaad2c632e168123c7bc" class="m-doc">Lu</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a54abca54353d2ce3dadc7955a31a4c2b" class="m-doc">Hf</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a86a1ea3adf8fbb53eb7a9b6b6b01c020" class="m-doc">Ta</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a61e9c06ea9a85a5088a499df6458d276" class="m-doc">W</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5af4473c4016648844fb129838f88b7ee7" class="m-doc">Re</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a02c4b2dc4fd2ac7e8bbde8e46adce723" class="m-doc">Os</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5aa114df82272b5decd19d513b63d6bd8f" class="m-doc">Ir</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a999edda14328d5f86e5e5a981fbea493" class="m-doc">Pt</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a515322af1eb924f2a4cee609d1f39bfa" class="m-doc">Au</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a11fc3a0c8fca92ae6bc10ff8241a116e" class="m-doc">Hg</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a0de3ba01184b62b2d8e5b01ca4842f76" class="m-doc">Tl</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a0789e060643d0f6b1d638830a383387b" class="m-doc">Pb</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a38523a3dcb681b6abd6dd69b73534af7" class="m-doc">Bi</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a0cbf7941fef6ce0531b500b26e89d008" class="m-doc">Po</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5adc5f499e83aef4f6811faa4081631740" class="m-doc">At</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5ab102860774a4a4dd7a3737076df55605" class="m-doc">Rn</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5afa717ba17306cd76900510df8ac8013e" class="m-doc">Fr</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a664461206e919c99ecfdade36d23e611" class="m-doc">Ra</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a8819a837186918b90b59cc316f36b1e1" class="m-doc">Ac</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5aeeeb9a8eb45dd351d9ec0eb4acce66ce" class="m-doc">Th</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5aa13df921d517c3e3508b5a752a79d53b" class="m-doc">Pa</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a4c614360da93c0a041b22e537de151eb" class="m-doc">U</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a8e8c3fbcf8669ad9e7719b7af696b408" class="m-doc">Np</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5ad6889a89a0bb45b31e300ca0972e66f9" class="m-doc">Pu</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5af07ec1b01555ed1939e25db154cc4450" class="m-doc">Am</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a4d42fd7ad795178d64613eba2a2aa9ad" class="m-doc">Cm</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5ac64a5dae48f04e16deab001d4b9dbd80" class="m-doc">Bk</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5af820ebf9ae1baa74ccb23710d5baf203" class="m-doc">Cf</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a24dd08cf43692996cf27a1bc921ce3be" class="m-doc">Es</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5ae7e87fd9dff633c4e522b93a0204e6e9" class="m-doc">Fm</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5aa9547b86268c5e29adedd500ff7eef45" class="m-doc">Md</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5abafd7322c6e97d25b6299b5d6fe8920b" class="m-doc">No</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a3ead81b48a6ebcd3101212eba2431783" class="m-doc">Lr</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5afbaf4d5a9ac7d8f2346f9866b66e7f0c" class="m-doc">Rf</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a1f51be0dc5971b918e74fcc59935234d" class="m-doc">Db</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a8183fd6b26ad345241fb0666230f7d89" class="m-doc">Sg</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5aebe99d0169e7d3fc9b1bef0d8efe4979" class="m-doc">Bh</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5adf7fda987a7c290c43ff688f805f5949" class="m-doc">Hs</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a3d15130a97ac551fffdc63873ff80d14" class="m-doc">Mt</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a88e131830ae63fc1d2281ce900fe78f9" class="m-doc">Ds</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a2504501092bb69d0cb68071888c70cec" class="m-doc">Rg</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a7405ceb2813b0f90ace74494d21ef4b8" class="m-doc">Cn</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a7b3cbbec39a24920da9b16e36fc01339" class="m-doc">Nh</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a26fdd7473602eb95a9054839152a101b" class="m-doc">Fl</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5aac81adaad0b2a7d6077edd5c319a6048" class="m-doc">Mc</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a1cdcdd2e640dea7e275db214e442264d" class="m-doc">Lv</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a6a2389c404bc1b338fb35293fd4c19d3" class="m-doc">Ts</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5a9ad3285ba2ed40f7b805800f927766fc" class="m-doc">Og</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5af623e75af30e62bbd73d6df5b50bb7b5" class="m-doc">D</a>,
+              <a href="#a94546274ac42b2449734db86790c2cb5ab1a326c06d88bf042f73d70f50197905" class="m-doc">END</a> }</span>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="func-members">
+          <h2><a href="#func-members">Functions</a></h2>
+          <dl class="m-doc">
+            <dt id="a44b26cf50aa369676620d9f79bdd69cf">
+              <span class="m-doc-wrap-bumper">auto <a href="#a44b26cf50aa369676620d9f79bdd69cf" class="m-doc-self">is_hydrogen</a>(</span><span class="m-doc-wrap">El el) -&gt; bool</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a9baa2c64ece7e7f7ff6d79777f7aa98c">
+              <span class="m-doc-wrap-bumper">auto <a href="#a9baa2c64ece7e7f7ff6d79777f7aa98c" class="m-doc-self">is_metal</a>(</span><span class="m-doc-wrap">El el) -&gt; bool</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a796ab1c7f31f0b4455cd86f9a484fc4d">
+              <span class="m-doc-wrap-bumper">auto <a href="#a796ab1c7f31f0b4455cd86f9a484fc4d" class="m-doc-self">molecular_weight</a>(</span><span class="m-doc-wrap">El el) -&gt; double</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a156854136cbb9cbeeefb6c6ac0319b1b">
+              <span class="m-doc-wrap-bumper">auto <a href="#a156854136cbb9cbeeefb6c6ac0319b1b" class="m-doc-self">covalent_radius</a>(</span><span class="m-doc-wrap">El el) -&gt; float</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a95590cdf16ecc73cac46691f3b7b94a3">
+              <span class="m-doc-wrap-bumper">auto <a href="#a95590cdf16ecc73cac46691f3b7b94a3" class="m-doc-self">element_name</a>(</span><span class="m-doc-wrap">El el) -&gt; const char*</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a8def55fb7fc9b814ca1b4890fe5c9202">
+              <span class="m-doc-wrap-bumper">auto <a href="#a8def55fb7fc9b814ca1b4890fe5c9202" class="m-doc-self">element_uppercase_name</a>(</span><span class="m-doc-wrap">El el) -&gt; elname_t&amp;</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="aa8122e79a9ac0b72247cc555765be5cf">
+              <span class="m-doc-wrap-bumper">auto <a href="#aa8122e79a9ac0b72247cc555765be5cf" class="m-doc-self">find_single_letter_element</a>(</span><span class="m-doc-wrap">char c) -&gt; El</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a2f5954f28e9a99eaaa95b9de162a3a0b">
+              <span class="m-doc-wrap-bumper">auto <a href="#a2f5954f28e9a99eaaa95b9de162a3a0b" class="m-doc-self">find_element</a>(</span><span class="m-doc-wrap">const char* symbol) -&gt; El</span>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="var-members">
+          <h2><a href="#var-members">Variables</a></h2>
+          <dl class="m-doc">
+            <dt id="a4a2c08f094357fc94bfcb48413d0c0bc">
+              const typedef char <a href="#a4a2c08f094357fc94bfcb48413d0c0bc" class="m-doc-self">elname_t</a>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+      </div>
+    </div>
+  </div>
+</article></main>
+<div class="m-doc-search" id="search">
+  <a href="#!" onclick="return hideSearch()"></a>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-m-8 m-push-m-2">
+        <div class="m-doc-search-header m-text m-small">
+          <div><span class="m-label m-default">Tab</span> / <span class="m-label m-default">T</span> to search, <span class="m-label m-default">Esc</span> to close</div>
+          <div id="search-symbolcount">&hellip;</div>
+        </div>
+        <div class="m-doc-search-content">
+          <form>
+            <input type="search" name="q" id="search-input" placeholder="Loading &hellip;" disabled="disabled" autofocus="autofocus" autocomplete="off" spellcheck="false" />
+          </form>
+          <noscript class="m-text m-danger m-text-center">Unlike everything else in the docs, the search functionality <em>requires</em> JavaScript.</noscript>
+          <div id="search-help" class="m-text m-dim m-text-center">
+            <p class="m-noindent">Search for symbols, directories, files, pages or
+            modules. You can omit any prefix from the symbol or file path; adding a
+            <code>:</code> or <code>/</code> suffix lists all members of given symbol or
+            directory.</p>
+            <p class="m-noindent">Use <span class="m-label m-dim">&darr;</span>
+            / <span class="m-label m-dim">&uarr;</span> to navigate through the list,
+            <span class="m-label m-dim">Enter</span> to go.
+            <span class="m-label m-dim">Tab</span> autocompletes common prefix, you can
+            copy a link to the result using <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">L</span> while <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">M</span> produces a Markdown link.</p>
+          </div>
+          <div id="search-notfound" class="m-text m-warning m-text-center">Sorry, nothing was found.</div>
+          <ul id="search-results"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="search-v1.js"></script>
+<script src="searchdata-v1.js" async="async"></script>
+<footer><nav>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <p>GEMMI C++ API. Created with <a href="https://doxygen.org/">Doxygen</a> 1.8.18 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
+      </div>
+    </div>
+  </div>
+</nav></footer>
+</body>
+</html>

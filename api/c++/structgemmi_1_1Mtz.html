@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>gemmi::Mtz struct | GEMMI C++ API</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
+  <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
+  <link rel="icon" href="favicon-dark.png" type="image/png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#22272e" />
+</head>
+<body>
+<header><nav id="navigation">
+  <div class="m-container">
+    <div class="m-row">
+      <span id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m">
+        <a href="../..">GEMMI</a> <span class="m-breadcrumb">|</span> <a href="index.html" class="m-thin">C++ API</a>
+      </span>
+      <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
+        <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+          <path id="m-doc-search-icon-path" d="m6 0c-3.31 0-6 2.69-6 6 0 3.31 2.69 6 6 6 1.49 0 2.85-0.541 3.89-1.44-0.0164 0.338 0.147 0.759 0.5 1.15l3.22 3.79c0.552 0.614 1.45 0.665 2 0.115 0.55-0.55 0.499-1.45-0.115-2l-3.79-3.22c-0.392-0.353-0.812-0.515-1.15-0.5 0.895-1.05 1.44-2.41 1.44-3.89 0-3.31-2.69-6-6-6zm0 1.56a4.44 4.44 0 0 1 4.44 4.44 4.44 4.44 0 0 1-4.44 4.44 4.44 4.44 0 0 1-4.44-4.44 4.44 4.44 0 0 1 4.44-4.44z"/>
+        </svg></a>
+        <a id="m-navbar-show" href="#navigation" title="Show navigation"></a>
+        <a id="m-navbar-hide" href="#" title="Hide navigation"></a>
+      </div>
+      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
+        <div class="m-row">
+          <ol class="m-col-t-6 m-col-m-none">
+          </ol>
+          <ol class="m-col-t-6 m-col-m-none" start="1">
+            <li><a href="namespaces.html">Namespaces</a></li>
+            <li><a href="annotated.html">Classes</a></li>
+            <li><a href="files.html">Files</a></li>
+            <li><a href="../python/index.html">Python API</a></li>
+            <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+              <use href="#m-doc-search-icon-path" />
+            </svg></a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav></header>
+<main><article>
+  <div class="m-container m-container-inflatable">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <h1>
+          <span class="m-breadcrumb"><a href="namespacegemmi.html">gemmi</a>::<wbr/></span>Mtz <span class="m-thin">struct</span>
+          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="mtz_8hpp.html">&lt;gemmi/mtz.hpp&gt;</a></div>
+        </h1>
+        <p><span></span></p>
+        <div class="m-block m-default">
+          <h3>Contents</h3>
+          <ul>
+            <li>
+              Reference
+              <ul>
+                <li><a href="#pub-types">Public types</a></li>
+                <li><a href="#pub-static-methods">Public static functions</a></li>
+                <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
+                <li><a href="#pub-methods">Public functions</a></li>
+                <li><a href="#pub-attribs">Public variables</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <section id="pub-types">
+          <h2><a href="#pub-types">Public types</a></h2>
+          <dl class="m-doc">
+            <dt>
+              struct <a href="structgemmi_1_1Mtz_1_1Batch.html" class="m-doc">Batch</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              struct <a href="structgemmi_1_1Mtz_1_1Column.html" class="m-doc">Column</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              struct <a href="structgemmi_1_1Mtz_1_1Dataset.html" class="m-doc">Dataset</a>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="pub-static-methods">
+          <h2><a href="#pub-static-methods">Public static functions</a></h2>
+          <dl class="m-doc">
+            <dt id="aca86f5f50e18eec19da340ba37bc8bd2">
+              <span class="m-doc-wrap-bumper">static auto <a href="#aca86f5f50e18eec19da340ba37bc8bd2" class="m-doc-self">skip_word</a>(</span><span class="m-doc-wrap">const char* line) -&gt; const char*</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a7c106a46b24013c363eb01b0efcd2c0d">
+              <span class="m-doc-wrap-bumper">static auto <a href="#a7c106a46b24013c363eb01b0efcd2c0d" class="m-doc-self">read_cell_parameters</a>(</span><span class="m-doc-wrap">const char* line) -&gt; <a href="structgemmi_1_1UnitCell.html" class="m-doc">UnitCell</a></span>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="typeless-methods">
+          <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
+          <dl class="m-doc">
+            <dt id="aeb1e02ae2c6cde116983d36b5c6cb15f">
+              <span class="m-doc-wrap-bumper"><a href="#aeb1e02ae2c6cde116983d36b5c6cb15f" class="m-doc-self">Mtz</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-info">defaulted</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a9839eec2d94dae2da010adc4bd342a8c">
+              <span class="m-doc-wrap-bumper"><a href="#a9839eec2d94dae2da010adc4bd342a8c" class="m-doc-self">Mtz</a>(</span><span class="m-doc-wrap"><a href="structgemmi_1_1Mtz.html" class="m-doc">Mtz</a>&amp;&amp; o) <span class="m-label m-flat m-success">noexcept</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ab17c0c2ee92b6892f7e383583a7ca7d8">
+              <span class="m-doc-wrap-bumper"><a href="#ab17c0c2ee92b6892f7e383583a7ca7d8" class="m-doc-self">Mtz</a>(</span><span class="m-doc-wrap"><a href="structgemmi_1_1Mtz.html" class="m-doc">Mtz</a> const&amp;) <span class="m-label m-flat m-danger">deleted</span></span>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="pub-methods">
+          <h2><a href="#pub-methods">Public functions</a></h2>
+          <dl class="m-doc">
+            <dt id="ad6b84669623681ad3306f3e8c519cd73">
+              <span class="m-doc-wrap-bumper">auto <a href="#ad6b84669623681ad3306f3e8c519cd73" class="m-doc-self">operator=</a>(</span><span class="m-doc-wrap"><a href="structgemmi_1_1Mtz.html" class="m-doc">Mtz</a>&amp;&amp; o) -&gt; <a href="structgemmi_1_1Mtz.html" class="m-doc">Mtz</a>&amp; <span class="m-label m-flat m-success">noexcept</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ab5f09869a60692cb490b523768c2105f">
+              <span class="m-doc-wrap-bumper">auto <a href="#ab5f09869a60692cb490b523768c2105f" class="m-doc-self">operator=</a>(</span><span class="m-doc-wrap"><a href="structgemmi_1_1Mtz.html" class="m-doc">Mtz</a> const&amp;) -&gt; <a href="structgemmi_1_1Mtz.html" class="m-doc">Mtz</a>&amp; <span class="m-label m-flat m-danger">deleted</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="aa36ef41c7d9964518016b781da1047c2">
+              <span class="m-doc-wrap-bumper">auto <a href="#aa36ef41c7d9964518016b781da1047c2" class="m-doc-self">resolution_high</a>(</span><span class="m-doc-wrap">) const -&gt; double</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a63d76c1f0c1bc22a45db9c06eb07eb65">
+              <span class="m-doc-wrap-bumper">auto <a href="#a63d76c1f0c1bc22a45db9c06eb07eb65" class="m-doc-self">resolution_low</a>(</span><span class="m-doc-wrap">) const -&gt; double</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="af7d15c62ebcca0ae1862033e6786cee2">
+              <span class="m-doc-wrap-bumper">auto <a href="#af7d15c62ebcca0ae1862033e6786cee2" class="m-doc-self">get_cell</a>(</span><span class="m-doc-wrap">int dataset = -1) -&gt; <a href="structgemmi_1_1UnitCell.html" class="m-doc">UnitCell</a>&amp;</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a5421694e18605e72c7962a34f6e959e2">
+              <span class="m-doc-wrap-bumper">auto <a href="#a5421694e18605e72c7962a34f6e959e2" class="m-doc-self">get_cell</a>(</span><span class="m-doc-wrap">int dataset = -1) const -&gt; const <a href="structgemmi_1_1UnitCell.html" class="m-doc">UnitCell</a>&amp;</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a2dd2b0565e57e83bd0a9e52e9dad24c8">
+              <span class="m-doc-wrap-bumper">auto <a href="#a2dd2b0565e57e83bd0a9e52e9dad24c8" class="m-doc-self">last_dataset</a>(</span><span class="m-doc-wrap">) -&gt; <a href="structgemmi_1_1Mtz_1_1Dataset.html" class="m-doc">Dataset</a>&amp;</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ac78ad084e53ec3f7b42e984da66c83d2">
+              <span class="m-doc-wrap-bumper">auto <a href="#ac78ad084e53ec3f7b42e984da66c83d2" class="m-doc-self">dataset</a>(</span><span class="m-doc-wrap">int id) -&gt; <a href="structgemmi_1_1Mtz_1_1Dataset.html" class="m-doc">Dataset</a>&amp;</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a95ef592d47fa8585425c0d7ca15ece91">
+              <span class="m-doc-wrap-bumper">auto <a href="#a95ef592d47fa8585425c0d7ca15ece91" class="m-doc-self">dataset</a>(</span><span class="m-doc-wrap">int id) const -&gt; const <a href="structgemmi_1_1Mtz_1_1Dataset.html" class="m-doc">Dataset</a>&amp;</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a89af59d3390901159cf74e7e4d8d9aa2">
+              <span class="m-doc-wrap-bumper">auto <a href="#a89af59d3390901159cf74e7e4d8d9aa2" class="m-doc-self">dataset_with_name</a>(</span><span class="m-doc-wrap">const <a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a>&amp; name) -&gt; <a href="structgemmi_1_1Mtz_1_1Dataset.html" class="m-doc">Dataset</a>*</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a73f5d2d95e9f8d9747e8c5fbaaf76042">
+              <span class="m-doc-wrap-bumper">auto <a href="#a73f5d2d95e9f8d9747e8c5fbaaf76042" class="m-doc-self">dataset_with_name</a>(</span><span class="m-doc-wrap">const <a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a>&amp; label) const -&gt; const <a href="structgemmi_1_1Mtz_1_1Dataset.html" class="m-doc">Dataset</a>*</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="af4c26af7767f12f31c03def1f6203faf">
+              <span class="m-doc-wrap-bumper">auto <a href="#af4c26af7767f12f31c03def1f6203faf" class="m-doc-self">count</a>(</span><span class="m-doc-wrap">const <a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a>&amp; label) const -&gt; int</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="aa76c6223f1853ae0502f7adf31b23797">
+              <span class="m-doc-wrap-bumper">auto <a href="#aa76c6223f1853ae0502f7adf31b23797" class="m-doc-self">column_with_label</a>(</span><span class="m-doc-wrap">const <a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a>&amp; label,
+              const <a href="structgemmi_1_1Mtz_1_1Dataset.html" class="m-doc">Dataset</a>* ds = nullptr) -&gt; <a href="structgemmi_1_1Mtz_1_1Column.html" class="m-doc">Column</a>*</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="aadd0893493b292ddc11cce9927faa847">
+              <span class="m-doc-wrap-bumper">auto <a href="#aadd0893493b292ddc11cce9927faa847" class="m-doc-self">column_with_label</a>(</span><span class="m-doc-wrap">const <a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a>&amp; label,
+              const <a href="structgemmi_1_1Mtz_1_1Dataset.html" class="m-doc">Dataset</a>* ds = nullptr) const -&gt; const <a href="structgemmi_1_1Mtz_1_1Column.html" class="m-doc">Column</a>*</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a32e4cb698544005b64462abdd06998f1">
+              <span class="m-doc-wrap-bumper">auto <a href="#a32e4cb698544005b64462abdd06998f1" class="m-doc-self">get_column_with_label</a>(</span><span class="m-doc-wrap">const <a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a>&amp; label,
+              const <a href="structgemmi_1_1Mtz_1_1Dataset.html" class="m-doc">Dataset</a>* ds = nullptr) const -&gt; const <a href="structgemmi_1_1Mtz_1_1Column.html" class="m-doc">Column</a>&amp;</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a8befbe2809333c977d8fa53233f86a2b">
+              <span class="m-doc-wrap-bumper">auto <a href="#a8befbe2809333c977d8fa53233f86a2b" class="m-doc-self">columns_with_type</a>(</span><span class="m-doc-wrap">char type) const -&gt; <a href="http://en.cppreference.com/w/cpp/container/vector.html" class="m-doc-external">std::<wbr />vector</a>&lt;const <a href="structgemmi_1_1Mtz_1_1Column.html" class="m-doc">Column</a>*&gt;</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a402c106f6dd7bc12ad51890ca7da926d">
+              <span class="m-doc-wrap-bumper">auto <a href="#a402c106f6dd7bc12ad51890ca7da926d" class="m-doc-self">has_data</a>(</span><span class="m-doc-wrap">) const -&gt; bool</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a30cc8b34753d284464f566007d307d0f">
+              <span class="m-doc-wrap-bumper">void <a href="#a30cc8b34753d284464f566007d307d0f" class="m-doc-self">extend_min_max_1_d2</a>(</span><span class="m-doc-wrap">const <a href="structgemmi_1_1UnitCell.html" class="m-doc">UnitCell</a>&amp; uc,
+              double&amp; min,
+              double&amp; max) const</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ab8054393588b356115d912ef5caa2ce5">
+              <span class="m-doc-wrap-bumper">auto <a href="#ab8054393588b356115d912ef5caa2ce5" class="m-doc-self">calculate_min_max_1_d2</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="http://en.cppreference.com/w/cpp/container/array.html" class="m-doc-external">std::<wbr />array</a>&lt;double, 2&gt;</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="aedcb337954d1a0f8e3c97e7d54be3e0a">
+              <span class="m-doc-wrap-bumper">void <a href="#aedcb337954d1a0f8e3c97e7d54be3e0a" class="m-doc-self">update_reso</a>(</span><span class="m-doc-wrap">)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a74ef9a84aeb94d76e0f17fbf3cf1ca43">
+              <span class="m-doc-wrap-bumper">void <a href="#a74ef9a84aeb94d76e0f17fbf3cf1ca43" class="m-doc-self">toggle_endiannes</a>(</span><span class="m-doc-wrap">)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a1027f2a7648e8039f1f9b819cb562d52">
+              <div class="m-doc-template">template&lt;typename Stream&gt;</div>
+              <span class="m-doc-wrap-bumper">void <a href="#a1027f2a7648e8039f1f9b819cb562d52" class="m-doc-self">read_first_bytes</a>(</span><span class="m-doc-wrap">Stream&amp; stream)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a74904a6faeaa0ab7a8dea3a98f0ed68c">
+              <span class="m-doc-wrap-bumper">void <a href="#a74904a6faeaa0ab7a8dea3a98f0ed68c" class="m-doc-self">warn</a>(</span><span class="m-doc-wrap">const <a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a>&amp; text)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a58d6335a3e8e2e674425fb09fb33d1ce">
+              <div class="m-doc-template">template&lt;typename Stream&gt;</div>
+              <span class="m-doc-wrap-bumper">void <a href="#a58d6335a3e8e2e674425fb09fb33d1ce" class="m-doc-self">seek_headers</a>(</span><span class="m-doc-wrap">Stream&amp; stream)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a872a8452a5d4cf4fa88518a4e711dcca">
+              <div class="m-doc-template">template&lt;typename Stream&gt;</div>
+              <span class="m-doc-wrap-bumper">void <a href="#a872a8452a5d4cf4fa88518a4e711dcca" class="m-doc-self">read_main_headers</a>(</span><span class="m-doc-wrap">Stream&amp; stream)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ab4eff0963e475cc21630031910fcc346">
+              <div class="m-doc-template">template&lt;typename Stream&gt;</div>
+              <span class="m-doc-wrap-bumper">void <a href="#ab4eff0963e475cc21630031910fcc346" class="m-doc-self">read_history_and_batch_headers</a>(</span><span class="m-doc-wrap">Stream&amp; stream)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="af6313953bbed14219e8a9520759a4517">
+              <span class="m-doc-wrap-bumper">void <a href="#af6313953bbed14219e8a9520759a4517" class="m-doc-self">setup_spacegroup</a>(</span><span class="m-doc-wrap">)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a7ddb90b64b8693bf25fa7bb227c9a579">
+              <div class="m-doc-template">template&lt;typename Stream&gt;</div>
+              <span class="m-doc-wrap-bumper">void <a href="#a7ddb90b64b8693bf25fa7bb227c9a579" class="m-doc-self">read_raw_data</a>(</span><span class="m-doc-wrap">Stream&amp; stream)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="aeca386d7c1d730a1b47852356b8cef11">
+              <div class="m-doc-template">template&lt;typename Stream&gt;</div>
+              <span class="m-doc-wrap-bumper">void <a href="#aeca386d7c1d730a1b47852356b8cef11" class="m-doc-self">read_all_headers</a>(</span><span class="m-doc-wrap">Stream&amp; stream)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a71a28e3a3687da86dd5afbc5b38d57f4">
+              <div class="m-doc-template">template&lt;typename Stream&gt;</div>
+              <span class="m-doc-wrap-bumper">void <a href="#a71a28e3a3687da86dd5afbc5b38d57f4" class="m-doc-self">read_stream</a>(</span><span class="m-doc-wrap">Stream&amp;&amp; stream,
+              bool with_data)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="aab0ec147403ceb45f0baea4f69e29f99">
+              <span class="m-doc-wrap-bumper">void <a href="#aab0ec147403ceb45f0baea4f69e29f99" class="m-doc-self">read_file</a>(</span><span class="m-doc-wrap">const <a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a>&amp; path)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a7e1ccc4aae242013f20c5474120af20b">
+              <div class="m-doc-template">template&lt;typename Input&gt;</div>
+              <span class="m-doc-wrap-bumper">void <a href="#a7e1ccc4aae242013f20c5474120af20b" class="m-doc-self">read_input</a>(</span><span class="m-doc-wrap">Input&amp;&amp; input,
+              bool with_data)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="aa91f4a6c8a0449eb21a6e49cacfc23f5">
+              <span class="m-doc-wrap-bumper">auto <a href="#aa91f4a6c8a0449eb21a6e49cacfc23f5" class="m-doc-self">sorted_row_indices</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="http://en.cppreference.com/w/cpp/container/vector.html" class="m-doc-external">std::<wbr />vector</a>&lt;int&gt;</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a0fdb310273418300837faa0d0ebf229c">
+              <span class="m-doc-wrap-bumper">void <a href="#a0fdb310273418300837faa0d0ebf229c" class="m-doc-self">apply_isym</a>(</span><span class="m-doc-wrap">)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ae872c996cf0ad8d148938da6502b0dc5">
+              <span class="m-doc-wrap-bumper">auto <a href="#ae872c996cf0ad8d148938da6502b0dc5" class="m-doc-self">add_dataset</a>(</span><span class="m-doc-wrap">const <a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a>&amp; name) -&gt; <a href="structgemmi_1_1Mtz_1_1Dataset.html" class="m-doc">Dataset</a>&amp;</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a6af6123cf9519a504dac82c3b1135de1">
+              <span class="m-doc-wrap-bumper">auto <a href="#a6af6123cf9519a504dac82c3b1135de1" class="m-doc-self">add_column</a>(</span><span class="m-doc-wrap">const <a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a>&amp; label,
+              char type,
+              int dataset_id = -1,
+              int pos = -1) -&gt; <a href="structgemmi_1_1Mtz_1_1Column.html" class="m-doc">Column</a>&amp;</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="aca5b876857e2103701becad576f5f35d">
+              <span class="m-doc-wrap-bumper">void <a href="#aca5b876857e2103701becad576f5f35d" class="m-doc-self">expand_data_rows</a>(</span><span class="m-doc-wrap">int added)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a030a2d7693af5986eb02ca97ab59453c">
+              <span class="m-doc-wrap-bumper">void <a href="#a030a2d7693af5986eb02ca97ab59453c" class="m-doc-self">set_data</a>(</span><span class="m-doc-wrap">const float* new_data,
+              int n)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a6db6047a5180cde73c7e07d7d40a40e2">
+              <span class="m-doc-wrap-bumper">void <a href="#a6db6047a5180cde73c7e07d7d40a40e2" class="m-doc-self">write_to_stream</a>(</span><span class="m-doc-wrap"><a href="http://en.cppreference.com/w/cpp/io/c.html" class="m-doc-external">std::<wbr />FILE</a>* stream) const</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a5a460d6f462b41909bb3737f9ae91df4">
+              <span class="m-doc-wrap-bumper">void <a href="#a5a460d6f462b41909bb3737f9ae91df4" class="m-doc-self">write_to_file</a>(</span><span class="m-doc-wrap">const <a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a>&amp; path) const</span>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="pub-attribs">
+          <h2><a href="#pub-attribs">Public variables</a></h2>
+          <dl class="m-doc">
+            <dt id="a691fcba6e16de66e8b78e3071ebd851f">
+              bool <a href="#a691fcba6e16de66e8b78e3071ebd851f" class="m-doc-self">same_byte_order</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a9a51da5e0bd54d9030dd7869e3e7e15c">
+              <a href="http://en.cppreference.com/w/cpp/types/integer.html" class="m-doc-external">std::<wbr />int32_t</a> <a href="#a9a51da5e0bd54d9030dd7869e3e7e15c" class="m-doc-self">header_offset</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ae281519a72aec66769d00f41d660e471">
+              <a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a> <a href="#ae281519a72aec66769d00f41d660e471" class="m-doc-self">version_stamp</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ad04f3a1350ce0b3722351b7666b518b9">
+              <a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a> <a href="#ad04f3a1350ce0b3722351b7666b518b9" class="m-doc-self">title</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a82867bdfceb6e54561b8322d6dd6821a">
+              int <a href="#a82867bdfceb6e54561b8322d6dd6821a" class="m-doc-self">nreflections</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ad6695c615f16fc4bf85cca45e4aaa027">
+              <a href="http://en.cppreference.com/w/cpp/container/array.html" class="m-doc-external">std::<wbr />array</a>&lt;int, 5&gt; <a href="#ad6695c615f16fc4bf85cca45e4aaa027" class="m-doc-self">sort_order</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ad1df0b25c55790a765749bf3d3290840">
+              double <a href="#ad1df0b25c55790a765749bf3d3290840" class="m-doc-self">min_1_d2</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ab9e489c761fc65495a335b610534993b">
+              double <a href="#ab9e489c761fc65495a335b610534993b" class="m-doc-self">max_1_d2</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a968558bcaa1f6f08d69baa96e12eecdf">
+              float <a href="#a968558bcaa1f6f08d69baa96e12eecdf" class="m-doc-self">valm</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a8a60531507cc8dd6a9ddd9494f0158c5">
+              int <a href="#a8a60531507cc8dd6a9ddd9494f0158c5" class="m-doc-self">nsymop</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a9e8f8a2c33920eb6e886f54d8b212e37">
+              <a href="structgemmi_1_1UnitCell.html" class="m-doc">UnitCell</a> <a href="#a9e8f8a2c33920eb6e886f54d8b212e37" class="m-doc-self">cell</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a3c5849305054ec4114437848d9171acb">
+              int <a href="#a3c5849305054ec4114437848d9171acb" class="m-doc-self">spacegroup_number</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a63a95cd10a736a2e6bc4984fa1efda66">
+              <a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a> <a href="#a63a95cd10a736a2e6bc4984fa1efda66" class="m-doc-self">spacegroup_name</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a43974e7b3255641d2d9bcd80b1a1921d">
+              <a href="http://en.cppreference.com/w/cpp/container/vector.html" class="m-doc-external">std::<wbr />vector</a>&lt;<a href="structgemmi_1_1Op.html" class="m-doc">Op</a>&gt; <a href="#a43974e7b3255641d2d9bcd80b1a1921d" class="m-doc-self">symops</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="af073debb044378fc73887e9099fb10c6">
+              const <a href="structgemmi_1_1SpaceGroup.html" class="m-doc">SpaceGroup</a>* <a href="#af073debb044378fc73887e9099fb10c6" class="m-doc-self">spacegroup</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a0f6a259a6551e1c769f276d00a357a14">
+              <a href="http://en.cppreference.com/w/cpp/container/vector.html" class="m-doc-external">std::<wbr />vector</a>&lt;<a href="structgemmi_1_1Mtz_1_1Dataset.html" class="m-doc">Dataset</a>&gt; <a href="#a0f6a259a6551e1c769f276d00a357a14" class="m-doc-self">datasets</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ac7df637f0d77efdadd5cd6d65b68d8f7">
+              <a href="http://en.cppreference.com/w/cpp/container/vector.html" class="m-doc-external">std::<wbr />vector</a>&lt;<a href="structgemmi_1_1Mtz_1_1Column.html" class="m-doc">Column</a>&gt; <a href="#ac7df637f0d77efdadd5cd6d65b68d8f7" class="m-doc-self">columns</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a2b66e04e19cee340736c1309f649c92b">
+              <a href="http://en.cppreference.com/w/cpp/container/vector.html" class="m-doc-external">std::<wbr />vector</a>&lt;<a href="structgemmi_1_1Mtz_1_1Batch.html" class="m-doc">Batch</a>&gt; <a href="#a2b66e04e19cee340736c1309f649c92b" class="m-doc-self">batches</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a9b01eb2d3f4e163f05f467aeecae8440">
+              <a href="http://en.cppreference.com/w/cpp/container/vector.html" class="m-doc-external">std::<wbr />vector</a>&lt;<a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a>&gt; <a href="#a9b01eb2d3f4e163f05f467aeecae8440" class="m-doc-self">history</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="af6e9a163aa30509db657e23b80ad7949">
+              <a href="http://en.cppreference.com/w/cpp/container/vector.html" class="m-doc-external">std::<wbr />vector</a>&lt;float&gt; <a href="#af6e9a163aa30509db657e23b80ad7949" class="m-doc-self">data</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a87d507f57545f1f8885a9508e49b752c">
+              FILE* <a href="#a87d507f57545f1f8885a9508e49b752c" class="m-doc-self">warnings</a>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+      </div>
+    </div>
+  </div>
+</article></main>
+<div class="m-doc-search" id="search">
+  <a href="#!" onclick="return hideSearch()"></a>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-m-8 m-push-m-2">
+        <div class="m-doc-search-header m-text m-small">
+          <div><span class="m-label m-default">Tab</span> / <span class="m-label m-default">T</span> to search, <span class="m-label m-default">Esc</span> to close</div>
+          <div id="search-symbolcount">&hellip;</div>
+        </div>
+        <div class="m-doc-search-content">
+          <form>
+            <input type="search" name="q" id="search-input" placeholder="Loading &hellip;" disabled="disabled" autofocus="autofocus" autocomplete="off" spellcheck="false" />
+          </form>
+          <noscript class="m-text m-danger m-text-center">Unlike everything else in the docs, the search functionality <em>requires</em> JavaScript.</noscript>
+          <div id="search-help" class="m-text m-dim m-text-center">
+            <p class="m-noindent">Search for symbols, directories, files, pages or
+            modules. You can omit any prefix from the symbol or file path; adding a
+            <code>:</code> or <code>/</code> suffix lists all members of given symbol or
+            directory.</p>
+            <p class="m-noindent">Use <span class="m-label m-dim">&darr;</span>
+            / <span class="m-label m-dim">&uarr;</span> to navigate through the list,
+            <span class="m-label m-dim">Enter</span> to go.
+            <span class="m-label m-dim">Tab</span> autocompletes common prefix, you can
+            copy a link to the result using <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">L</span> while <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">M</span> produces a Markdown link.</p>
+          </div>
+          <div id="search-notfound" class="m-text m-warning m-text-center">Sorry, nothing was found.</div>
+          <ul id="search-results"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="search-v1.js"></script>
+<script src="searchdata-v1.js" async="async"></script>
+<footer><nav>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <p>GEMMI C++ API. Created with <a href="https://doxygen.org/">Doxygen</a> 1.8.18 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
+      </div>
+    </div>
+  </div>
+</nav></footer>
+</body>
+</html>

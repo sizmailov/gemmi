@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>gemmi::BidirIterator struct | GEMMI C++ API</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
+  <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
+  <link rel="icon" href="favicon-dark.png" type="image/png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#22272e" />
+</head>
+<body>
+<header><nav id="navigation">
+  <div class="m-container">
+    <div class="m-row">
+      <span id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m">
+        <a href="../..">GEMMI</a> <span class="m-breadcrumb">|</span> <a href="index.html" class="m-thin">C++ API</a>
+      </span>
+      <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
+        <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+          <path id="m-doc-search-icon-path" d="m6 0c-3.31 0-6 2.69-6 6 0 3.31 2.69 6 6 6 1.49 0 2.85-0.541 3.89-1.44-0.0164 0.338 0.147 0.759 0.5 1.15l3.22 3.79c0.552 0.614 1.45 0.665 2 0.115 0.55-0.55 0.499-1.45-0.115-2l-3.79-3.22c-0.392-0.353-0.812-0.515-1.15-0.5 0.895-1.05 1.44-2.41 1.44-3.89 0-3.31-2.69-6-6-6zm0 1.56a4.44 4.44 0 0 1 4.44 4.44 4.44 4.44 0 0 1-4.44 4.44 4.44 4.44 0 0 1-4.44-4.44 4.44 4.44 0 0 1 4.44-4.44z"/>
+        </svg></a>
+        <a id="m-navbar-show" href="#navigation" title="Show navigation"></a>
+        <a id="m-navbar-hide" href="#" title="Hide navigation"></a>
+      </div>
+      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
+        <div class="m-row">
+          <ol class="m-col-t-6 m-col-m-none">
+          </ol>
+          <ol class="m-col-t-6 m-col-m-none" start="1">
+            <li><a href="namespaces.html">Namespaces</a></li>
+            <li><a href="annotated.html">Classes</a></li>
+            <li><a href="files.html">Files</a></li>
+            <li><a href="../python/index.html">Python API</a></li>
+            <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+              <use href="#m-doc-search-icon-path" />
+            </svg></a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav></header>
+<main><article>
+  <div class="m-container m-container-inflatable">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <h1>
+          <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="iterator_8hpp.html">&lt;gemmi/iterator.hpp&gt;</a></div>
+          <div class="m-doc-template">template&lt;typename Policy&gt;</div>
+          <span class="m-breadcrumb"><a href="namespacegemmi.html">gemmi</a>::<wbr/></span>BidirIterator <span class="m-thin">struct</span>
+        </h1>
+        <p><span></span></p>
+        <div class="m-block m-default">
+          <h3>Contents</h3>
+          <ul>
+            <li>
+              Reference
+              <ul>
+                <li><a href="#pub-types">Public types</a></li>
+                <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
+                <li><a href="#pub-methods">Public functions</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <section id="pub-types">
+          <h2><a href="#pub-types">Public types</a></h2>
+          <dl class="m-doc">
+            <dt id="a76c6f9dab7082e32dae9eeddecf609e0">
+              using <a href="#a76c6f9dab7082e32dae9eeddecf609e0" class="m-doc-self">value_type</a> = <a href="http://en.cppreference.com/w/cpp/types/remove_cv.html" class="m-doc-external">std::<wbr />remove_cv</a>&lt;typename Policy::value_type&gt;::type
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a225127482b2c7f8b5f81e06b74b68c40">
+              using <a href="#a225127482b2c7f8b5f81e06b74b68c40" class="m-doc-self">difference_type</a> = <a href="http://en.cppreference.com/w/cpp/types/ptrdiff_t.html" class="m-doc-external">std::<wbr />ptrdiff_t</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="aae02412f6e52a3a30a8157eb1bb57c93">
+              using <a href="#aae02412f6e52a3a30a8157eb1bb57c93" class="m-doc-self">pointer</a> = Policy::value_type*
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ad41d5b5607411f19d9b3165358da236e">
+              using <a href="#ad41d5b5607411f19d9b3165358da236e" class="m-doc-self">reference</a> = Policy::value_type&amp;
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a75f4c944850fc15185b55f7d9b4cad3e">
+              using <a href="#a75f4c944850fc15185b55f7d9b4cad3e" class="m-doc-self">iterator_category</a> = <a href="http://en.cppreference.com/w/cpp/iterator/iterator_tags.html" class="m-doc-external">std::<wbr />bidirectional_iterator_tag</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a3c014d1d363f32b4f5225ec1f5cbc927">
+              using <a href="#a3c014d1d363f32b4f5225ec1f5cbc927" class="m-doc-self">const_variant</a> = <a href="structgemmi_1_1BidirIterator.html" class="m-doc">BidirIterator</a>&lt;typename Policy::const_policy&gt;
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="typeless-methods">
+          <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
+          <dl class="m-doc">
+            <dt id="aab8b86a619bb51fe13356e8aeebabcb9">
+              <span class="m-doc-wrap-bumper"><a href="#aab8b86a619bb51fe13356e8aeebabcb9" class="m-doc-self">BidirIterator</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-info">defaulted</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ad27355fa2828d466bf76a8ba07a418db">
+              <span class="m-doc-wrap-bumper"><a href="#ad27355fa2828d466bf76a8ba07a418db" class="m-doc-self">BidirIterator</a>(</span><span class="m-doc-wrap">Policy&amp;&amp; p)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ab305027a35b522dab10ddce9e6474f75">
+              <span class="m-doc-wrap-bumper"><a href="#ab305027a35b522dab10ddce9e6474f75" class="m-doc-self">operator const_variant</a>(</span><span class="m-doc-wrap">) const</span>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="pub-methods">
+          <h2><a href="#pub-methods">Public functions</a></h2>
+          <dl class="m-doc">
+            <dt id="a54863d63450722757217b18454e222f2">
+              <span class="m-doc-wrap-bumper">auto <a href="#a54863d63450722757217b18454e222f2" class="m-doc-self">operator++</a>(</span><span class="m-doc-wrap">) -&gt; <a href="structgemmi_1_1BidirIterator.html" class="m-doc">BidirIterator</a>&amp;</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ad07d24adfa2bbe74a09f4cbab0ca7ba9">
+              <span class="m-doc-wrap-bumper">auto <a href="#ad07d24adfa2bbe74a09f4cbab0ca7ba9" class="m-doc-self">operator++</a>(</span><span class="m-doc-wrap">int) -&gt; <a href="structgemmi_1_1BidirIterator.html" class="m-doc">BidirIterator</a></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="abfeb3361c47dab5122ec67559667612e">
+              <span class="m-doc-wrap-bumper">auto <a href="#abfeb3361c47dab5122ec67559667612e" class="m-doc-self">operator--</a>(</span><span class="m-doc-wrap">) -&gt; <a href="structgemmi_1_1BidirIterator.html" class="m-doc">BidirIterator</a>&amp;</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="aa7c9a153a3de46785e02c4f2aa77d4d0">
+              <span class="m-doc-wrap-bumper">auto <a href="#aa7c9a153a3de46785e02c4f2aa77d4d0" class="m-doc-self">operator--</a>(</span><span class="m-doc-wrap">int) -&gt; <a href="structgemmi_1_1BidirIterator.html" class="m-doc">BidirIterator</a></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a0b18c9ffd37ef353d5e8d9f38c0ad21f">
+              <span class="m-doc-wrap-bumper">auto <a href="#a0b18c9ffd37ef353d5e8d9f38c0ad21f" class="m-doc-self">operator==</a>(</span><span class="m-doc-wrap">const <a href="structgemmi_1_1BidirIterator.html" class="m-doc">BidirIterator</a>&amp; o) const -&gt; bool</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="aa8bb930cfc29757ceb9aa4c098e8dc9a">
+              <span class="m-doc-wrap-bumper">auto <a href="#aa8bb930cfc29757ceb9aa4c098e8dc9a" class="m-doc-self">operator!=</a>(</span><span class="m-doc-wrap">const <a href="structgemmi_1_1BidirIterator.html" class="m-doc">BidirIterator</a>&amp; o) const -&gt; bool</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a1b0bce5199f5e900270d2241a229023e">
+              <span class="m-doc-wrap-bumper">auto <a href="#a1b0bce5199f5e900270d2241a229023e" class="m-doc-self">operator*</a>(</span><span class="m-doc-wrap">) -&gt; reference</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a5a32e4528bc413cf8e1b4c67a91d16e8">
+              <span class="m-doc-wrap-bumper">auto <a href="#a5a32e4528bc413cf8e1b4c67a91d16e8" class="m-doc-self">operator-&gt;</a>(</span><span class="m-doc-wrap">) -&gt; pointer</span>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+      </div>
+    </div>
+  </div>
+</article></main>
+<div class="m-doc-search" id="search">
+  <a href="#!" onclick="return hideSearch()"></a>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-m-8 m-push-m-2">
+        <div class="m-doc-search-header m-text m-small">
+          <div><span class="m-label m-default">Tab</span> / <span class="m-label m-default">T</span> to search, <span class="m-label m-default">Esc</span> to close</div>
+          <div id="search-symbolcount">&hellip;</div>
+        </div>
+        <div class="m-doc-search-content">
+          <form>
+            <input type="search" name="q" id="search-input" placeholder="Loading &hellip;" disabled="disabled" autofocus="autofocus" autocomplete="off" spellcheck="false" />
+          </form>
+          <noscript class="m-text m-danger m-text-center">Unlike everything else in the docs, the search functionality <em>requires</em> JavaScript.</noscript>
+          <div id="search-help" class="m-text m-dim m-text-center">
+            <p class="m-noindent">Search for symbols, directories, files, pages or
+            modules. You can omit any prefix from the symbol or file path; adding a
+            <code>:</code> or <code>/</code> suffix lists all members of given symbol or
+            directory.</p>
+            <p class="m-noindent">Use <span class="m-label m-dim">&darr;</span>
+            / <span class="m-label m-dim">&uarr;</span> to navigate through the list,
+            <span class="m-label m-dim">Enter</span> to go.
+            <span class="m-label m-dim">Tab</span> autocompletes common prefix, you can
+            copy a link to the result using <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">L</span> while <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">M</span> produces a Markdown link.</p>
+          </div>
+          <div id="search-notfound" class="m-text m-warning m-text-center">Sorry, nothing was found.</div>
+          <ul id="search-results"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="search-v1.js"></script>
+<script src="searchdata-v1.js" async="async"></script>
+<footer><nav>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <p>GEMMI C++ API. Created with <a href="https://doxygen.org/">Doxygen</a> 1.8.18 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
+      </div>
+    </div>
+  </div>
+</nav></footer>
+</body>
+</html>

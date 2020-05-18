@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>tao::TAO_PEGTL_NAMESPACE::memory_input class | GEMMI C++ API</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
+  <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
+  <link rel="icon" href="favicon-dark.png" type="image/png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#22272e" />
+</head>
+<body>
+<header><nav id="navigation">
+  <div class="m-container">
+    <div class="m-row">
+      <span id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m">
+        <a href="../..">GEMMI</a> <span class="m-breadcrumb">|</span> <a href="index.html" class="m-thin">C++ API</a>
+      </span>
+      <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
+        <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+          <path id="m-doc-search-icon-path" d="m6 0c-3.31 0-6 2.69-6 6 0 3.31 2.69 6 6 6 1.49 0 2.85-0.541 3.89-1.44-0.0164 0.338 0.147 0.759 0.5 1.15l3.22 3.79c0.552 0.614 1.45 0.665 2 0.115 0.55-0.55 0.499-1.45-0.115-2l-3.79-3.22c-0.392-0.353-0.812-0.515-1.15-0.5 0.895-1.05 1.44-2.41 1.44-3.89 0-3.31-2.69-6-6-6zm0 1.56a4.44 4.44 0 0 1 4.44 4.44 4.44 4.44 0 0 1-4.44 4.44 4.44 4.44 0 0 1-4.44-4.44 4.44 4.44 0 0 1 4.44-4.44z"/>
+        </svg></a>
+        <a id="m-navbar-show" href="#navigation" title="Show navigation"></a>
+        <a id="m-navbar-hide" href="#" title="Hide navigation"></a>
+      </div>
+      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
+        <div class="m-row">
+          <ol class="m-col-t-6 m-col-m-none">
+          </ol>
+          <ol class="m-col-t-6 m-col-m-none" start="1">
+            <li><a href="namespaces.html">Namespaces</a></li>
+            <li><a href="annotated.html">Classes</a></li>
+            <li><a href="files.html">Files</a></li>
+            <li><a href="../python/index.html">Python API</a></li>
+            <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+              <use href="#m-doc-search-icon-path" />
+            </svg></a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav></header>
+<main><article>
+  <div class="m-container m-container-inflatable">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <h1>
+          <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="memory__input_8hpp.html">&lt;gemmi/third_party/tao/pegtl/memory_input.hpp&gt;</a></div>
+          <div class="m-doc-template">template&lt;tracking_mode P = tracking_mode::IMMEDIATE, typename Eol = eol::lf_crlf, typename Source = <a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a>&gt;</div>
+          <span class="m-breadcrumb"><a href="namespacetao.html">tao</a>::<wbr/></span><span class="m-breadcrumb"><a href="namespacetao_1_1TAO__PEGTL__NAMESPACE.html">TAO_PEGTL_NAMESPACE</a>::<wbr/></span>memory_input <span class="m-thin">class</span>
+        </h1>
+        <p><span></span></p>
+        <div class="m-block m-default">
+          <h3>Contents</h3>
+          <ul>
+            <li>
+              Reference
+              <ul>
+                <li><a href="#base-classes">Base classes</a></li>
+                <li><a href="#pub-types">Public types</a></li>
+                <li><a href="#pub-static-attribs">Public static variables</a></li>
+                <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
+                <li><a href="#pub-methods">Public functions</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <section id="base-classes">
+          <h2><a href="#base-classes">Base classes</a></h2>
+          <dl class="m-doc">
+            <dt>
+              <div class="m-doc-template">template&lt;tracking_mode, typename Eol, typename Source&gt;</div>
+              class <a href="classtao_1_1TAO__PEGTL__NAMESPACE_1_1internal_1_1memory__input__base.html" class="m-doc">memory_input_base</a>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="pub-types">
+          <h2><a href="#pub-types">Public types</a></h2>
+          <dl class="m-doc">
+            <dt id="af3e50d1a55de92ff29123e567c7db9e8">
+              using <a href="#af3e50d1a55de92ff29123e567c7db9e8" class="m-doc-self">eol_t</a> = Eol
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a4998e25cd23dcbba04da3373265d2ff5">
+              using <a href="#a4998e25cd23dcbba04da3373265d2ff5" class="m-doc-self">source_t</a> = Source
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a13bfab0a7983526689dc930e4d33a5c3">
+              using <a href="#a13bfab0a7983526689dc930e4d33a5c3" class="m-doc-self">action_t</a> = <a href="classtao_1_1TAO__PEGTL__NAMESPACE_1_1internal_1_1action__input.html" class="m-doc">internal::<wbr />action_input</a>&lt;<a href="classtao_1_1TAO__PEGTL__NAMESPACE_1_1memory__input.html" class="m-doc">memory_<wbr />input</a>&gt;
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="pub-static-attribs">
+          <h2><a href="#pub-static-attribs">Public static variables</a></h2>
+          <dl class="m-doc">
+            <dt id="ae6126e945069b2df66df7694932fdfbe">
+              static tracking_mode <a href="#ae6126e945069b2df66df7694932fdfbe" class="m-doc-self">tracking_mode_v</a> <span class="m-label m-flat m-primary">constexpr</span>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="typeless-methods">
+          <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
+          <dl class="m-doc">
+            <dt id="a9b000d1ab6e22bca251c9eac6c46297b">
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper"><a href="#a9b000d1ab6e22bca251c9eac6c46297b" class="m-doc-self">memory_input</a>(</span><span class="m-doc-wrap">const char* in_begin,
+              const <a href="http://en.cppreference.com/w/cpp/types/size_t.html" class="m-doc-external">std::<wbr />size_t</a> in_size,
+              T&amp;&amp; in_source) <span class="m-label m-flat m-success">noexcept(…)</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a5bea7f0a8d9e4dae6573b25f8ab2fd5f">
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper"><a href="#a5bea7f0a8d9e4dae6573b25f8ab2fd5f" class="m-doc-self">memory_input</a>(</span><span class="m-doc-wrap">const <a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a>&amp; in_string,
+              T&amp;&amp; in_source) <span class="m-label m-flat m-success">noexcept(…)</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a305d79bcdef0c0f0b1db888fdf2b9158">
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper"><a href="#a305d79bcdef0c0f0b1db888fdf2b9158" class="m-doc-self">memory_input</a>(</span><span class="m-doc-wrap"><a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a>&amp;&amp;,
+              T&amp;&amp;) <span class="m-label m-flat m-danger">deleted</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="aaf036e35cbe9266da5859ae8be68c1e2">
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper"><a href="#aaf036e35cbe9266da5859ae8be68c1e2" class="m-doc-self">memory_input</a>(</span><span class="m-doc-wrap">const char* in_begin,
+              T&amp;&amp; in_source) <span class="m-label m-flat m-success">noexcept(…)</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a0604fe4b3a1c3af0ee40290847513573">
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper"><a href="#a0604fe4b3a1c3af0ee40290847513573" class="m-doc-self">memory_input</a>(</span><span class="m-doc-wrap">const char* in_begin,
+              const char* in_end,
+              T&amp;&amp; in_source,
+              const <a href="http://en.cppreference.com/w/cpp/types/size_t.html" class="m-doc-external">std::<wbr />size_t</a> in_byte,
+              const <a href="http://en.cppreference.com/w/cpp/types/size_t.html" class="m-doc-external">std::<wbr />size_t</a> in_line,
+              const <a href="http://en.cppreference.com/w/cpp/types/size_t.html" class="m-doc-external">std::<wbr />size_t</a> in_byte_in_line) <span class="m-label m-flat m-success">noexcept(…)</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ac6c08f94464aa82f66258df77e0a595c">
+              <span class="m-doc-wrap-bumper"><a href="#ac6c08f94464aa82f66258df77e0a595c" class="m-doc-self">memory_input</a>(</span><span class="m-doc-wrap">const <a href="classtao_1_1TAO__PEGTL__NAMESPACE_1_1memory__input.html" class="m-doc">memory_<wbr />input</a>&amp;) <span class="m-label m-flat m-danger">deleted</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a93b639687b07c48a1a4936f670cf3bb7">
+              <span class="m-doc-wrap-bumper"><a href="#a93b639687b07c48a1a4936f670cf3bb7" class="m-doc-self">memory_input</a>(</span><span class="m-doc-wrap"><a href="classtao_1_1TAO__PEGTL__NAMESPACE_1_1memory__input.html" class="m-doc">memory_<wbr />input</a>&amp;&amp;) <span class="m-label m-flat m-danger">deleted</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a7a5d08e96a56b1da950a517d73f5e515">
+              <span class="m-doc-wrap-bumper"><a href="#a7a5d08e96a56b1da950a517d73f5e515" class="m-doc-self">~memory_input</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-info">defaulted</span></span>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="pub-methods">
+          <h2><a href="#pub-methods">Public functions</a></h2>
+          <dl class="m-doc">
+            <dt id="a7d1389d31bb9bda1789e1c986f8271d5">
+              <span class="m-doc-wrap-bumper">auto <a href="#a7d1389d31bb9bda1789e1c986f8271d5" class="m-doc-self">operator=</a>(</span><span class="m-doc-wrap">const <a href="classtao_1_1TAO__PEGTL__NAMESPACE_1_1memory__input.html" class="m-doc">memory_<wbr />input</a>&amp;) -&gt; <a href="classtao_1_1TAO__PEGTL__NAMESPACE_1_1memory__input.html" class="m-doc">memory_<wbr />input</a> <span class="m-label m-flat m-danger">deleted</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a4ac97f473b6beb022d5eb478c975c02e">
+              <span class="m-doc-wrap-bumper">auto <a href="#a4ac97f473b6beb022d5eb478c975c02e" class="m-doc-self">operator=</a>(</span><span class="m-doc-wrap"><a href="classtao_1_1TAO__PEGTL__NAMESPACE_1_1memory__input.html" class="m-doc">memory_<wbr />input</a>&amp;&amp;) -&gt; <a href="classtao_1_1TAO__PEGTL__NAMESPACE_1_1memory__input.html" class="m-doc">memory_<wbr />input</a> <span class="m-label m-flat m-danger">deleted</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ab329e71d4dfe17cc12028a17f5c1a469">
+              <span class="m-doc-wrap-bumper">auto <a href="#ab329e71d4dfe17cc12028a17f5c1a469" class="m-doc-self">source</a>(</span><span class="m-doc-wrap">) const -&gt; const Source&amp; <span class="m-label m-flat m-success">noexcept</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a2f13b84dd1bebdb9cb0b10af1ae51985">
+              <span class="m-doc-wrap-bumper">auto <a href="#a2f13b84dd1bebdb9cb0b10af1ae51985" class="m-doc-self">empty</a>(</span><span class="m-doc-wrap">) const -&gt; bool <span class="m-label m-flat m-success">noexcept</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a6e2901de65b9cbf7b5bf8da93d697727">
+              <span class="m-doc-wrap-bumper">auto <a href="#a6e2901de65b9cbf7b5bf8da93d697727" class="m-doc-self">size</a>(</span><span class="m-doc-wrap">const <a href="http://en.cppreference.com/w/cpp/types/size_t.html" class="m-doc-external">std::<wbr />size_t</a> = 0) const -&gt; <a href="http://en.cppreference.com/w/cpp/types/size_t.html" class="m-doc-external">std::<wbr />size_t</a> <span class="m-label m-flat m-success">noexcept</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a8ee811074e2d5f1dbf7a0573975f26a9">
+              <span class="m-doc-wrap-bumper">auto <a href="#a8ee811074e2d5f1dbf7a0573975f26a9" class="m-doc-self">peek_char</a>(</span><span class="m-doc-wrap">const <a href="http://en.cppreference.com/w/cpp/types/size_t.html" class="m-doc-external">std::<wbr />size_t</a> offset = 0) const -&gt; char <span class="m-label m-flat m-success">noexcept</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a5c2d8428525223836824ddfd6455d5f4">
+              <span class="m-doc-wrap-bumper">auto <a href="#a5c2d8428525223836824ddfd6455d5f4" class="m-doc-self">peek_byte</a>(</span><span class="m-doc-wrap">const <a href="http://en.cppreference.com/w/cpp/types/size_t.html" class="m-doc-external">std::<wbr />size_t</a> offset = 0) const -&gt; unsigned char <span class="m-label m-flat m-success">noexcept</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a74af4b42300f44c148be4e5c515d539c">
+              <span class="m-doc-wrap-bumper">auto <a href="#a74af4b42300f44c148be4e5c515d539c" class="m-doc-self">iterator</a>(</span><span class="m-doc-wrap">) -&gt; iterator_t&amp; <span class="m-label m-flat m-success">noexcept</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a8af5c47f06763c6623e74161060bbcf3">
+              <span class="m-doc-wrap-bumper">auto <a href="#a8af5c47f06763c6623e74161060bbcf3" class="m-doc-self">iterator</a>(</span><span class="m-doc-wrap">) const -&gt; const iterator_t&amp; <span class="m-label m-flat m-success">noexcept</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a32901490e71bd0e9aac864e5246b0f1d">
+              <span class="m-doc-wrap-bumper">auto <a href="#a32901490e71bd0e9aac864e5246b0f1d" class="m-doc-self">position</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="structtao_1_1TAO__PEGTL__NAMESPACE_1_1position.html" class="m-doc">TAO_PEGTL_NAMESPACE::<wbr />position</a></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ae4d34a7df0c4913464acf158645ebd14">
+              <span class="m-doc-wrap-bumper">void <a href="#ae4d34a7df0c4913464acf158645ebd14" class="m-doc-self">discard</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-flat m-success">noexcept</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="abaf4709c3fbeb242a747978ca951deef">
+              <span class="m-doc-wrap-bumper">void <a href="#abaf4709c3fbeb242a747978ca951deef" class="m-doc-self">require</a>(</span><span class="m-doc-wrap">const <a href="http://en.cppreference.com/w/cpp/types/size_t.html" class="m-doc-external">std::<wbr />size_t</a>) const <span class="m-label m-flat m-success">noexcept</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a81aedc66068789024c21b77171fa0531">
+              <div class="m-doc-template">template&lt;rewind_mode M&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a81aedc66068789024c21b77171fa0531" class="m-doc-self">mark</a>(</span><span class="m-doc-wrap">) -&gt; <a href="classtao_1_1TAO__PEGTL__NAMESPACE_1_1internal_1_1marker.html" class="m-doc">internal::<wbr />marker</a>&lt;iterator_t, M&gt; <span class="m-label m-flat m-success">noexcept</span></span>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+      </div>
+    </div>
+  </div>
+</article></main>
+<div class="m-doc-search" id="search">
+  <a href="#!" onclick="return hideSearch()"></a>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-m-8 m-push-m-2">
+        <div class="m-doc-search-header m-text m-small">
+          <div><span class="m-label m-default">Tab</span> / <span class="m-label m-default">T</span> to search, <span class="m-label m-default">Esc</span> to close</div>
+          <div id="search-symbolcount">&hellip;</div>
+        </div>
+        <div class="m-doc-search-content">
+          <form>
+            <input type="search" name="q" id="search-input" placeholder="Loading &hellip;" disabled="disabled" autofocus="autofocus" autocomplete="off" spellcheck="false" />
+          </form>
+          <noscript class="m-text m-danger m-text-center">Unlike everything else in the docs, the search functionality <em>requires</em> JavaScript.</noscript>
+          <div id="search-help" class="m-text m-dim m-text-center">
+            <p class="m-noindent">Search for symbols, directories, files, pages or
+            modules. You can omit any prefix from the symbol or file path; adding a
+            <code>:</code> or <code>/</code> suffix lists all members of given symbol or
+            directory.</p>
+            <p class="m-noindent">Use <span class="m-label m-dim">&darr;</span>
+            / <span class="m-label m-dim">&uarr;</span> to navigate through the list,
+            <span class="m-label m-dim">Enter</span> to go.
+            <span class="m-label m-dim">Tab</span> autocompletes common prefix, you can
+            copy a link to the result using <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">L</span> while <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">M</span> produces a Markdown link.</p>
+          </div>
+          <div id="search-notfound" class="m-text m-warning m-text-center">Sorry, nothing was found.</div>
+          <ul id="search-results"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="search-v1.js"></script>
+<script src="searchdata-v1.js" async="async"></script>
+<footer><nav>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <p>GEMMI C++ API. Created with <a href="https://doxygen.org/">Doxygen</a> 1.8.18 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
+      </div>
+    </div>
+  </div>
+</nav></footer>
+</body>
+</html>

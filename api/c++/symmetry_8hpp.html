@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>gemmi/symmetry.hpp file | GEMMI C++ API</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
+  <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
+  <link rel="icon" href="favicon-dark.png" type="image/png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#22272e" />
+</head>
+<body>
+<header><nav id="navigation">
+  <div class="m-container">
+    <div class="m-row">
+      <span id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m">
+        <a href="../..">GEMMI</a> <span class="m-breadcrumb">|</span> <a href="index.html" class="m-thin">C++ API</a>
+      </span>
+      <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
+        <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+          <path id="m-doc-search-icon-path" d="m6 0c-3.31 0-6 2.69-6 6 0 3.31 2.69 6 6 6 1.49 0 2.85-0.541 3.89-1.44-0.0164 0.338 0.147 0.759 0.5 1.15l3.22 3.79c0.552 0.614 1.45 0.665 2 0.115 0.55-0.55 0.499-1.45-0.115-2l-3.79-3.22c-0.392-0.353-0.812-0.515-1.15-0.5 0.895-1.05 1.44-2.41 1.44-3.89 0-3.31-2.69-6-6-6zm0 1.56a4.44 4.44 0 0 1 4.44 4.44 4.44 4.44 0 0 1-4.44 4.44 4.44 4.44 0 0 1-4.44-4.44 4.44 4.44 0 0 1 4.44-4.44z"/>
+        </svg></a>
+        <a id="m-navbar-show" href="#navigation" title="Show navigation"></a>
+        <a id="m-navbar-hide" href="#" title="Hide navigation"></a>
+      </div>
+      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
+        <div class="m-row">
+          <ol class="m-col-t-6 m-col-m-none">
+          </ol>
+          <ol class="m-col-t-6 m-col-m-none" start="1">
+            <li><a href="namespaces.html">Namespaces</a></li>
+            <li><a href="annotated.html">Classes</a></li>
+            <li><a href="files.html">Files</a></li>
+            <li><a href="../python/index.html">Python API</a></li>
+            <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+              <use href="#m-doc-search-icon-path" />
+            </svg></a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav></header>
+<main><article>
+  <div class="m-container m-container-inflatable">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <h1>
+          <span class="m-breadcrumb"><a href="dir_c5b8fc87970ee713285cf5bc9d6a8cb4.html">gemmi</a>/</span>symmetry.hpp <span class="m-thin">file</span>
+        </h1>
+        <p><span></span></p>
+        <div class="m-block m-default">
+          <h3>Contents</h3>
+          <ul>
+            <li>
+              Reference
+              <ul>
+                <li><a href="#namespaces">Namespaces</a></li>
+                <li><a href="#nested-classes">Classes</a></li>
+                <li><a href="#enum-members">Enums</a></li>
+                <li><a href="#typedef-members">Typedefs</a></li>
+                <li><a href="#func-members">Functions</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <section id="namespaces">
+          <h2><a href="#namespaces">Namespaces</a></h2>
+          <dl class="m-doc">
+            <dt>namespace <a href="namespacegemmi.html" class="m-doc">gemmi</a></dt>
+            <dd><span></span></dd>
+            <dt>namespace <a href="namespacegemmi_1_1impl.html" class="m-doc">gemmi::impl</a></dt>
+            <dd><span></span></dd>
+            <dt>namespace <a href="namespacestd.html" class="m-doc">std</a></dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="nested-classes">
+          <h2><a href="#nested-classes">Classes</a></h2>
+          <dl class="m-doc">
+            <dt>
+              struct <a href="structgemmi_1_1Op.html" class="m-doc">gemmi::Op</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              struct <a href="structgemmi_1_1GroupOps.html" class="m-doc">gemmi::GroupOps</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              struct <a href="structgemmi_1_1GroupOps_1_1Iter.html" class="m-doc">gemmi::GroupOps::Iter</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              struct <a href="structgemmi_1_1SpaceGroup.html" class="m-doc">gemmi::SpaceGroup</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              struct <a href="structgemmi_1_1SpaceGroupAltName.html" class="m-doc">gemmi::SpaceGroupAltName</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              <div class="m-doc-template">template&lt;class Dummy&gt;</div>
+              struct <a href="structgemmi_1_1impl_1_1Tables__.html" class="m-doc">gemmi::impl::Tables_</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              struct <a href="structgemmi_1_1ReciprocalAsuChecker.html" class="m-doc">gemmi::ReciprocalAsuChecker</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              <div class="m-doc-template">template&lt;&gt;</div>
+              struct <a href="structstd_1_1hash_3_01gemmi_1_1Op_01_4.html" class="m-doc">std::hash&lt;gemmi::Op&gt;</a>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="enum-members">
+          <h2><a href="#enum-members">Enums</a></h2>
+          <dl class="m-doc">
+            <dt id="aef6247ca0a6a25cc3825d783c8d33cda">
+              <span class="m-doc-wrap-bumper">enum class <a href="#aef6247ca0a6a25cc3825d783c8d33cda" class="m-doc-self">CrystalSystem</a>: unsigned char { </span><span class="m-doc-wrap"><a href="#aef6247ca0a6a25cc3825d783c8d33cdaa45d3988e303ecb4da2498e707d28ad39" class="m-doc">Triclinic</a> =0,
+              <a href="#aef6247ca0a6a25cc3825d783c8d33cdaa55a5e68b388b59383b16383d30101b4e" class="m-doc">Monoclinic</a>,
+              <a href="#aef6247ca0a6a25cc3825d783c8d33cdaa907e1b0cb3cdf81f70b6b7e2c7d19e5a" class="m-doc">Orthorhombic</a>,
+              <a href="#aef6247ca0a6a25cc3825d783c8d33cdaa97c0069c1c88eef33e1c1db21d38de43" class="m-doc">Tetragonal</a>,
+              <a href="#aef6247ca0a6a25cc3825d783c8d33cdaae8ae83920b1b094435999b5380270e72" class="m-doc">Trigonal</a>,
+              <a href="#aef6247ca0a6a25cc3825d783c8d33cdaa28666f62a0ffe4485fb7c7e878234dda" class="m-doc">Hexagonal</a>,
+              <a href="#aef6247ca0a6a25cc3825d783c8d33cdaaec6b5414eb175379ff9efc9b3eef5814" class="m-doc">Cubic</a> }</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a40476b27b97bc7ac8284d3b077b36cbf">
+              <span class="m-doc-wrap-bumper">enum class <a href="#a40476b27b97bc7ac8284d3b077b36cbf" class="m-doc-self">PointGroup</a>: unsigned char { </span><span class="m-doc-wrap"><a href="#a40476b27b97bc7ac8284d3b077b36cbfa1a2ddc2db4693cfd16d534cde5572cc1" class="m-doc">C1</a> =0,
+              <a href="#a40476b27b97bc7ac8284d3b077b36cbfa6fd5bce0a0270467f657066323880d96" class="m-doc">Ci</a>,
+              <a href="#a40476b27b97bc7ac8284d3b077b36cbfaf1a543f5a2c5d49bc5dde298fcf716e4" class="m-doc">C2</a>,
+              <a href="#a40476b27b97bc7ac8284d3b077b36cbfa8b847cfae498e96e3fa08a56cb42b838" class="m-doc">Cs</a>,
+              <a href="#a40476b27b97bc7ac8284d3b077b36cbfaa92c5ff6e57ac12e7428f0eb33d9318a" class="m-doc">C2h</a>,
+              <a href="#a40476b27b97bc7ac8284d3b077b36cbfac4d62b6dcca08e5caf06c01889282859" class="m-doc">D2</a>,
+              <a href="#a40476b27b97bc7ac8284d3b077b36cbfa84fb91b08b10576a41ae3f504eb1524f" class="m-doc">C2v</a>,
+              <a href="#a40476b27b97bc7ac8284d3b077b36cbfaecbb9590c80749bb7ed7cba41621fc74" class="m-doc">D2h</a>,
+              <a href="#a40476b27b97bc7ac8284d3b077b36cbfab713e6323a68d3ddabf4855826c50148" class="m-doc">C4</a>,
+              <a href="#a40476b27b97bc7ac8284d3b077b36cbfad59a89abb4af5bc4dd85243d5f75bcac" class="m-doc">S4</a>,
+              <a href="#a40476b27b97bc7ac8284d3b077b36cbfa387428cc16d4b2b205e1f94fbd113d7d" class="m-doc">C4h</a>,
+              <a href="#a40476b27b97bc7ac8284d3b077b36cbfa2521dc256a4368da87585c936b451dd7" class="m-doc">D4</a>,
+              <a href="#a40476b27b97bc7ac8284d3b077b36cbfa072f6d8c5b347b5330f68c67a0797013" class="m-doc">C4v</a>,
+              <a href="#a40476b27b97bc7ac8284d3b077b36cbfaf92f643f3f349e6f5eefc4f10867a660" class="m-doc">D2d</a>,
+              <a href="#a40476b27b97bc7ac8284d3b077b36cbfa35973cc996dc50cbf582b8c799611a6a" class="m-doc">D4h</a>,
+              <a href="#a40476b27b97bc7ac8284d3b077b36cbfa3abe124ecc82bf2c2e22e6058f38c50c" class="m-doc">C3</a>,
+              <a href="#a40476b27b97bc7ac8284d3b077b36cbfa086e2dcb69e6ed440dd15460f8472b0b" class="m-doc">C3i</a>,
+              <a href="#a40476b27b97bc7ac8284d3b077b36cbfaa3deb6e481689f1d3303caecb8a6c401" class="m-doc">D3</a>,
+              <a href="#a40476b27b97bc7ac8284d3b077b36cbfac44207e9fc361d7d4e908e76e7d27c95" class="m-doc">C3v</a>,
+              <a href="#a40476b27b97bc7ac8284d3b077b36cbfa1da74d7b74b35a3c2278ad2d229022df" class="m-doc">D3d</a>,
+              <a href="#a40476b27b97bc7ac8284d3b077b36cbfa7e8b9f5cab4a8fe24fad9fe4b7452702" class="m-doc">C6</a>,
+              <a href="#a40476b27b97bc7ac8284d3b077b36cbfa2a73c3aadee989f5cdfcfe44664d09c8" class="m-doc">C3h</a>,
+              <a href="#a40476b27b97bc7ac8284d3b077b36cbfa1a7f1c115f804adbc2b02b40def9e032" class="m-doc">C6h</a>,
+              <a href="#a40476b27b97bc7ac8284d3b077b36cbfae06ae0fa0b466d7a0d9696a11fc3246a" class="m-doc">D6</a>,
+              <a href="#a40476b27b97bc7ac8284d3b077b36cbfabdcfe354a125e7f1ca16ab3bd0642bb0" class="m-doc">C6v</a>,
+              <a href="#a40476b27b97bc7ac8284d3b077b36cbfa5bb1aa42f0605aab04353fc99d3bb3f4" class="m-doc">D3h</a>,
+              <a href="#a40476b27b97bc7ac8284d3b077b36cbfa8468d6214a2482a9fc36198dd3148097" class="m-doc">D6h</a>,
+              <a href="#a40476b27b97bc7ac8284d3b077b36cbfab9ece18c950afbfa6b0fdbfa4ff731d3" class="m-doc">T</a>,
+              <a href="#a40476b27b97bc7ac8284d3b077b36cbfaeeeb9a8eb45dd351d9ec0eb4acce66ce" class="m-doc">Th</a>,
+              <a href="#a40476b27b97bc7ac8284d3b077b36cbfaf186217753c37b9b9f958d906208506e" class="m-doc">O</a>,
+              <a href="#a40476b27b97bc7ac8284d3b077b36cbfa7205636bb6ee2cc464c30ce1cda43caa" class="m-doc">Td</a>,
+              <a href="#a40476b27b97bc7ac8284d3b077b36cbfa8021f7e4b05dada0ad3d47567e52249e" class="m-doc">Oh</a> }</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a6111b8282e1a25c970bb7d742eeae3bc">
+              <span class="m-doc-wrap-bumper">enum class <a href="#a6111b8282e1a25c970bb7d742eeae3bc" class="m-doc-self">Laue</a>: unsigned char { </span><span class="m-doc-wrap"><a href="#a6111b8282e1a25c970bb7d742eeae3bca9ec4c0afd450ceac7adb81c3bcfc9732" class="m-doc">L1</a> =0,
+              <a href="#a6111b8282e1a25c970bb7d742eeae3bcafae83cddad5581b4447a5fd0de7f2675" class="m-doc">L2m</a>,
+              <a href="#a6111b8282e1a25c970bb7d742eeae3bca150498ff60a5a8159468443b83d292e2" class="m-doc">Lmmm</a>,
+              <a href="#a6111b8282e1a25c970bb7d742eeae3bca3045d8fa957e3da3d9a2edadb35c3e8d" class="m-doc">L4m</a>,
+              <a href="#a6111b8282e1a25c970bb7d742eeae3bcadc2af84c005fa5bcb6f42a84947675b2" class="m-doc">L4mmm</a>,
+              <a href="#a6111b8282e1a25c970bb7d742eeae3bca842ce6eb510f7e7047da883915ec90e0" class="m-doc">L3</a>,
+              <a href="#a6111b8282e1a25c970bb7d742eeae3bca96f659a98c98dbeb8d42d4ed9e04e759" class="m-doc">L3m</a>,
+              <a href="#a6111b8282e1a25c970bb7d742eeae3bca5ff750778a46e19f83532a50e0fcb061" class="m-doc">L6m</a>,
+              <a href="#a6111b8282e1a25c970bb7d742eeae3bca1c495ebd48bc0740bcd8b8441b62dd97" class="m-doc">L6mmm</a>,
+              <a href="#a6111b8282e1a25c970bb7d742eeae3bca1d7538115bcfba1fbdc835cab09be091" class="m-doc">Lm3</a>,
+              <a href="#a6111b8282e1a25c970bb7d742eeae3bca72f2b3c9ae71bc83fb7f732acf33e56b" class="m-doc">Lm3m</a> }</span>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="typedef-members">
+          <h2><a href="#typedef-members">Typedefs</a></h2>
+          <dl class="m-doc">
+            <dt id="af56cc4cb150b34018aade256e92cb4d4">
+              using <a href="#af56cc4cb150b34018aade256e92cb4d4" class="m-doc-self">spacegroup_tables</a> = impl::Tables_&lt;void&gt;
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="func-members">
+          <h2><a href="#func-members">Functions</a></h2>
+          <dl class="m-doc">
+            <dt id="a912cd39e2c66e03a26d7ce07474d19f5">
+              <span class="m-doc-wrap-bumper">auto <a href="#a912cd39e2c66e03a26d7ce07474d19f5" class="m-doc-self">skip_blank</a>(</span><span class="m-doc-wrap">const char* p) -&gt; const char*</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a62e9066dc1bc74c5ccead4410d143b6f">
+              <span class="m-doc-wrap-bumper">auto <a href="#a62e9066dc1bc74c5ccead4410d143b6f" class="m-doc-self">operator==</a>(</span><span class="m-doc-wrap">const Op&amp; a,
+              const Op&amp; b) -&gt; bool</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ae74245ebf95199c5a224ea526436c428">
+              <span class="m-doc-wrap-bumper">auto <a href="#ae74245ebf95199c5a224ea526436c428" class="m-doc-self">operator!=</a>(</span><span class="m-doc-wrap">const Op&amp; a,
+              const Op&amp; b) -&gt; bool</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a2c7539729f45468a6c5c50c335b0fcbb">
+              <span class="m-doc-wrap-bumper">auto <a href="#a2c7539729f45468a6c5c50c335b0fcbb" class="m-doc-self">operator*</a>(</span><span class="m-doc-wrap">const Op&amp; a,
+              const Op&amp; b) -&gt; Op</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ab1e0a2bb1e4192f2ed382956cc846228">
+              <span class="m-doc-wrap-bumper">auto <a href="#ab1e0a2bb1e4192f2ed382956cc846228" class="m-doc-self">operator*=</a>(</span><span class="m-doc-wrap">Op&amp; a,
+              const Op&amp; b) -&gt; Op&amp;</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="afbb6ce45cd592a5b298f22f15e10fff2">
+              <span class="m-doc-wrap-bumper">auto <a href="#afbb6ce45cd592a5b298f22f15e10fff2" class="m-doc-self">parse_triplet_part</a>(</span><span class="m-doc-wrap">const <a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a>&amp; s) -&gt; <a href="http://en.cppreference.com/w/cpp/container/array.html" class="m-doc-external">std::<wbr />array</a>&lt;int, 4&gt;</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a078a2f79edddf5b61951dc8915f25f65">
+              <span class="m-doc-wrap-bumper">auto <a href="#a078a2f79edddf5b61951dc8915f25f65" class="m-doc-self">parse_triplet</a>(</span><span class="m-doc-wrap">const <a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a>&amp; s) -&gt; Op</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a292825e5908fa204dca23ea202f1cbbe">
+              <span class="m-doc-wrap-bumper">void <a href="#a292825e5908fa204dca23ea202f1cbbe" class="m-doc-self">append_small_number</a>(</span><span class="m-doc-wrap"><a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a>&amp; s,
+              int n)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a2132ced6e0ac84e391b453bfd4d8510c">
+              <span class="m-doc-wrap-bumper">void <a href="#a2132ced6e0ac84e391b453bfd4d8510c" class="m-doc-self">append_sign_of</a>(</span><span class="m-doc-wrap"><a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a>&amp; s,
+              int n)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a0722c500f97fd9eeed4501585c48d673">
+              <span class="m-doc-wrap-bumper">void <a href="#a0722c500f97fd9eeed4501585c48d673" class="m-doc-self">append_op_fraction</a>(</span><span class="m-doc-wrap"><a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a>&amp; s,
+              int w)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a344f487b995660bb38ea8adc461f5190">
+              <span class="m-doc-wrap-bumper">auto <a href="#a344f487b995660bb38ea8adc461f5190" class="m-doc-self">make_triplet_part</a>(</span><span class="m-doc-wrap">int x,
+              int y,
+              int z,
+              int w,
+              char style = &#x27;x&#x27;) -&gt; <a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a7e210902d7d06018274e3bb106e36e89">
+              <span class="m-doc-wrap-bumper">auto <a href="#a7e210902d7d06018274e3bb106e36e89" class="m-doc-self">centring_vectors</a>(</span><span class="m-doc-wrap">char lattice_symbol) -&gt; <a href="http://en.cppreference.com/w/cpp/container/vector.html" class="m-doc-external">std::<wbr />vector</a>&lt;Op::Tran&gt;</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a718bff2c93203bb32f1274745d4f6abb">
+              <span class="m-doc-wrap-bumper">auto <a href="#a718bff2c93203bb32f1274745d4f6abb" class="m-doc-self">split_centering_vectors</a>(</span><span class="m-doc-wrap">const <a href="http://en.cppreference.com/w/cpp/container/vector.html" class="m-doc-external">std::<wbr />vector</a>&lt;Op&gt;&amp; ops) -&gt; GroupOps</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a8838a40a5f253337af754129e49479f4">
+              <span class="m-doc-wrap-bumper">auto <a href="#a8838a40a5f253337af754129e49479f4" class="m-doc-self">hall_rotation_z</a>(</span><span class="m-doc-wrap">int N) -&gt; Op::Rot</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ad6d5f66ce5bc181d8325f66a99d97cde">
+              <span class="m-doc-wrap-bumper">auto <a href="#ad6d5f66ce5bc181d8325f66a99d97cde" class="m-doc-self">hall_translation_from_symbol</a>(</span><span class="m-doc-wrap">char symbol) -&gt; Op::Tran</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a9cb4fca701a12c7c664c3a329f807897">
+              <span class="m-doc-wrap-bumper">auto <a href="#a9cb4fca701a12c7c664c3a329f807897" class="m-doc-self">hall_matrix_symbol</a>(</span><span class="m-doc-wrap">const char* start,
+              const char* end,
+              int pos,
+              int&amp; prev) -&gt; Op</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a9be6315a6811cceb65ddd48a0fdefd45">
+              <span class="m-doc-wrap-bumper">auto <a href="#a9be6315a6811cceb65ddd48a0fdefd45" class="m-doc-self">parse_hall_change_of_basis</a>(</span><span class="m-doc-wrap">const char* start,
+              const char* end) -&gt; Op</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a25fa72b85b9af77bb723962d64e2bbd7">
+              <span class="m-doc-wrap-bumper">auto <a href="#a25fa72b85b9af77bb723962d64e2bbd7" class="m-doc-self">generators_from_hall</a>(</span><span class="m-doc-wrap">const char* hall) -&gt; GroupOps</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a653e22ac6d6f3358ca8355d0f73a84f6">
+              <span class="m-doc-wrap-bumper">auto <a href="#a653e22ac6d6f3358ca8355d0f73a84f6" class="m-doc-self">symops_from_hall</a>(</span><span class="m-doc-wrap">const char* hall) -&gt; GroupOps</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ae7569eebe3d616b58657fc829fcc9428">
+              <span class="m-doc-wrap-bumper">auto <a href="#ae7569eebe3d616b58657fc829fcc9428" class="m-doc-self">crystal_system_str</a>(</span><span class="m-doc-wrap">CrystalSystem system) -&gt; const char*</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="adac8d7b82d43cae7c14f5f65ebb2f6d4">
+              <span class="m-doc-wrap-bumper">auto <a href="#adac8d7b82d43cae7c14f5f65ebb2f6d4" class="m-doc-self">point_group_hm</a>(</span><span class="m-doc-wrap">PointGroup pg) -&gt; const char*</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a7ddb19f925de567d068d6dbf75ca26b1">
+              <span class="m-doc-wrap-bumper">auto <a href="#a7ddb19f925de567d068d6dbf75ca26b1" class="m-doc-self">pointgroup_to_laue</a>(</span><span class="m-doc-wrap">PointGroup pg) -&gt; Laue</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ad010c9551e0237e2aff8f3a77ba101c2">
+              <span class="m-doc-wrap-bumper">auto <a href="#ad010c9551e0237e2aff8f3a77ba101c2" class="m-doc-self">laue_to_pointgroup</a>(</span><span class="m-doc-wrap">Laue laue) -&gt; PointGroup</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a1b09eaf3a02f936563380f0f536c2697">
+              <span class="m-doc-wrap-bumper">auto <a href="#a1b09eaf3a02f936563380f0f536c2697" class="m-doc-self">laue_class_str</a>(</span><span class="m-doc-wrap">Laue laue) -&gt; const char*</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a1d5b4a2c0578ee12f681a5019dfe2669">
+              <span class="m-doc-wrap-bumper">auto <a href="#a1d5b4a2c0578ee12f681a5019dfe2669" class="m-doc-self">crystal_system</a>(</span><span class="m-doc-wrap">Laue laue) -&gt; CrystalSystem</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ae076b7260444723d2797a70046464395">
+              <span class="m-doc-wrap-bumper">auto <a href="#ae076b7260444723d2797a70046464395" class="m-doc-self">crystal_system</a>(</span><span class="m-doc-wrap">PointGroup pg) -&gt; CrystalSystem</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a385d43680126b1f4dad2e9ce6bc108ae">
+              <span class="m-doc-wrap-bumper">auto <a href="#a385d43680126b1f4dad2e9ce6bc108ae" class="m-doc-self">point_group_index_and_category</a>(</span><span class="m-doc-wrap">int space_group_number) -&gt; unsigned char</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a66ac762f5bcec01e4ab06963882e4798">
+              <span class="m-doc-wrap-bumper">auto <a href="#a66ac762f5bcec01e4ab06963882e4798" class="m-doc-self">point_group</a>(</span><span class="m-doc-wrap">int space_group_number) -&gt; PointGroup</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="aca0a49b31cd1cdf484cedd1f7900272a">
+              <span class="m-doc-wrap-bumper">auto <a href="#aca0a49b31cd1cdf484cedd1f7900272a" class="m-doc-self">is_sohncke</a>(</span><span class="m-doc-wrap">int space_group_number) -&gt; bool</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a8f4f421abd20c6f928cf9ce2e97629d6">
+              <span class="m-doc-wrap-bumper">auto <a href="#a8f4f421abd20c6f928cf9ce2e97629d6" class="m-doc-self">is_enantiomorphic</a>(</span><span class="m-doc-wrap">int space_group_number) -&gt; bool</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a161193298e3fd5215a67777fd1630f72">
+              <span class="m-doc-wrap-bumper">auto <a href="#a161193298e3fd5215a67777fd1630f72" class="m-doc-self">get_basisop</a>(</span><span class="m-doc-wrap">int basisop_idx) -&gt; const char*</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ab73567d89dd4aa64912c8c4a4dbf333a">
+              <span class="m-doc-wrap-bumper">auto <a href="#ab73567d89dd4aa64912c8c4a4dbf333a" class="m-doc-self">find_spacegroup_by_number</a>(</span><span class="m-doc-wrap">int ccp4) -&gt; const SpaceGroup* <span class="m-label m-flat m-success">noexcept</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a8794538e4f6d041977b757a630acf4d1">
+              <span class="m-doc-wrap-bumper">auto <a href="#a8794538e4f6d041977b757a630acf4d1" class="m-doc-self">get_spacegroup_by_number</a>(</span><span class="m-doc-wrap">int ccp4) -&gt; const SpaceGroup&amp;</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a00d7b36c5e4f3f77d654933a5bc7ead8">
+              <span class="m-doc-wrap-bumper">auto <a href="#a00d7b36c5e4f3f77d654933a5bc7ead8" class="m-doc-self">get_spacegroup_reference_setting</a>(</span><span class="m-doc-wrap">int number) -&gt; const SpaceGroup&amp;</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a22552aaa8b0d44a7d7ea95e58051e4f5">
+              <span class="m-doc-wrap-bumper">auto <a href="#a22552aaa8b0d44a7d7ea95e58051e4f5" class="m-doc-self">find_spacegroup_by_name</a>(</span><span class="m-doc-wrap"><a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a> name,
+              double alpha = 0.,
+              double gamma = 0.) -&gt; const SpaceGroup* <span class="m-label m-flat m-success">noexcept</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a3d8f47f4497881a36618fb1a4e4a4dbc">
+              <span class="m-doc-wrap-bumper">auto <a href="#a3d8f47f4497881a36618fb1a4e4a4dbc" class="m-doc-self">get_spacegroup_by_name</a>(</span><span class="m-doc-wrap">const <a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a>&amp; name) -&gt; const SpaceGroup&amp;</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="aea794102a6fb23df85e8bc44db2210dc">
+              <span class="m-doc-wrap-bumper">auto <a href="#aea794102a6fb23df85e8bc44db2210dc" class="m-doc-self">get_spacegroup_p1</a>(</span><span class="m-doc-wrap">) -&gt; const SpaceGroup&amp;</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a8199fd077e5b1f03431c96209ceaa1d3">
+              <span class="m-doc-wrap-bumper">auto <a href="#a8199fd077e5b1f03431c96209ceaa1d3" class="m-doc-self">find_spacegroup_by_ops</a>(</span><span class="m-doc-wrap">const GroupOps&amp; gops) -&gt; const SpaceGroup*</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a40e8e4ba8d378778e95a55a792aa8bd6">
+              <span class="m-doc-wrap-bumper">auto <a href="#a40e8e4ba8d378778e95a55a792aa8bd6" class="m-doc-self">find_spacegroup_by_change_of_basis</a>(</span><span class="m-doc-wrap">const SpaceGroup* sg,
+              const Op&amp; cob) -&gt; const SpaceGroup*</span>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+      </div>
+    </div>
+  </div>
+</article></main>
+<div class="m-doc-search" id="search">
+  <a href="#!" onclick="return hideSearch()"></a>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-m-8 m-push-m-2">
+        <div class="m-doc-search-header m-text m-small">
+          <div><span class="m-label m-default">Tab</span> / <span class="m-label m-default">T</span> to search, <span class="m-label m-default">Esc</span> to close</div>
+          <div id="search-symbolcount">&hellip;</div>
+        </div>
+        <div class="m-doc-search-content">
+          <form>
+            <input type="search" name="q" id="search-input" placeholder="Loading &hellip;" disabled="disabled" autofocus="autofocus" autocomplete="off" spellcheck="false" />
+          </form>
+          <noscript class="m-text m-danger m-text-center">Unlike everything else in the docs, the search functionality <em>requires</em> JavaScript.</noscript>
+          <div id="search-help" class="m-text m-dim m-text-center">
+            <p class="m-noindent">Search for symbols, directories, files, pages or
+            modules. You can omit any prefix from the symbol or file path; adding a
+            <code>:</code> or <code>/</code> suffix lists all members of given symbol or
+            directory.</p>
+            <p class="m-noindent">Use <span class="m-label m-dim">&darr;</span>
+            / <span class="m-label m-dim">&uarr;</span> to navigate through the list,
+            <span class="m-label m-dim">Enter</span> to go.
+            <span class="m-label m-dim">Tab</span> autocompletes common prefix, you can
+            copy a link to the result using <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">L</span> while <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">M</span> produces a Markdown link.</p>
+          </div>
+          <div id="search-notfound" class="m-text m-warning m-text-center">Sorry, nothing was found.</div>
+          <ul id="search-results"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="search-v1.js"></script>
+<script src="searchdata-v1.js" async="async"></script>
+<footer><nav>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <p>GEMMI C++ API. Created with <a href="https://doxygen.org/">Doxygen</a> 1.8.18 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
+      </div>
+    </div>
+  </div>
+</nav></footer>
+</body>
+</html>

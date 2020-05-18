@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>gemmi/pdb.hpp file | GEMMI C++ API</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
+  <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
+  <link rel="icon" href="favicon-dark.png" type="image/png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#22272e" />
+</head>
+<body>
+<header><nav id="navigation">
+  <div class="m-container">
+    <div class="m-row">
+      <span id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m">
+        <a href="../..">GEMMI</a> <span class="m-breadcrumb">|</span> <a href="index.html" class="m-thin">C++ API</a>
+      </span>
+      <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
+        <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+          <path id="m-doc-search-icon-path" d="m6 0c-3.31 0-6 2.69-6 6 0 3.31 2.69 6 6 6 1.49 0 2.85-0.541 3.89-1.44-0.0164 0.338 0.147 0.759 0.5 1.15l3.22 3.79c0.552 0.614 1.45 0.665 2 0.115 0.55-0.55 0.499-1.45-0.115-2l-3.79-3.22c-0.392-0.353-0.812-0.515-1.15-0.5 0.895-1.05 1.44-2.41 1.44-3.89 0-3.31-2.69-6-6-6zm0 1.56a4.44 4.44 0 0 1 4.44 4.44 4.44 4.44 0 0 1-4.44 4.44 4.44 4.44 0 0 1-4.44-4.44 4.44 4.44 0 0 1 4.44-4.44z"/>
+        </svg></a>
+        <a id="m-navbar-show" href="#navigation" title="Show navigation"></a>
+        <a id="m-navbar-hide" href="#" title="Hide navigation"></a>
+      </div>
+      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
+        <div class="m-row">
+          <ol class="m-col-t-6 m-col-m-none">
+          </ol>
+          <ol class="m-col-t-6 m-col-m-none" start="1">
+            <li><a href="namespaces.html">Namespaces</a></li>
+            <li><a href="annotated.html">Classes</a></li>
+            <li><a href="files.html">Files</a></li>
+            <li><a href="../python/index.html">Python API</a></li>
+            <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+              <use href="#m-doc-search-icon-path" />
+            </svg></a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav></header>
+<main><article>
+  <div class="m-container m-container-inflatable">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <h1>
+          <span class="m-breadcrumb"><a href="dir_c5b8fc87970ee713285cf5bc9d6a8cb4.html">gemmi</a>/</span>pdb.hpp <span class="m-thin">file</span>
+        </h1>
+        <p><span></span></p>
+        <div class="m-block m-default">
+          <h3>Contents</h3>
+          <ul>
+            <li>
+              Reference
+              <ul>
+                <li><a href="#namespaces">Namespaces</a></li>
+                <li><a href="#func-members">Functions</a></li>
+                <li><a href="#define-members">Defines</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <section id="namespaces">
+          <h2><a href="#namespaces">Namespaces</a></h2>
+          <dl class="m-doc">
+            <dt>namespace <a href="namespacegemmi.html" class="m-doc">gemmi</a></dt>
+            <dd><span></span></dd>
+            <dt>namespace <a href="namespacegemmi_1_1pdb__impl.html" class="m-doc">gemmi::pdb_impl</a></dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="func-members">
+          <h2><a href="#func-members">Functions</a></h2>
+          <dl class="m-doc">
+            <dt id="a5283741b1c0a854b109c2e8199044616">
+              <span class="m-doc-wrap-bumper">auto <a href="#a5283741b1c0a854b109c2e8199044616" class="m-doc-self">read_int</a>(</span><span class="m-doc-wrap">const char* p,
+              int field_length) -&gt; int</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a63a88021d9626888f858dc8bb917193c">
+              <div class="m-doc-template">template&lt;int N&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a63a88021d9626888f858dc8bb917193c" class="m-doc-self">read_base36</a>(</span><span class="m-doc-wrap">const char* p) -&gt; int</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a0cba6dd389b486f4cd9d4f4e045aaee7">
+              <span class="m-doc-wrap-bumper">auto <a href="#a0cba6dd389b486f4cd9d4f4e045aaee7" class="m-doc-self">read_double</a>(</span><span class="m-doc-wrap">const char* p,
+              int field_length) -&gt; double</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a0ca329755cb618fae303c8a1d12ce133">
+              <span class="m-doc-wrap-bumper">auto <a href="#a0ca329755cb618fae303c8a1d12ce133" class="m-doc-self">read_string</a>(</span><span class="m-doc-wrap">const char* p,
+              int field_length) -&gt; <a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a0b2df7e52e7f8eab071e2c06902bceba">
+              <span class="m-doc-wrap-bumper">auto <a href="#a0b2df7e52e7f8eab071e2c06902bceba" class="m-doc-self">is_record_type</a>(</span><span class="m-doc-wrap">const char* s,
+              const char* record) -&gt; bool</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a4b1aa4cd1d4222d5c975b619e7fc187c">
+              <span class="m-doc-wrap-bumper">auto <a href="#a4b1aa4cd1d4222d5c975b619e7fc187c" class="m-doc-self">read_charge</a>(</span><span class="m-doc-wrap">char digit,
+              char sign) -&gt; signed char</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="abfaf299b6504172f6c85f7d122ee210c">
+              <span class="m-doc-wrap-bumper">auto <a href="#abfaf299b6504172f6c85f7d122ee210c" class="m-doc-self">read_matrix</a>(</span><span class="m-doc-wrap">Transform&amp; t,
+              char* line,
+              size_t len) -&gt; int</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a12642da99128a50dad0b7213c97ae5f6">
+              <span class="m-doc-wrap-bumper">auto <a href="#a12642da99128a50dad0b7213c97ae5f6" class="m-doc-self">read_seq_id</a>(</span><span class="m-doc-wrap">const char* str) -&gt; SeqId</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a933b5a05651fc5ccf372606c89902a76">
+              <span class="m-doc-wrap-bumper">auto <a href="#a933b5a05651fc5ccf372606c89902a76" class="m-doc-self">read_res_id</a>(</span><span class="m-doc-wrap">const char* seq_id,
+              const char* name) -&gt; ResidueId</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a24a1fd7c30633e766c8682cdc93ad821">
+              <span class="m-doc-wrap-bumper">auto <a href="#a24a1fd7c30633e766c8682cdc93ad821" class="m-doc-self">read_altloc</a>(</span><span class="m-doc-wrap">char c) -&gt; char</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a52fc768164d5fbe1032b11873e804d6f">
+              <span class="m-doc-wrap-bumper">auto <a href="#a52fc768164d5fbe1032b11873e804d6f" class="m-doc-self">read_serial</a>(</span><span class="m-doc-wrap">const char* ptr) -&gt; int</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a26be0d43f78c02fbf93aca61768a14c5">
+              <span class="m-doc-wrap-bumper">auto <a href="#a26be0d43f78c02fbf93aca61768a14c5" class="m-doc-self">pdb_date_format_to_iso</a>(</span><span class="m-doc-wrap">const <a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a>&amp; date) -&gt; <a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a76f012cf6e5f71cca7313c6e8f38e948">
+              <div class="m-doc-template">template&lt;typename Input&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a76f012cf6e5f71cca7313c6e8f38e948" class="m-doc-self">copy_line_from_stream</a>(</span><span class="m-doc-wrap">char* line,
+              int size,
+              Input&amp;&amp; in) -&gt; size_t</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a10f3319b7817088706b2b6810b488964">
+              <span class="m-doc-wrap-bumper">auto <a href="#a10f3319b7817088706b2b6810b488964" class="m-doc-self">compare_link_symops</a>(</span><span class="m-doc-wrap">const <a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a>&amp; record) -&gt; Asu</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="aa513198fd78433e1029f7faebc49eaa9">
+              <span class="m-doc-wrap-bumper">void <a href="#aa513198fd78433e1029f7faebc49eaa9" class="m-doc-self">complete_ssbond_atom</a>(</span><span class="m-doc-wrap">AtomAddress&amp; ad,
+              const Model&amp; mdl)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a815af65ae392fedd4923a70822b9b1fd">
+              <span class="m-doc-wrap-bumper">void <a href="#a815af65ae392fedd4923a70822b9b1fd" class="m-doc-self">process_conn</a>(</span><span class="m-doc-wrap">Structure&amp; st,
+              const <a href="http://en.cppreference.com/w/cpp/container/vector.html" class="m-doc-external">std::<wbr />vector</a>&lt;<a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a>&gt;&amp; conn_records)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ab33ae60aafd4eb059c5c14160986c492">
+              <div class="m-doc-template">template&lt;size_t N&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#ab33ae60aafd4eb059c5c14160986c492" class="m-doc-self">same_str</a>(</span><span class="m-doc-wrap">const <a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a>&amp; s,
+              const char(&amp;literal)[N]) -&gt; bool</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a3b07c561b1933399a78251418cfa798b">
+              <div class="m-doc-template">template&lt;typename Input&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a3b07c561b1933399a78251418cfa798b" class="m-doc-self">read_pdb_from_line_input</a>(</span><span class="m-doc-wrap">Input&amp;&amp; infile,
+              const <a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a>&amp; source,
+              int max_line_length) -&gt; Structure</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a66064ea9a9ed8b11e50ffd488c6c5373">
+              <span class="m-doc-wrap-bumper">auto <a href="#a66064ea9a9ed8b11e50ffd488c6c5373" class="m-doc-self">read_pdb_file</a>(</span><span class="m-doc-wrap">const <a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a>&amp; path,
+              int linelen = 0) -&gt; Structure</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a2632abfc5c73dcca2203184fa584098d">
+              <span class="m-doc-wrap-bumper">auto <a href="#a2632abfc5c73dcca2203184fa584098d" class="m-doc-self">read_pdb_from_memory</a>(</span><span class="m-doc-wrap">const char* data,
+              size_t size,
+              const <a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a>&amp; name,
+              int linelen = 0) -&gt; Structure</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ad4615c40b4ec8ae63d599148bd2894b1">
+              <span class="m-doc-wrap-bumper">auto <a href="#ad4615c40b4ec8ae63d599148bd2894b1" class="m-doc-self">read_pdb_string</a>(</span><span class="m-doc-wrap">const <a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a>&amp; str,
+              const <a href="http://en.cppreference.com/w/cpp/string/basic_string.html" class="m-doc-external">std::<wbr />string</a>&amp; name) -&gt; Structure</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ab4a0d652382dbb23679f4198a5e8c07f">
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#ab4a0d652382dbb23679f4198a5e8c07f" class="m-doc-self">read_pdb</a>(</span><span class="m-doc-wrap">T&amp;&amp; input,
+              int linelen = 0) -&gt; Structure</span>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="define-members">
+          <h2><a href="#define-members">Defines</a></h2>
+          <dl class="m-doc">
+            <dt id="ac027aa0e51e97f8a9345f218a313db86">
+              <span class="m-doc-wrap-bumper">#define <a href="#ac027aa0e51e97f8a9345f218a313db86" class="m-doc-self">CHECK</a>(</span><span class="m-doc-wrap">cpos,
+              text)</span>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+      </div>
+    </div>
+  </div>
+</article></main>
+<div class="m-doc-search" id="search">
+  <a href="#!" onclick="return hideSearch()"></a>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-m-8 m-push-m-2">
+        <div class="m-doc-search-header m-text m-small">
+          <div><span class="m-label m-default">Tab</span> / <span class="m-label m-default">T</span> to search, <span class="m-label m-default">Esc</span> to close</div>
+          <div id="search-symbolcount">&hellip;</div>
+        </div>
+        <div class="m-doc-search-content">
+          <form>
+            <input type="search" name="q" id="search-input" placeholder="Loading &hellip;" disabled="disabled" autofocus="autofocus" autocomplete="off" spellcheck="false" />
+          </form>
+          <noscript class="m-text m-danger m-text-center">Unlike everything else in the docs, the search functionality <em>requires</em> JavaScript.</noscript>
+          <div id="search-help" class="m-text m-dim m-text-center">
+            <p class="m-noindent">Search for symbols, directories, files, pages or
+            modules. You can omit any prefix from the symbol or file path; adding a
+            <code>:</code> or <code>/</code> suffix lists all members of given symbol or
+            directory.</p>
+            <p class="m-noindent">Use <span class="m-label m-dim">&darr;</span>
+            / <span class="m-label m-dim">&uarr;</span> to navigate through the list,
+            <span class="m-label m-dim">Enter</span> to go.
+            <span class="m-label m-dim">Tab</span> autocompletes common prefix, you can
+            copy a link to the result using <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">L</span> while <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">M</span> produces a Markdown link.</p>
+          </div>
+          <div id="search-notfound" class="m-text m-warning m-text-center">Sorry, nothing was found.</div>
+          <ul id="search-results"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="search-v1.js"></script>
+<script src="searchdata-v1.js" async="async"></script>
+<footer><nav>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <p>GEMMI C++ API. Created with <a href="https://doxygen.org/">Doxygen</a> 1.8.18 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
+      </div>
+    </div>
+  </div>
+</nav></footer>
+</body>
+</html>

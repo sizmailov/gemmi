@@ -14,7 +14,7 @@
   <div class="m-container">
     <div class="m-row">
       <span id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m">
-        <a href="https://gemmi.readthedocs.io">Gemmi</a> <span class="m-breadcrumb">|</span> <a href="index.html" class="m-thin">Python API</a>
+        <a href="../..">Gemmi</a> <span class="m-breadcrumb">|</span> <a href="index.html" class="m-thin">Python API</a>
       </span>
       <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
         <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
@@ -28,7 +28,7 @@
           <ol class="m-col-t-12 m-col-m-none">
             <li><a href="modules.html">Modules</a></li>
             <li><a href="classes.html">Classes</a></li>
-            <li><a href="https://github.com/project-gemmi/gemmi">Github</a></li>
+            <li><a href="../c++">C++ API</a></li>
           </ol>
           <ol class="m-col-t-6 m-col-m-none" start="4">
             <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
@@ -185,6 +185,8 @@
             <dd></dd>
             <dt>class <a href="gemmi.NcsOpList.html" class="m-doc">NcsOpList</a></dt>
             <dd></dd>
+            <dt>class <a href="gemmi.NeighborSearch.html" class="m-doc">NeighborSearch</a></dt>
+            <dd></dd>
             <dt>class <a href="gemmi.Op.html" class="m-doc">Op</a></dt>
             <dd></dd>
             <dt>class <a href="gemmi.Position.html" class="m-doc">Position</a></dt>
@@ -239,8 +241,6 @@
             <dd></dd>
             <dt>class <a href="gemmi.Structure.html" class="m-doc">Structure</a></dt>
             <dd></dd>
-            <dt>class <a href="gemmi.SubCells.html" class="m-doc">SubCells</a></dt>
-            <dd></dd>
             <dt>class <a href="gemmi.SymImage.html" class="m-doc">SymImage</a></dt>
             <dd></dd>
             <dt>class <a href="gemmi.Topo.html" class="m-doc">Topo</a></dt>
@@ -257,7 +257,7 @@
             <dd></dd>
             <dt>class <a href="gemmi.Vec3.html" class="m-doc">Vec3</a></dt>
             <dd></dd>
-            <dt>class <a href="gemmi.VectorSubCellsMarkPtr.html" class="m-doc">VectorSubCellsMarkPtr</a></dt>
+            <dt>class <a href="gemmi.VectorMarkPtr.html" class="m-doc">VectorMarkPtr</a></dt>
             <dd></dd>
           </dl>
         </section>
@@ -522,11 +522,14 @@
             <dd></dd>
             <dt id="read_pdb">
               <span class="m-doc-wrap-bumper">def <a href="#read_pdb" class="m-doc-self">read_pdb</a>(</span><span class="m-doc-wrap">filename: <a href="https://docs.python.org/3/library/stdtypes.html#str" class="">str</a>,
-              max_line_length: <a href="https://docs.python.org/3/library/functions.html#int" class="">int</a> = 0) -&gt; <a href="gemmi.Structure.html" class="m-doc">Structure</a></span>
+              max_line_length: <a href="https://docs.python.org/3/library/functions.html#int" class="">int</a> = 0,
+              split_chain_on_ter: <a href="https://docs.python.org/3/library/functions.html#bool" class="">bool</a> = False) -&gt; <a href="gemmi.Structure.html" class="m-doc">Structure</a></span>
             </dt>
             <dd></dd>
             <dt id="read_pdb_string">
-              <span class="m-doc-wrap-bumper">def <a href="#read_pdb_string" class="m-doc-self">read_pdb_string</a>(</span><span class="m-doc-wrap">s: <a href="https://docs.python.org/3/library/stdtypes.html#str" class="">str</a>) -&gt; <a href="gemmi.Structure.html" class="m-doc">Structure</a></span>
+              <span class="m-doc-wrap-bumper">def <a href="#read_pdb_string" class="m-doc-self">read_pdb_string</a>(</span><span class="m-doc-wrap">s: <a href="https://docs.python.org/3/library/stdtypes.html#str" class="">str</a>,
+              max_line_length: <a href="https://docs.python.org/3/library/functions.html#int" class="">int</a> = 0,
+              split_chain_on_ter: <a href="https://docs.python.org/3/library/functions.html#bool" class="">bool</a> = False) -&gt; <a href="gemmi.Structure.html" class="m-doc">Structure</a></span>
             </dt>
             <dd>Reads a string as PDB file.</dd>
             <dt id="read_small_structure">
